@@ -42,6 +42,8 @@ class DemoArgs:
     fps: int = 10
     gif: bool = False
     """also write GIFs"""
+    frame_skip: int = 1
+    """keep every k-th frame (Simglucose days are 480 steps; 3 is a good value there)"""
 
 
 def is_failure(env_id, stats):
@@ -96,19 +98,41 @@ def draw_overlay(frame, mean, std, low, high, action_names, color, caption):
     return np.asarray(img)
 
 
-def record(env_id, mode, agent, normalizer, seed, color):
+def render_frame(env):
+    """env.render(), but undo highway-env's silent opt-out: its EnvViewer sets enabled=False
+    (and returns all-black frames) whenever SDL_VIDEODRIVER=dummy, the usual headless setting.
+    Prefer SDL_VIDEODRIVER=offscreen on headless machines (DECISIONS.md D38)."""
+    frame = env.render()
+    viewer = getattr(env.unwrapped, "viewer", None)
+    if viewer is not None and getattr(viewer, "enabled", True) is False:
+        viewer.enabled = True
+        frame = env.render()
+    return frame
+
+
+def record(env_id, mode, agent, normalizer, seed, color, frame_skip=1):
     env = make_env(env_id, render_mode="rgb_array")
     low, high = env.unwrapped.action_space.low, env.unwrapped.action_space.high
     names = ENV_SPECS[env_id].action_names
     frames = []
 
     def cb(env_, info, steps):
+        if (len(steps["mean"]) - 1) % max(1, frame_skip):
+            return  # render only every k-th step (rendering dominates the cost on long episodes)
         caption = f"{mode} sigma | seed {seed} | t={len(steps['mean']) - 1} | dist={float(info['goal_dist']):.2f}"
-        frames.append(draw_overlay(env_.render(), steps["mean"][-1], steps["std"][-1], low, high, names, color, caption))
+        frames.append(draw_overlay(render_frame(env_), steps["mean"][-1], steps["std"][-1], low, high, names, color, caption))
 
     _, stats = rollout(agent, normalizer, env, seed, False, torch.Generator().manual_seed(seed), frame_callback=cb)
     env.close()
     return frames, stats
+
+
+def outcome(env_id, agent, normalizer, seed):
+    """Episode stats without rendering (cheap), same noise stream as record()."""
+    env = make_env(env_id)
+    _, stats = rollout(agent, normalizer, env, seed, False, torch.Generator().manual_seed(seed))
+    env.close()
+    return stats
 
 
 def main(a: DemoArgs):
@@ -120,19 +144,19 @@ def main(a: DemoArgs):
                 continue
             agent, normalizer, _ = load_run(run_dir)
             color = MODE_COLORS[mode]
-            clips = [record(env_id, mode, agent, normalizer, a.seed_base + i, color) + (a.seed_base + i,)
-                     for i in range(a.episodes)]
-            if not any(is_failure(env_id, st) for _, st, _ in clips):
+            # pick the episodes first without rendering, then render only those
+            seeds = [a.seed_base + i for i in range(a.episodes)]
+            if not any(is_failure(env_id, outcome(env_id, agent, normalizer, s)) for s in seeds):
                 for i in range(a.episodes, a.max_scan):  # look for one failure case
-                    frames, st = record(env_id, mode, agent, normalizer, a.seed_base + i, color)
-                    if is_failure(env_id, st):
-                        clips[-1] = (frames, st, a.seed_base + i)
+                    if is_failure(env_id, outcome(env_id, agent, normalizer, a.seed_base + i)):
+                        seeds[-1] = a.seed_base + i
                         break
                 else:
                     print(f"{env_id}/{mode}: no failure in {a.max_scan} episodes")
             out_dir = os.path.join(a.out_dir, env_id, mode)
             os.makedirs(out_dir, exist_ok=True)
-            for frames, st, seed in clips:
+            for seed in seeds:
+                frames, st = record(env_id, mode, agent, normalizer, seed, color, a.frame_skip)
                 tag = "fail" if is_failure(env_id, st) else "ok"
                 path = os.path.join(out_dir, f"trainseed{a.seed}_ep{seed}_{tag}_ret{st['return']:.0f}.mp4")
                 h, w = frames[0].shape[:2]
