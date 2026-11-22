@@ -149,3 +149,9 @@ improvement (≈ −1275 → −1150; the LR anneals to 0 over just 50k steps), 
 full sweep a full-length Pendulum pilot (500k steps, seeds 1–2, both modes,
 `runs_pilot/`) was run to confirm the shared config learns: global reached ≈ −200 on
 both seeds, state ≈ −300 and ≈ −590. No hyperparameter was changed in response.
+
+## User decisions (2026-11-22)
+
+**U1. Third environment: `LunarLanderContinuous-v3`.**
+**U2. Full sweep not launched yet** — the user will start it; nothing under `runs/` exists.
+**U3. `state_separate` ablation: decide after the main results.**

@@ -1,7 +1,8 @@
 # Global vs. state-dependent σ in PPO — report
 
 Status: **implementation complete, smoke test + Pendulum pilot done, full sweep not yet
-launched** (waiting on: third environment, compute budget, `state_separate` ablation).
+launched** (user decision, 2026-11-22: third env = LunarLanderContinuous-v3; sweep to be
+started by the user; `state_separate` ablation to be decided after the main results).
 Sections marked _pending_ are filled in from `results/summary.md` and
 `results/sigma_summary.md` once the sweep finishes.
 
@@ -45,6 +46,20 @@ Purpose: confirm both modes learn before committing compute (D26). n = 2, so no
 claims: global ended at ≈ −200 on both seeds; state at ≈ −300 and ≈ −590, with mean
 log σ ≈ −3.2 at the end vs. −1.4 for global. The full 10-seed sweep is what tests
 this.
+
+## How to run the rest
+
+```
+source .venv/bin/activate
+python -m pytest -q                               # 31 tests
+python scripts/sweep.py --workers 8               # full sweep -> runs/ (resumable; re-run the same command)
+python analysis/curves.py                         # -> figures/, results/summary.md      (H1, H2)
+python analysis/sigma.py                          # -> figures/, results/sigma_summary.md (H3, H4)
+python analysis/demos.py --seed 1                 # -> demos/{env}/{mode}/*.mp4
+# ablations from the spec (both modes get the same extra flags):
+python scripts/sweep.py --runs-root runs_abl/ent0.01 --extra "--ent-coef 0.01"
+python scripts/sweep.py --envs parking-v0 --runs-root runs_abl/lam0.9 --extra "--gae-lambda 0.9"
+```
 
 ## H1 — performance _(pending)_
 
