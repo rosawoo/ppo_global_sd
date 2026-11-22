@@ -8,3 +8,4 @@ runs_abl/
 demos/*.mp4
 demos/*.gif
 .DS_Store
+runs_pilot/

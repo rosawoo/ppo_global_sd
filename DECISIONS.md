@@ -101,3 +101,51 @@ distance and per-episode final distance are logged (storing 2M × 7 floats per r
 
 **D17. Per-env sizes** (the only per-env settings; in `scripts/sweep.py`):
 parking 8×256, 2M steps; Pendulum 4×512, 500k; third env 8×256, 1M.
+
+## Analysis
+
+**D18. Runs that stop early (NaN) stay in the statistics.** Their eval curve is padded
+with the last recorded value before computing AUC / final scores, and they are counted
+separately (`n_nan_runs`). Dropping them would bias the unstable arm upwards.
+
+**D19. Scores.** AUC = trapezoid of the eval curve over steps ÷ step range (time-
+averaged eval return); final = mean of the last 3 evals. Per env and per metric we
+report the IQM over seeds with a 95% stratified-bootstrap CI from `rliable` (one task
+per call, so "stratified" = resampling seeds), and IQM(state) − IQM(global) with a
+bootstrap CI that resamples seeds independently in each arm. Envs are not aggregated
+into one normalized score: H1 is a per-domain claim and returns are not commensurable.
+
+**D20. σ analysis uses the final eval dump only, stochastic episodes** (`--last-k 1
+--policy stoch`). Pooling several evals mixes policies from different training steps;
+in the smoke test that made a *global* σ look state-dependent (std of log σ > 0).
+The stochastic episodes are used because that is the state distribution the σ was
+trained on.
+
+**D21. "Fraction of variance of log σ explained by state".** For one policy σ is a
+deterministic function of the state, so the literal fraction is 1 unless σ is constant.
+We therefore report three things per seed and action dim: (a) the *amount* of state-
+driven variation, `std_s(log σ)` and σ p95/p5 — ≈0 / ≈1 means the head collapsed to a
+global value and H3 fails; (b) how much of it the *precision variables* explain: η²
+(correlation ratio) per binned variable and R² of a joint linear fit; (c) pooled over
+seeds, the within-seed (state) share of Var[log σ] vs. the between-seed share.
+
+**D22. Spearman ρ is reported per seed; inference is across seeds.** Steps within an
+episode are strongly autocorrelated, so per-step p-values are not used; we report the
+median ρ and how many seeds have ρ > +0.1 / < −0.1.
+
+**D23. Fine-control regions** (for the near/far σ ratio and the episode annotations),
+fixed before the sweep: parking — within 3 m of the goal; Pendulum — |θ| < 0.3 rad;
+LunarLander — height < 0.3 obs units. Defined in `analysis/sigma.py:SIGMA_SPECS`.
+
+**D24. Demos** use the stochastic policy on reset seeds 200000+ (disjoint from the
+eval seeds). The first 5 are rendered as-is; only if none is a failure are further
+seeds scanned and the first failure swapped in for the 5th clip.
+
+**D25. `pandas` pinned to 2.3.3**: `arch` 7.2.0 (a `rliable` dependency) fails to
+import under pandas 3.x.
+
+**D26. Pre-sweep pilot.** The 50k-step smoke test showed only a small Pendulum
+improvement (≈ −1275 → −1150; the LR anneals to 0 over just 50k steps), so before any
+full sweep a full-length Pendulum pilot (500k steps, seeds 1–2, both modes,
+`runs_pilot/`) was run to confirm the shared config learns: global reached ≈ −200 on
+both seeds, state ≈ −300 and ≈ −590. No hyperparameter was changed in response.
