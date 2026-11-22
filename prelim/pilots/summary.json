@@ -1,0 +1,1018 @@
+{
+  "parking-v0": {
+    "performance": {
+      "stoch_return / auc": {
+        "iqm": {
+          "global": {
+            "iqm": -14.175497677006897,
+            "lo": -14.175497677006897,
+            "hi": -14.175497677006897
+          },
+          "state": {
+            "iqm": -13.937392422633069,
+            "lo": -13.937392422633069,
+            "hi": -13.937392422633069
+          }
+        },
+        "per_seed": {
+          "global": [
+            -14.175497677006897
+          ],
+          "state": [
+            -13.937392422633069
+          ]
+        },
+        "state_minus_global": {
+          "diff": 0.2381052543738278,
+          "lo": 0.2381052543738278,
+          "hi": 0.2381052543738278,
+          "p_state_better": 1.0
+        }
+      },
+      "stoch_return / final": {
+        "iqm": {
+          "global": {
+            "iqm": -11.443265460108362,
+            "lo": -11.443265460108362,
+            "hi": -11.443265460108362
+          },
+          "state": {
+            "iqm": -11.512610136212189,
+            "lo": -11.512610136212189,
+            "hi": -11.512610136212189
+          }
+        },
+        "per_seed": {
+          "global": [
+            -11.443265460108362
+          ],
+          "state": [
+            -11.512610136212189
+          ]
+        },
+        "state_minus_global": {
+          "diff": -0.06934467610382633,
+          "lo": -0.06934467610382633,
+          "hi": -0.06934467610382633,
+          "p_state_better": 0.0
+        }
+      },
+      "det_return / auc": {
+        "iqm": {
+          "global": {
+            "iqm": -18.512197558791627,
+            "lo": -18.512197558791627,
+            "hi": -18.512197558791627
+          },
+          "state": {
+            "iqm": -18.738771925295406,
+            "lo": -18.738771925295406,
+            "hi": -18.738771925295406
+          }
+        },
+        "per_seed": {
+          "global": [
+            -18.512197558791627
+          ],
+          "state": [
+            -18.738771925295406
+          ]
+        },
+        "state_minus_global": {
+          "diff": -0.2265743665037796,
+          "lo": -0.2265743665037796,
+          "hi": -0.2265743665037796,
+          "p_state_better": 0.0
+        }
+      },
+      "det_return / final": {
+        "iqm": {
+          "global": {
+            "iqm": -11.36144014880572,
+            "lo": -11.36144014880572,
+            "hi": -11.36144014880572
+          },
+          "state": {
+            "iqm": -11.459709177488904,
+            "lo": -11.459709177488904,
+            "hi": -11.459709177488904
+          }
+        },
+        "per_seed": {
+          "global": [
+            -11.36144014880572
+          ],
+          "state": [
+            -11.459709177488904
+          ]
+        },
+        "state_minus_global": {
+          "diff": -0.09826902868318399,
+          "lo": -0.09826902868318399,
+          "hi": -0.09826902868318399,
+          "p_state_better": 0.0
+        }
+      },
+      "stoch_success_rate / auc": {
+        "iqm": {
+          "global": {
+            "iqm": 0.0,
+            "lo": 0.0,
+            "hi": 0.0
+          },
+          "state": {
+            "iqm": 0.00839041095890411,
+            "lo": 0.00839041095890411,
+            "hi": 0.00839041095890411
+          }
+        },
+        "per_seed": {
+          "global": [
+            0.0
+          ],
+          "state": [
+            0.00839041095890411
+          ]
+        },
+        "state_minus_global": {
+          "diff": 0.00839041095890411,
+          "lo": 0.00839041095890411,
+          "hi": 0.00839041095890411,
+          "p_state_better": 1.0
+        }
+      },
+      "stoch_success_rate / final": {
+        "iqm": {
+          "global": {
+            "iqm": 0.0,
+            "lo": 0.0,
+            "hi": 0.0
+          },
+          "state": {
+            "iqm": 0.0,
+            "lo": 0.0,
+            "hi": 0.0
+          }
+        },
+        "per_seed": {
+          "global": [
+            0.0
+          ],
+          "state": [
+            0.0
+          ]
+        },
+        "state_minus_global": {
+          "diff": 0.0,
+          "lo": 0.0,
+          "hi": 0.0,
+          "p_state_better": 0.0
+        }
+      },
+      "det_success_rate / auc": {
+        "iqm": {
+          "global": {
+            "iqm": 0.0,
+            "lo": 0.0,
+            "hi": 0.0
+          },
+          "state": {
+            "iqm": 0.004280821917808219,
+            "lo": 0.004280821917808219,
+            "hi": 0.004280821917808219
+          }
+        },
+        "per_seed": {
+          "global": [
+            0.0
+          ],
+          "state": [
+            0.004280821917808219
+          ]
+        },
+        "state_minus_global": {
+          "diff": 0.004280821917808219,
+          "lo": 0.004280821917808219,
+          "hi": 0.004280821917808219,
+          "p_state_better": 1.0
+        }
+      },
+      "det_success_rate / final": {
+        "iqm": {
+          "global": {
+            "iqm": 0.0,
+            "lo": 0.0,
+            "hi": 0.0
+          },
+          "state": {
+            "iqm": 0.016666666666666666,
+            "lo": 0.016666666666666666,
+            "hi": 0.016666666666666666
+          }
+        },
+        "per_seed": {
+          "global": [
+            0.0
+          ],
+          "state": [
+            0.016666666666666666
+          ]
+        },
+        "state_minus_global": {
+          "diff": 0.016666666666666666,
+          "lo": 0.016666666666666666,
+          "hi": 0.016666666666666666,
+          "p_state_better": 1.0
+        }
+      },
+      "stoch_crash_rate / auc": {
+        "iqm": {
+          "global": {
+            "iqm": 1.0,
+            "lo": 1.0,
+            "hi": 1.0
+          },
+          "state": {
+            "iqm": 0.991609589041096,
+            "lo": 0.991609589041096,
+            "hi": 0.991609589041096
+          }
+        },
+        "per_seed": {
+          "global": [
+            1.0
+          ],
+          "state": [
+            0.991609589041096
+          ]
+        },
+        "state_minus_global": {
+          "diff": -0.008390410958904027,
+          "lo": -0.008390410958904027,
+          "hi": -0.008390410958904027,
+          "p_state_better": 0.0
+        }
+      },
+      "stoch_crash_rate / final": {
+        "iqm": {
+          "global": {
+            "iqm": 1.0,
+            "lo": 1.0,
+            "hi": 1.0
+          },
+          "state": {
+            "iqm": 1.0,
+            "lo": 1.0,
+            "hi": 1.0
+          }
+        },
+        "per_seed": {
+          "global": [
+            1.0
+          ],
+          "state": [
+            1.0
+          ]
+        },
+        "state_minus_global": {
+          "diff": 0.0,
+          "lo": 0.0,
+          "hi": 0.0,
+          "p_state_better": 0.0
+        }
+      },
+      "stoch_final_goal_dist / auc": {
+        "iqm": {
+          "global": {
+            "iqm": 20.055054991661684,
+            "lo": 20.055054991661684,
+            "hi": 20.055054991661684
+          },
+          "state": {
+            "iqm": 20.882863466543697,
+            "lo": 20.882863466543697,
+            "hi": 20.882863466543697
+          }
+        },
+        "per_seed": {
+          "global": [
+            20.055054991661684
+          ],
+          "state": [
+            20.882863466543697
+          ]
+        },
+        "state_minus_global": {
+          "diff": 0.827808474882012,
+          "lo": 0.827808474882012,
+          "hi": 0.827808474882012,
+          "p_state_better": 1.0
+        }
+      },
+      "stoch_final_goal_dist / final": {
+        "iqm": {
+          "global": {
+            "iqm": 18.426396294434866,
+            "lo": 18.426396294434866,
+            "hi": 18.426396294434866
+          },
+          "state": {
+            "iqm": 18.02729399204254,
+            "lo": 18.02729399204254,
+            "hi": 18.02729399204254
+          }
+        },
+        "per_seed": {
+          "global": [
+            18.426396294434866
+          ],
+          "state": [
+            18.02729399204254
+          ]
+        },
+        "state_minus_global": {
+          "diff": -0.39910230239232547,
+          "lo": -0.39910230239232547,
+          "hi": -0.39910230239232547,
+          "p_state_better": 0.0
+        }
+      },
+      "noise cost (det \u2212 stoch return) / auc": {
+        "iqm": {
+          "global": {
+            "iqm": -4.336699881784733,
+            "lo": -4.336699881784733,
+            "hi": -4.336699881784733
+          },
+          "state": {
+            "iqm": -4.801379502662338,
+            "lo": -4.801379502662338,
+            "hi": -4.801379502662338
+          }
+        },
+        "per_seed": {
+          "global": [
+            -4.336699881784733
+          ],
+          "state": [
+            -4.801379502662338
+          ]
+        },
+        "state_minus_global": {
+          "diff": -0.4646796208776056,
+          "lo": -0.4646796208776056,
+          "hi": -0.4646796208776056,
+          "p_state_better": 0.0
+        }
+      },
+      "noise cost (det \u2212 stoch return) / final": {
+        "iqm": {
+          "global": {
+            "iqm": 0.08182531130264141,
+            "lo": 0.08182531130264141,
+            "hi": 0.08182531130264141
+          },
+          "state": {
+            "iqm": 0.05290095872328374,
+            "lo": 0.05290095872328374,
+            "hi": 0.05290095872328374
+          }
+        },
+        "per_seed": {
+          "global": [
+            0.08182531130264141
+          ],
+          "state": [
+            0.05290095872328374
+          ]
+        },
+        "state_minus_global": {
+          "diff": -0.028924352579357666,
+          "lo": -0.028924352579357666,
+          "hi": -0.028924352579357666,
+          "p_state_better": 0.0
+        }
+      }
+    },
+    "h2": {
+      "global": {
+        "n_seeds": 1,
+        "n_nan_runs": 0,
+        "final_return_std_across_seeds": NaN,
+        "final_return_iqr_across_seeds": 0.0,
+        "auc_std_across_seeds": NaN,
+        "frac_seeds_never_learned (stoch_success_rate >= 0.5)": 1.0,
+        "approx_kl_mean": 0.007369768316139838,
+        "approx_kl_max_minibatch_p99": 0.031173011753708107,
+        "frac_updates_kl_gt_0.02": 0.0,
+        "clipfrac_mean": 0.09538172891695205,
+        "explained_variance_final": 0.973873782157898,
+        "logstd_mean_final": -1.5712227821350098,
+        "logstd_min_final": -1.6051360368728638,
+        "frac_seeds_sigma_hit_floor": 0.0,
+        "logstd_frac_at_min_final": 0.0,
+        "grad_norm_sigma_over_mean_head": 0.057278507267053004,
+        "gsnr_mean_head_mean_last20pct": 0.9101092917223695,
+        "gsnr_sigma_bias_mean_last20pct": 1.0463226824773366,
+        "gsnr_sigma_weight_mean_last20pct": NaN,
+        "gsnr_actor_trunk_mean_last20pct": 1.1292411023701552,
+        "trunk_cos_sigma_vs_mean_median_last20pct": NaN,
+        "trunk_gnorm_sigma_over_mean_median_last20pct": NaN,
+        "mean_outside_bounds_frac_median_last20pct": 0.55712890625,
+        "action_clipped_frac_median_last20pct": 0.5360107421875,
+        "train_wall_clock_min_mean": 35.406666666666666
+      },
+      "state": {
+        "n_seeds": 1,
+        "n_nan_runs": 0,
+        "final_return_std_across_seeds": NaN,
+        "final_return_iqr_across_seeds": 0.0,
+        "auc_std_across_seeds": NaN,
+        "frac_seeds_never_learned (stoch_success_rate >= 0.5)": 1.0,
+        "approx_kl_mean": 0.01189327816774327,
+        "approx_kl_max_minibatch_p99": 0.08172799497842786,
+        "frac_updates_kl_gt_0.02": 0.00684931506849315,
+        "clipfrac_mean": 0.13904811911386986,
+        "explained_variance_final": 0.976213127374649,
+        "logstd_mean_final": -2.2207205295562744,
+        "logstd_min_final": -3.244086742401123,
+        "frac_seeds_sigma_hit_floor": 0.0,
+        "logstd_frac_at_min_final": 0.0,
+        "grad_norm_sigma_over_mean_head": 0.2064848272503652,
+        "gsnr_mean_head_mean_last20pct": 1.013569429719702,
+        "gsnr_sigma_bias_mean_last20pct": 0.9538010499268164,
+        "gsnr_sigma_weight_mean_last20pct": 1.0543498785027052,
+        "gsnr_actor_trunk_mean_last20pct": 1.0231727849361556,
+        "trunk_cos_sigma_vs_mean_median_last20pct": 0.0014904734271112001,
+        "trunk_gnorm_sigma_over_mean_median_last20pct": 0.17989045265130693,
+        "mean_outside_bounds_frac_median_last20pct": 0.449951171875,
+        "action_clipped_frac_median_last20pct": 0.4459228515625,
+        "train_wall_clock_min_mean": 35.583333333333336
+      }
+    }
+  },
+  "simglucose-adolescent1-v0": {
+    "performance": {
+      "stoch_return / auc": {
+        "iqm": {
+          "global": {
+            "iqm": 368.72239536738533,
+            "lo": 368.72239536738533,
+            "hi": 368.72239536738533
+          },
+          "state": {
+            "iqm": 219.77063571666807,
+            "lo": 219.77063571666807,
+            "hi": 219.77063571666807
+          }
+        },
+        "per_seed": {
+          "global": [
+            368.72239536738533
+          ],
+          "state": [
+            219.77063571666807
+          ]
+        },
+        "state_minus_global": {
+          "diff": -148.95175965071726,
+          "lo": -148.95175965071726,
+          "hi": -148.95175965071726,
+          "p_state_better": 0.0
+        }
+      },
+      "stoch_return / final": {
+        "iqm": {
+          "global": {
+            "iqm": 444.52516962165834,
+            "lo": 444.52516962165834,
+            "hi": 444.52516962165834
+          },
+          "state": {
+            "iqm": 264.238563608272,
+            "lo": 264.238563608272,
+            "hi": 264.238563608272
+          }
+        },
+        "per_seed": {
+          "global": [
+            444.52516962165834
+          ],
+          "state": [
+            264.238563608272
+          ]
+        },
+        "state_minus_global": {
+          "diff": -180.28660601338635,
+          "lo": -180.28660601338635,
+          "hi": -180.28660601338635,
+          "p_state_better": 0.0
+        }
+      },
+      "det_return / auc": {
+        "iqm": {
+          "global": {
+            "iqm": 386.7386251453637,
+            "lo": 386.7386251453637,
+            "hi": 386.7386251453637
+          },
+          "state": {
+            "iqm": 226.27900605755656,
+            "lo": 226.27900605755656,
+            "hi": 226.27900605755656
+          }
+        },
+        "per_seed": {
+          "global": [
+            386.7386251453637
+          ],
+          "state": [
+            226.27900605755656
+          ]
+        },
+        "state_minus_global": {
+          "diff": -160.45961908780714,
+          "lo": -160.45961908780714,
+          "hi": -160.45961908780714,
+          "p_state_better": 0.0
+        }
+      },
+      "det_return / final": {
+        "iqm": {
+          "global": {
+            "iqm": 448.83350042631565,
+            "lo": 448.83350042631565,
+            "hi": 448.83350042631565
+          },
+          "state": {
+            "iqm": 279.5190989216944,
+            "lo": 279.5190989216944,
+            "hi": 279.5190989216944
+          }
+        },
+        "per_seed": {
+          "global": [
+            448.83350042631565
+          ],
+          "state": [
+            279.5190989216944
+          ]
+        },
+        "state_minus_global": {
+          "diff": -169.31440150462123,
+          "lo": -169.31440150462123,
+          "hi": -169.31440150462123,
+          "p_state_better": 0.0
+        }
+      },
+      "stoch_success_rate / auc": {
+        "iqm": {
+          "global": {
+            "iqm": 0.004487179487179488,
+            "lo": 0.004487179487179488,
+            "hi": 0.004487179487179488
+          },
+          "state": {
+            "iqm": 0.0,
+            "lo": 0.0,
+            "hi": 0.0
+          }
+        },
+        "per_seed": {
+          "global": [
+            0.004487179487179488
+          ],
+          "state": [
+            0.0
+          ]
+        },
+        "state_minus_global": {
+          "diff": -0.004487179487179488,
+          "lo": -0.004487179487179488,
+          "hi": -0.004487179487179488,
+          "p_state_better": 0.0
+        }
+      },
+      "stoch_success_rate / final": {
+        "iqm": {
+          "global": {
+            "iqm": 0.016666666666666666,
+            "lo": 0.016666666666666666,
+            "hi": 0.016666666666666666
+          },
+          "state": {
+            "iqm": 0.0,
+            "lo": 0.0,
+            "hi": 0.0
+          }
+        },
+        "per_seed": {
+          "global": [
+            0.016666666666666666
+          ],
+          "state": [
+            0.0
+          ]
+        },
+        "state_minus_global": {
+          "diff": -0.016666666666666666,
+          "lo": -0.016666666666666666,
+          "hi": -0.016666666666666666,
+          "p_state_better": 0.0
+        }
+      },
+      "det_success_rate / auc": {
+        "iqm": {
+          "global": {
+            "iqm": 0.052564102564102565,
+            "lo": 0.052564102564102565,
+            "hi": 0.052564102564102565
+          },
+          "state": {
+            "iqm": 0.0,
+            "lo": 0.0,
+            "hi": 0.0
+          }
+        },
+        "per_seed": {
+          "global": [
+            0.052564102564102565
+          ],
+          "state": [
+            0.0
+          ]
+        },
+        "state_minus_global": {
+          "diff": -0.052564102564102565,
+          "lo": -0.052564102564102565,
+          "hi": -0.052564102564102565,
+          "p_state_better": 0.0
+        }
+      },
+      "det_success_rate / final": {
+        "iqm": {
+          "global": {
+            "iqm": 0.15,
+            "lo": 0.15,
+            "hi": 0.15
+          },
+          "state": {
+            "iqm": 0.0,
+            "lo": 0.0,
+            "hi": 0.0
+          }
+        },
+        "per_seed": {
+          "global": [
+            0.15
+          ],
+          "state": [
+            0.0
+          ]
+        },
+        "state_minus_global": {
+          "diff": -0.15,
+          "lo": -0.15,
+          "hi": -0.15,
+          "p_state_better": 0.0
+        }
+      },
+      "stoch_crash_rate / auc": {
+        "iqm": {
+          "global": {
+            "iqm": 0.9096153846153846,
+            "lo": 0.9096153846153846,
+            "hi": 0.9096153846153846
+          },
+          "state": {
+            "iqm": 1.0,
+            "lo": 1.0,
+            "hi": 1.0
+          }
+        },
+        "per_seed": {
+          "global": [
+            0.9096153846153846
+          ],
+          "state": [
+            1.0
+          ]
+        },
+        "state_minus_global": {
+          "diff": 0.0903846153846154,
+          "lo": 0.0903846153846154,
+          "hi": 0.0903846153846154,
+          "p_state_better": 1.0
+        }
+      },
+      "stoch_crash_rate / final": {
+        "iqm": {
+          "global": {
+            "iqm": 0.8166666666666668,
+            "lo": 0.8166666666666668,
+            "hi": 0.8166666666666668
+          },
+          "state": {
+            "iqm": 1.0,
+            "lo": 1.0,
+            "hi": 1.0
+          }
+        },
+        "per_seed": {
+          "global": [
+            0.8166666666666668
+          ],
+          "state": [
+            1.0
+          ]
+        },
+        "state_minus_global": {
+          "diff": 0.18333333333333324,
+          "lo": 0.18333333333333324,
+          "hi": 0.18333333333333324,
+          "p_state_better": 1.0
+        }
+      },
+      "stoch_final_goal_dist / auc": {
+        "iqm": {
+          "global": {
+            "iqm": 68.51826095160766,
+            "lo": 68.51826095160766,
+            "hi": 68.51826095160766
+          },
+          "state": {
+            "iqm": 175.09303086183007,
+            "lo": 175.09303086183007,
+            "hi": 175.09303086183007
+          }
+        },
+        "per_seed": {
+          "global": [
+            68.51826095160766
+          ],
+          "state": [
+            175.09303086183007
+          ]
+        },
+        "state_minus_global": {
+          "diff": 106.57476991022241,
+          "lo": 106.57476991022241,
+          "hi": 106.57476991022241,
+          "p_state_better": 1.0
+        }
+      },
+      "stoch_final_goal_dist / final": {
+        "iqm": {
+          "global": {
+            "iqm": 10.928911888599396,
+            "lo": 10.928911888599396,
+            "hi": 10.928911888599396
+          },
+          "state": {
+            "iqm": 140.17984749476116,
+            "lo": 140.17984749476116,
+            "hi": 140.17984749476116
+          }
+        },
+        "per_seed": {
+          "global": [
+            10.928911888599396
+          ],
+          "state": [
+            140.17984749476116
+          ]
+        },
+        "state_minus_global": {
+          "diff": 129.25093560616176,
+          "lo": 129.25093560616176,
+          "hi": 129.25093560616176,
+          "p_state_better": 1.0
+        }
+      },
+      "stoch_tir / auc": {
+        "iqm": {
+          "global": {
+            "iqm": 0.5519931441494154,
+            "lo": 0.5519931441494154,
+            "hi": 0.5519931441494154
+          },
+          "state": {
+            "iqm": 0.4145267789522655,
+            "lo": 0.4145267789522655,
+            "hi": 0.4145267789522655
+          }
+        },
+        "per_seed": {
+          "global": [
+            0.5519931441494154
+          ],
+          "state": [
+            0.4145267789522655
+          ]
+        },
+        "state_minus_global": {
+          "diff": -0.1374663651971499,
+          "lo": -0.1374663651971499,
+          "hi": -0.1374663651971499,
+          "p_state_better": 0.0
+        }
+      },
+      "stoch_tir / final": {
+        "iqm": {
+          "global": {
+            "iqm": 0.6861053361053361,
+            "lo": 0.6861053361053361,
+            "hi": 0.6861053361053361
+          },
+          "state": {
+            "iqm": 0.37933919905237373,
+            "lo": 0.37933919905237373,
+            "hi": 0.37933919905237373
+          }
+        },
+        "per_seed": {
+          "global": [
+            0.6861053361053361
+          ],
+          "state": [
+            0.37933919905237373
+          ]
+        },
+        "state_minus_global": {
+          "diff": -0.30676613705296235,
+          "lo": -0.30676613705296235,
+          "hi": -0.30676613705296235,
+          "p_state_better": 0.0
+        }
+      },
+      "stoch_tbr / auc": {
+        "iqm": {
+          "global": {
+            "iqm": 0.41456664048729247,
+            "lo": 0.41456664048729247,
+            "hi": 0.41456664048729247
+          },
+          "state": {
+            "iqm": 0.5854732210477346,
+            "lo": 0.5854732210477346,
+            "hi": 0.5854732210477346
+          }
+        },
+        "per_seed": {
+          "global": [
+            0.41456664048729247
+          ],
+          "state": [
+            0.5854732210477346
+          ]
+        },
+        "state_minus_global": {
+          "diff": 0.1709065805604421,
+          "lo": 0.1709065805604421,
+          "hi": 0.1709065805604421,
+          "p_state_better": 1.0
+        }
+      },
+      "stoch_tbr / final": {
+        "iqm": {
+          "global": {
+            "iqm": 0.2941441441441442,
+            "lo": 0.2941441441441442,
+            "hi": 0.2941441441441442
+          },
+          "state": {
+            "iqm": 0.6206608009476263,
+            "lo": 0.6206608009476263,
+            "hi": 0.6206608009476263
+          }
+        },
+        "per_seed": {
+          "global": [
+            0.2941441441441442
+          ],
+          "state": [
+            0.6206608009476263
+          ]
+        },
+        "state_minus_global": {
+          "diff": 0.32651665680348213,
+          "lo": 0.32651665680348213,
+          "hi": 0.32651665680348213,
+          "p_state_better": 1.0
+        }
+      },
+      "noise cost (det \u2212 stoch return) / auc": {
+        "iqm": {
+          "global": {
+            "iqm": 18.01622977797844,
+            "lo": 18.01622977797844,
+            "hi": 18.01622977797844
+          },
+          "state": {
+            "iqm": 6.508370340888489,
+            "lo": 6.508370340888489,
+            "hi": 6.508370340888489
+          }
+        },
+        "per_seed": {
+          "global": [
+            18.01622977797844
+          ],
+          "state": [
+            6.508370340888489
+          ]
+        },
+        "state_minus_global": {
+          "diff": -11.507859437089952,
+          "lo": -11.507859437089952,
+          "hi": -11.507859437089952,
+          "p_state_better": 0.0
+        }
+      },
+      "noise cost (det \u2212 stoch return) / final": {
+        "iqm": {
+          "global": {
+            "iqm": 4.3083308046573165,
+            "lo": 4.3083308046573165,
+            "hi": 4.3083308046573165
+          },
+          "state": {
+            "iqm": 15.280535313422414,
+            "lo": 15.280535313422414,
+            "hi": 15.280535313422414
+          }
+        },
+        "per_seed": {
+          "global": [
+            4.3083308046573165
+          ],
+          "state": [
+            15.280535313422414
+          ]
+        },
+        "state_minus_global": {
+          "diff": 10.972204508765097,
+          "lo": 10.972204508765097,
+          "hi": 10.972204508765097,
+          "p_state_better": 1.0
+        }
+      }
+    },
+    "h2": {
+      "global": {
+        "n_seeds": 1,
+        "n_nan_runs": 0,
+        "final_return_std_across_seeds": NaN,
+        "final_return_iqr_across_seeds": 0.0,
+        "auc_std_across_seeds": NaN,
+        "frac_seeds_never_learned (stoch_success_rate >= 0.5)": 1.0,
+        "approx_kl_mean": 0.0072001125703144405,
+        "approx_kl_max_minibatch_p99": 0.057411078661680125,
+        "frac_updates_kl_gt_0.02": 0.0,
+        "clipfrac_mean": 0.0895858373397436,
+        "explained_variance_final": 0.9077403724193573,
+        "logstd_mean_final": -2.0764505863189697,
+        "logstd_min_final": -2.076451301574707,
+        "frac_seeds_sigma_hit_floor": 0.0,
+        "logstd_frac_at_min_final": 0.0,
+        "grad_norm_sigma_over_mean_head": 0.03457242974733343,
+        "gsnr_mean_head_mean_last20pct": 0.9738646097798181,
+        "gsnr_sigma_bias_mean_last20pct": 0.6970898039101798,
+        "gsnr_sigma_weight_mean_last20pct": NaN,
+        "gsnr_actor_trunk_mean_last20pct": 1.0222774696434125,
+        "trunk_cos_sigma_vs_mean_median_last20pct": NaN,
+        "trunk_gnorm_sigma_over_mean_median_last20pct": NaN,
+        "mean_outside_bounds_frac_median_last20pct": 0.0,
+        "action_clipped_frac_median_last20pct": 0.0,
+        "train_wall_clock_min_mean": 54.19666666666667
+      },
+      "state": {
+        "n_seeds": 1,
+        "n_nan_runs": 0,
+        "final_return_std_across_seeds": NaN,
+        "final_return_iqr_across_seeds": 0.0,
+        "auc_std_across_seeds": NaN,
+        "frac_seeds_never_learned (stoch_success_rate >= 0.5)": 1.0,
+        "approx_kl_mean": 0.02492682501517727,
+        "approx_kl_max_minibatch_p99": 0.8305777788162232,
+        "frac_updates_kl_gt_0.02": 0.5025641025641026,
+        "clipfrac_mean": 0.12004732572115384,
+        "explained_variance_final": 0.965744036436081,
+        "logstd_mean_final": -1.9891674518585205,
+        "logstd_min_final": -5.0,
+        "frac_seeds_sigma_hit_floor": 1.0,
+        "logstd_frac_at_min_final": 0.087890625,
+        "grad_norm_sigma_over_mean_head": 0.0811563172153629,
+        "gsnr_mean_head_mean_last20pct": 1.2921781184744203,
+        "gsnr_sigma_bias_mean_last20pct": 0.9196292554996638,
+        "gsnr_sigma_weight_mean_last20pct": 0.9230864285012768,
+        "gsnr_actor_trunk_mean_last20pct": 1.153713203469828,
+        "trunk_cos_sigma_vs_mean_median_last20pct": 0.003822294936981,
+        "trunk_gnorm_sigma_over_mean_median_last20pct": 0.1489236839115619,
+        "mean_outside_bounds_frac_median_last20pct": 0.0,
+        "action_clipped_frac_median_last20pct": 0.0,
+        "train_wall_clock_min_mean": 52.11833333333333
+      }
+    }
+  }
+}
