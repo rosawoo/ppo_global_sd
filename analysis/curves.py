@@ -18,17 +18,29 @@ import tyro
 from rliable import library as rly
 from rliable import metrics as rmetrics
 
-from common import MODE_COLORS, MODE_LABELS, MUTED, load_runs, savefig, set_style
+from common import MODE_COLORS, MODE_LABELS, MODE_ORDER, MUTED, load_runs, savefig, set_style
 from envs.wrappers import ENV_SPECS
 
 RETURN_METRICS = [("stoch_return_mean", "eval return (stochastic policy)"),
                   ("det_return_mean", "eval return (deterministic policy)"),
                   ("stoch_success_rate", "success rate (stochastic policy)"),
-                  ("det_success_rate", "success rate (deterministic policy)")]
+                  ("det_success_rate", "success rate (deterministic policy)"),
+                  ("stoch_crash_rate", "crash / severe-hypo rate (stochastic)"),
+                  ("stoch_final_goal_dist_mean", "final distance to goal (stochastic)"),
+                  ("stoch_tir_mean", "time in range 70-180 mg/dL (stochastic)"),
+                  ("stoch_tbr_mean", "time below 70 mg/dL (stochastic)")]
 DIAGNOSTICS = [("logstd_mean", "mean log σ"), ("logstd_min", "min log σ over states"), ("entropy", "policy entropy"),
                ("approx_kl", "approx. KL (mean over minibatches)"), ("clipfrac", "clip fraction"),
                ("explained_variance", "explained variance"), ("grad_norm_sigma", "‖∇‖ σ parameters"),
-               ("grad_norm_mean_head", "‖∇‖ mean head"), ("logstd_state_std", "std of log σ across states")]
+               ("grad_norm_mean_head", "‖∇‖ mean head"), ("logstd_state_std", "std of log σ across states"),
+               ("gsnr_mean_head", "gradient SNR: mean head (1 = noise)"),
+               ("gsnr_sigma_bias", "gradient SNR: σ level (global param / head bias)"),
+               ("gsnr_sigma_weight", "gradient SNR: σ state-dependence (head weights)"),
+               ("trunk_cos_sigma_vs_mean", "cos(trunk grad via σ, via mean)"),
+               ("trunk_gnorm_sigma_over_mean", "‖trunk grad via σ‖ / ‖via mean‖"),
+               ("mean_outside_bounds_frac", "frac. of states with mean outside action box"),
+               ("action_clipped_frac", "frac. of sampled actions clipped")]
+LOG_SCALE = ("grad_norm", "approx_kl", "gsnr_", "trunk_gnorm")
 
 
 @dataclass
@@ -132,7 +144,9 @@ def plot_iqm(env, table, fig_dir):
 
 
 def plot_diagnostics(env, by_mode, fig_dir):
-    diags = [d for d in DIAGNOSTICS if all(d[0] in r["updates"] for runs in by_mode.values() for r in runs)]
+    diags = [d for d in DIAGNOSTICS if all(d[0] in r["updates"] for runs in by_mode.values() for r in runs)
+             and any(r["updates"][d[0]].notna().any() for runs in by_mode.values() for r in runs)
+             and any((r["updates"][d[0]].fillna(0) != 0).any() for runs in by_mode.values() for r in runs)]
     ncol = 3
     nrow = int(np.ceil(len(diags) / ncol))
     fig, axes = plt.subplots(nrow, ncol, figsize=(4.6 * ncol, 2.9 * nrow), squeeze=False)
@@ -140,6 +154,8 @@ def plot_diagnostics(env, by_mode, fig_dir):
         for mode, runs in by_mode.items():
             c = MODE_COLORS[mode]
             n = min(len(r["updates"]) for r in runs)
+            if not all(r["updates"][key].notna().any() for r in runs):
+                continue
             for r in runs:
                 u = r["updates"]
                 ax.plot(u["global_step"], u[key].rolling(10, min_periods=1).mean(), color=c, lw=0.6, alpha=0.3)
@@ -147,7 +163,7 @@ def plot_diagnostics(env, by_mode, fig_dir):
                 med = np.median(np.stack([r["updates"][key].rolling(10, min_periods=1).mean().to_numpy()[:n]
                                           for r in runs]), axis=0)
                 ax.plot(runs[0]["updates"]["global_step"][:n], med, color=c, lw=2, label=MODE_LABELS[mode])
-        if key.startswith("grad_norm") or key == "approx_kl":
+        if key.startswith(LOG_SCALE):
             ax.set_yscale("log")
         ax.set_title(label)
         ax.set_xlabel("environment steps")
@@ -157,6 +173,25 @@ def plot_diagnostics(env, by_mode, fig_dir):
     fig.suptitle(f"{env}: optimization diagnostics (thin: seeds, bold: median; 10-update moving average)", y=1.01)
     fig.tight_layout()
     savefig(fig, os.path.join(fig_dir, f"{env}_diagnostics.png"))
+
+
+def plot_noise_cost(env, by_mode, fig_dir):
+    """det - stoch eval return over training: what the policy's own exploration noise costs at
+    evaluation. A state-dependent sigma that is small where precision matters should pay less."""
+    fig, ax = plt.subplots(figsize=(5.6, 3.6))
+    for mode, runs in by_mode.items():
+        steps, det = curve_matrix(runs, "det_return_mean")
+        _, sto = curve_matrix(runs, "stoch_return_mean")
+        gap, c = det - sto, MODE_COLORS[mode]
+        for row in gap:
+            ax.plot(steps, row, color=c, lw=0.6, alpha=0.3)
+        ax.plot(steps, iqm(gap, axis=0), color=c, lw=2, label=f"{MODE_LABELS[mode]} (IQM, n={len(gap)})")
+    ax.axhline(0, color=MUTED, lw=1, ls=":")
+    ax.set_xlabel("environment steps")
+    ax.set_ylabel("det. return − stoch. return")
+    ax.set_title(f"{env}: cost of the policy's own action noise at evaluation")
+    ax.legend(loc="best")
+    savefig(fig, os.path.join(fig_dir, f"{env}_noise_cost.png"))
 
 
 def h2_table(env, by_mode, args_last_k):
@@ -187,6 +222,15 @@ def h2_table(env, by_mode, args_last_k):
             "frac_seeds_sigma_hit_floor": cat("logstd_min", lambda s: float(s.min() <= logstd_floor + 1e-6)),
             "logstd_frac_at_min_final": cat("logstd_frac_at_min", lambda s: s.iloc[-1]),
             "grad_norm_sigma_over_mean_head": cat("grad_norm_sigma", np.mean) / cat("grad_norm_mean_head", np.mean),
+            # gradient SNR: MEAN over the last 20% of updates (under pure noise the mean is ~1 for any
+            # dimension, while the median is ~0.45 for a 1-d parameter (chi^2_1) and ~1 for a large head)
+            **{f"{k}_mean_last20pct": cat(k, lambda s_: float(np.nanmean(s_.iloc[int(0.8 * len(s_)):])))
+               for k in ("gsnr_mean_head", "gsnr_sigma_bias", "gsnr_sigma_weight", "gsnr_actor_trunk")
+               if ups and k in ups[0]},
+            **{f"{k}_median_last20pct": cat(k, lambda s_: float(np.nanmedian(s_.iloc[int(0.8 * len(s_)):])))
+               for k in ("trunk_cos_sigma_vs_mean", "trunk_gnorm_sigma_over_mean", "mean_outside_bounds_frac",
+                         "action_clipped_frac")
+               if ups and k in ups[0]},
             "train_wall_clock_min_mean": float(np.mean([r["status"].get("wall_clock_s", np.nan) for r in runs]) / 60),
         }
     return out
@@ -199,7 +243,7 @@ def main(a: CurveArgs):
         raise SystemExit(f"no finished runs under {a.runs_root}")
     summary, md = {}, []
     for env, by_mode in runs.items():
-        by_mode = {m: by_mode[m] for m in ("global", "state", "state_separate") if m in by_mode}
+        by_mode = {m: by_mode[m] for m in MODE_ORDER if m in by_mode}
         present = [(k, label) for k, label in RETURN_METRICS
                    if all(k in r["evals"] and r["evals"][k].notna().any() for rs in by_mode.values() for r in rs)]
         table = {}
@@ -209,23 +253,44 @@ def main(a: CurveArgs):
                 key = f"{metric.replace('_mean', '')} / {kind}"
                 by = {m: scores[m][kind] for m in by_mode}
                 entry = {"iqm": rliable_iqm(by, a.reps), "per_seed": {m: [float(x) for x in v] for m, v in by.items()}}
-                if "global" in by and "state" in by:
-                    entry["state_minus_global"] = iqm_difference(by["global"], by["state"], a.reps)
+                for m in by:
+                    if m != "global" and "global" in by:
+                        entry[f"{m}_minus_global"] = iqm_difference(by["global"], by[m], a.reps)
                 table[key] = entry
+        # cost of noise = det - stoch return (per seed), final and time-averaged
+        gap = {}
+        for m, rs in by_mode.items():
+            steps, det = curve_matrix(rs, "det_return_mean")
+            _, sto = curve_matrix(rs, "stoch_return_mean")
+            gap[m] = seed_scores(steps, det - sto, a.last_k)
+        for kind in ("auc", "final"):
+            by = {m: gap[m][kind] for m in by_mode}
+            entry = {"iqm": rliable_iqm(by, a.reps), "per_seed": {m: [float(x) for x in v] for m, v in by.items()}}
+            for m in by:
+                if m != "global" and "global" in by:
+                    entry[f"{m}_minus_global"] = iqm_difference(by["global"], by[m], a.reps)
+            table[f"noise cost (det − stoch return) / {kind}"] = entry
         h2 = h2_table(env, by_mode, a.last_k)
         summary[env] = {"performance": table, "h2": h2}
         plot_curves(env, by_mode, present, a.fig_dir)
         plot_iqm(env, table, a.fig_dir)
         plot_diagnostics(env, by_mode, a.fig_dir)
+        plot_noise_cost(env, by_mode, a.fig_dir)
 
-        md += [f"### {env}", "", "IQM across seeds [95% stratified-bootstrap CI]", "",
-               "| metric | " + " | ".join(by_mode) + " | state − global [95% CI] | P(state > global) |",
-               "|---|" + "---|" * (len(by_mode) + 2)]
+        others = [m for m in by_mode if m != "global"] if "global" in by_mode else []
+        md += [f"### {env}", "", "IQM across seeds [95% stratified-bootstrap CI]; "
+               "'m − global' = IQM difference with a 95% bootstrap CI (seeds resampled per arm) and "
+               "P(m > global) over bootstrap draws", "",
+               "| metric | " + " | ".join(by_mode) + " | "
+               + " | ".join(f"{m} − global [95% CI] | P({m} > global)" for m in others) + " |",
+               "|---|" + "---|" * (len(by_mode) + 2 * len(others))]
         for key, e in table.items():
             cells = [f"{e['iqm'][m]['iqm']:.3f} [{e['iqm'][m]['lo']:.3f}, {e['iqm'][m]['hi']:.3f}]" for m in by_mode]
-            d = e.get("state_minus_global")
-            diff = f"{d['diff']:+.3f} [{d['lo']:+.3f}, {d['hi']:+.3f}] | {d['p_state_better']:.2f}" if d else "– | –"
-            md.append(f"| {key} | " + " | ".join(cells) + f" | {diff} |")
+            for m in others:
+                d = e.get(f"{m}_minus_global")
+                cells.append(f"{d['diff']:+.3f} [{d['lo']:+.3f}, {d['hi']:+.3f}] | {d['p_state_better']:.2f}"
+                             if d else "– | –")
+            md.append(f"| {key} | " + " | ".join(cells) + " |")
         md += ["", "Optimization difficulty (H2)", "", "| diagnostic | " + " | ".join(by_mode) + " |",
                "|---|" + "---|" * len(by_mode)]
         for k in next(iter(h2.values())):
