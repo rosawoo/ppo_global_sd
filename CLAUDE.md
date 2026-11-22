@@ -35,7 +35,8 @@ precise ones are needed close to it. Plus two other domains:
 |---|---|---|
 | `parking-v0` (highway-env) | vehicle | fine control only near the parking spot |
 | `Pendulum-v1` (gymnasium) | classic control | coarse during swing-up, fine at the top |
-| THIRD ENV — ask the user before running the full sweep. Default to `LunarLanderContinuous-v3` (Box2D; precise at touchdown) if no answer. Alternative: `PandaReach-v3` (panda-gym). |
+| `simglucose-adolescent1-v0` (simglucose) | insulin dosing (T1D) | an overdose at low BG causes hypoglycaemia; at high BG it is harmless (DECISIONS.md U4, D27–D32) |
+| optional: `LunarLanderContinuous-v3` (Box2D), `simglucose-adolescent1-logact-v0` | | extra env / action-map ablation (`cluster/submit.sh extra`) |
 
 Notes on `parking-v0` (do not skip):
 - `pip install highway-env`; `import highway_env; gym.register_envs(highway_env)`.
@@ -47,8 +48,8 @@ Notes on `parking-v0` (do not skip):
   running mean/std (CleanRL `NormalizeObservation`-style).
 - Reward is a dense negative weighted p-norm of the goal error
   (`reward_weights=[1, 0.3, 0, 0, 0.02, 0.02]`, p=0.5), `success_goal_reward=0.12`,
-  `collision_reward=-5` (walls are on), `policy_frequency=5`, `duration=100` steps.
-  Episodes terminate on crash or success. PPO is **not** the standard algorithm here
+  `collision_reward=-5` (walls are on), `policy_frequency=5`, `duration=100` **seconds = 500 policy steps** (DECISIONS.md D37).
+  Episodes terminate on crash or success, so crashing into a wall early can out-score a slow park (D37): judge parking by success rate. PPO is **not** the standard algorithm here
   (official examples use HER + SAC/TQC); it is expected to learn because the reward is
   dense, but success rate may be modest. Report **both** return and `info["is_success"]`.
 - Log the goal-relative state at every step (`achieved_goal - desired_goal`, and the
@@ -153,7 +154,7 @@ For every trained state-dependent policy (and global as the flat reference line)
    mean σ per action dim with CIs across seeds:
    - parking: distance to goal (m) and |heading error|;
    - pendulum: |θ| (angle from upright) and |θ̇|;
-   - third env: height above ground / distance to target.
+   - Simglucose: CGM (mg/dL) and CGM trend; LunarLander: height above ground / distance to target.
    Also report Spearman ρ between σ and the precision variable, per seed.
 2. **Variance decomposition.** Fraction of variance of log σ explained by state
    (across the eval dataset) — if ≈0, the head collapsed to a global value and H3 fails
@@ -173,13 +174,19 @@ For every trained state-dependent policy (and global as the flat reference line)
 ## 6. Repository layout
 
 ```
-ppo.py                  # single-file PPO, CleanRL-derived, --std-mode {global,state}
+ppo.py                  # single-file PPO, CleanRL-derived, --std-mode {global,state,state_separate,state_detach}
 envs/wrappers.py        # parking Dict->Box wrapper, goal-relative logging, action clip
+envs/simglucose_env.py  # basal-insulin control env built from simglucose components
 scripts/sweep.py        # launches / resumes the (env × mode × seed) grid
 scripts/eval.py         # periodic eval + .npz dump
 analysis/curves.py      # rliable IQM plots, per-seed curves
 analysis/sigma.py       # binned σ, variance decomposition, heatmaps, Spearman
 analysis/demos.py       # rendered rollouts with σ overlay
+analysis/probe.py       # noise-tolerance probe: what noise costs in each state (env cloning)
+analysis/probe_report.py# precision requirement c(s) vs learned σ(s), heterogeneity index
+analysis/parking_deepdive.py # outcomes, trajectories, approach profile for parking-v0
+scripts/run_task.py     # runs one line of a Slurm task file (resumable)
+cluster/                # FASRC Cannon: setup_env.sh, submit.sh, array.sbatch, README.md
 tests/test_policy.py    # init equivalence, shapes, log-prob correctness, clamp
 DECISIONS.md            # every non-obvious choice, with the reason
 REPORT.md               # results, filled in as runs finish

@@ -155,3 +155,148 @@ both seeds, state ≈ −300 and ≈ −590. No hyperparameter was changed in re
 **U1. Third environment: `LunarLanderContinuous-v3`.**
 **U2. Full sweep not launched yet** — the user will start it; nothing under `runs/` exists.
 **U3. `state_separate` ablation: decide after the main results.**
+
+## Additions (2026-11-22, second session): third domain, diagnostics, probe, cluster
+
+**U4. Third core environment = Simglucose, not LunarLander.** The project goal names
+Simglucose (insulin dosing for type-1 diabetes) as the third domain, so it replaces U1.
+LunarLanderContinuous-v3 is kept as an optional fourth env (`bash cluster/submit.sh extra`)
+because it was already implemented and costs little. *Confirm with the user.*
+
+**D27. Simglucose is installed without dependency resolution**
+(`pip install --no-deps -r requirements-simglucose.txt`). simglucose 0.2.11 declares
+`gymnasium~=0.29.1` and `gym==0.9.4` for its own wrappers; a normal install silently
+downgraded gymnasium 1.4 → 0.29 and broke `ppo.py` (no `AutoresetMode`). We only use its
+simulator classes. `setuptools<81` is pinned because gym 0.9.4 / simglucose import
+`pkg_resources`.
+
+**D28. Simglucose env construction** (`envs/simglucose_env.py`). Built from simglucose's own
+components with the package defaults: patient `adolescent#001` (the gym default),
+`CGMSensor('Dexcom')` (3-min samples → one env step = 3 simulated minutes), `InsulinPump('Insulet')`,
+`RandomScenario` (random daily meals, unannounced), random start hour, random initial BG,
+basal-only control (bolus 0, as in the package's gym env), termination at BG < 10 or > 600
+mg/dL. Every random component is re-drawn from the gymnasium `np_random` at each `reset`
+(the package's `T1DSimGymnaisumEnv.reset` replays the same day forever). The patient's pandas
+parameter Series is replaced by a plain-attribute copy (`_FastParams`): the ODE right-hand
+side reads ~40 parameters per call and pandas attribute access dominated the run time;
+this is 8.6× faster with bit-identical trajectories (unit-tested).
+
+**D29. Simglucose action.** Policy action a ∈ [−1, 1] (clipped by the wrapper as in every env)
+→ basal rate = (a + 1)/2 · 10 · u_b, where u_b is the patient's steady-state basal
+(u2ss·BW/6000 U/min, 0.0139 U/min = 0.84 U/h for adolescent#001). The native action box,
+0–30 U/min, is ~2000× u_b: any Gaussian policy over it overdoses. 10× u_b ≈ 8.4 U/h covers the
+scenario's largest meal (80 g at CR 12 g/U ≈ 6.7 U) within about an hour on top of basal.
+Consequences, kept on purpose because they are the precision structure under study: the box
+midpoint (where the untrained mean sits) is 5× basal, which drives this patient into severe
+hypoglycaemia within ~12 h; a constant 2× basal (a = −0.6) gives ~100% time in range.
+Noise in a is *absolute* insulin noise (σ = 0.5 ↔ ±2.5× basal per 3-min step).
+
+**D30. Simglucose reward = 1 − risk(BG)/100**, with risk the Magni/Kovatchev risk index of the
+true BG (0 at 112.5 mg/dL, ~8 at 70 and 180, ~22 at 50 and 250, ~100 at 20 and 600). The
+default `risk_diff` telescopes to risk(BG₀) − risk(BG_T) and carries no per-step signal. The
++1 alive bonus removes the incentive a pure penalty would create to end the episode (BG < 10
+terminates); losing the remaining bonus is the termination penalty. Max return 480.
+
+**D31. Simglucose observation, horizon and metrics.** Obs (42-d) = last 20 CGM readings (1 h),
+last 20 insulin rates (× basal; history filled with 1.0 = basal steady state at reset),
+sin/cos of the time of day. CGM alone is far from Markov (insulin acts for hours, meals are
+unannounced). Time limit 480 steps = 24 h (truncation, value bootstrapped per D4).
+`is_success` = consensus targets (Battelino et al. 2019): time in 70–180 mg/dL ≥ 70% and time
+< 70 mg/dL < 4%. `crashed` = any BG < 54 mg/dL (level-2 hypoglycaemia) during the episode.
+Episode TIR / TBR / TBR54 / TAR / mean BG / mean risk are recorded in every eval.
+goal_rel = (CGM, CGM trend over 15 min, true BG, hour, mean insulin over 1 h);
+goal_dist = Magni risk of the true BG. Fine-control region = CGM < 100 mg/dL (where an
+overdose risks hypoglycaemia); "learned" threshold = stochastic success rate ≥ 0.5.
+
+**D32. Simglucose log-action ablation** (`simglucose-adolescent1-logact-v0`): rate = u_b · 10^a
+(0.1–10× basal, a = 0 → basal). Gaussian noise in a is then *multiplicative*: small in absolute
+units whenever the mean dose is small (low BG). Hypothesis it tests: when the action
+parameterisation already scales the noise with the required precision, a global σ inherits
+state-dependent precision for free and σ(s) should matter less.
+
+**D33. `--std-mode state_detach`** (optional ablation): the σ head reads the shared trunk
+features through `detach()`, so σ gradients cannot reshape the trunk; same parameters and
+init as `state`. With `state_separate` it separates "σ(s) is hard to learn" from "σ(s)
+gradients interfere with the mean's features".
+
+**D34. Read-only diagnostics** in `ppo.py` (`--grad-diagnostics`, default on), logged per update:
+(a) gradient signal-to-noise ratio ‖ḡ‖²/Var[ḡ] of the actor loss over 16 minibatches at the
+pre-update parameters (≈1 = pure noise, any dimension), per group: mean head, σ level
+(global parameter / head bias), σ state-dependence (head weights), actor trunk;
+(b) in `state` mode, cosine and norm ratio between the trunk gradient arriving via the σ head
+and via the mean head (interference); (c) fraction of rollout states whose mean lies outside
+the action box and fraction of sampled actions that are clipped (saturation), measured
+against the env's own box (`eval_env.unwrapped.action_space`: gymnasium's `ClipAction` wrapper
+advertises an unbounded space, so the first local runs logged 0 for (c); `sigma.py` computes
+the same quantities correctly from the eval dumps). The diagnostics
+use a private numpy Generator and `torch.autograd.grad` only; training is bit-identical with
+and without them (checked on Pendulum, both modes, and unit-tested).
+
+**D35. Noise-tolerance probe** (`analysis/probe.py`). Measures the premise "the appropriate
+noise level differs across states" instead of assuming it. States are drawn from each run's
+own stochastic episodes on reset seeds 300000+ (disjoint from eval 100000+ and demo 200000+),
+stratified 50/50 inside / outside the fine-control region with inverse-inclusion weights.
+At each state the env is deep-copied (exact for parking, Pendulum, Simglucose; Box2D cannot be
+copied, so LunarLander is skipped) and the discounted (γ = 0.99) return over W steps is compared
+between the mean policy and the mean policy plus N(0, (η·half-width)²) noise for the first H
+steps, η ∈ {0.05, 0.1, 0.2, 0.4}, 6 common-random-number repeats; plus the policy's own σ, and
+(2-d actions) noise on one action dimension at η = 0.2. H / W: parking 5 / 100 (1 s of noise,
+rest of the episode), Pendulum 10 / 100, Simglucose 20 / 160 (1 h of noise, 8 h of effect).
+c(s) = Σ L η² / Σ η⁴ (least-squares fit of L ≈ c η², the Q-curvature the σ gradient sees).
+Heterogeneity index = AM/GM of c over on-policy states (c floored at its 5th percentile): by
+AM–GM, the factor by which an ideal σ(s) ∝ c(s)^−½ with the same mean log σ would cut the
+quadratic noise cost relative to the best global σ.
+
+**D36. Cluster = CPU job arrays, one single-threaded run per task.** The actor (64-64) and critic
+(256-256) are tiny and the simulators (highway-env, the simglucose ODE, Box2D) are CPU-bound
+Python, so a GPU would idle while costing far more fairshare. Tasks are resumable under
+requeue / resubmission (D13 semantics in `scripts/run_task.py`). Time limits are generous upper
+bounds (parking 8 h, Simglucose 4 h, Pendulum 1 h).
+
+**D37. parking-v0 episodes are up to 500 steps, and crashing can pay.** `duration=100` is in
+*seconds*; the env clock advances 1/policy_frequency = 0.2 s per step, so the time limit is
+500 policy steps (CLAUDE.md §2 said 100 steps; corrected). The episode terminates on success or
+on a crash (wall), and a crash adds −5 once. With the per-step reward −√(Σ wᵢ|Δᵢ|) ≈ −0.5 at the
+start, a 500-step time-out costs ≈ −150 to −250 while driving into the nearest wall costs
+≈ −10 to −15, about the same as a slow successful park. Return is therefore not monotone in
+parking competence, and "crash early" is a local optimum (the smoke test's −50 → −14 with 0%
+success fits it). Consequences: the parking deep dive leads with success / crash / time-out
+rates, not return; the default env stays the primary parking env (spec: keep the default
+config). Optional variant `parking-nowalls-v0` = default config with `add_walls=False`, so an
+episode can only end by parking or timing out; it isolates the precision question from the
+crash shortcut (`cluster/submit.sh extra`). Probe window for parking: 150 steps (30 s).
+
+**D38. Headless rendering: `SDL_VIDEODRIVER=offscreen`, never `dummy`.** highway-env's
+`EnvViewer` sets `enabled=False` when `SDL_VIDEODRIVER=dummy` and then returns all-black frames
+without any warning. The cluster scripts use the `offscreen` driver, and `analysis/demos.py`
+re-enables the viewer if it finds it disabled.
+
+**D39. Hyper-parameters are tuned per environment with a *paired* search (user request,
+2026-11-22: "test hyperparameters that are good in each case").** One Optuna study per env
+(`scripts/tune.py`; TPE, multivariate, constant-liar for parallel workers; median pruning on a
+4-eval moving average after 30% of training). Every trial trains **both** arms with the **same**
+sampled hyper-parameters on the same tuning seeds (101, 102) at the full training length, so
+each trial is a paired comparison and the spec's invariant (arms differ only in `--std-mode`)
+holds inside the search. Searched: learning rate (log-uniform 5e-5–3e-3), γ (env-specific grid
+matched to the time scale: Pendulum {0.9 … 0.99}, parking {0.95 … 0.995}, Simglucose
+{0.98 … 0.999}), GAE λ {0.8, 0.9, 0.95, 0.98, 0.99}, clip {0.1, 0.2, 0.25, 0.3}, entropy
+{0, 1e-4, 1e-3, 1e-2}, epochs {3, 5, 10, 20}, minibatch size {64 … 512}, rollout length
+(env-specific), initial σ {0.25, 0.5, 1.0}. Fixed: network sizes, grad clip, normalisation,
+log σ clamp, training budget, eval protocol. The first trials are enqueued known-good configs:
+the spec's shared default, Andrychowicz et al.'s λ = 0.9 / clip 0.25, and for Pendulum the RL
+Baselines3 Zoo's tuned PPO (γ 0.9, lr 1e-3, 1024-step rollouts; without gSDE).
+Objective = mean over the two arms of each arm's score; a run's score = mean over the last 25% of
+its evaluations of: parking, stochastic success rate − 0.002 · final distance (m, capped at 30;
+breaks ties while success is 0 without rewarding crashes); Pendulum and Simglucose, stochastic
+return. Tuning uses 10 + 10 eval episodes on reset seeds 500000+, no eval dumps and no gradient
+diagnostics; none of it is reused in the final comparison.
+Outputs (`tune.py export` → `configs/tuned.json`): the best **shared** config per env (primary
+final comparison, `$RUNS_ROOT`), and each arm's **own** best config (secondary comparison,
+`$PERARM_ROOT`), both re-run with 10 fresh seeds and the standard eval seeds. The paired trials
+also answer "is one arm *consistently* better?" across all configs tried, separately for the
+uniform random start-up trials (`results/tuning_summary.md`). Tuning scores use 2 seeds and are
+optimistically biased (winner's curse); only the fresh final runs are reported as results.
+The variants `parking-nowalls-v0` and `simglucose-adolescent1-logact-v0` reuse the tuned config
+of their base env. Ablations are run on top of the tuned shared config. The spec's untuned
+default config (`submit.sh main` → `$DEFAULT_ROOT`) is kept as a robustness check: does tuning
+change the conclusion?
