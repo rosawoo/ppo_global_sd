@@ -19,6 +19,10 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import numpy as np
 import torch
 
+# optional per-episode metrics an env may report in its final info (Simglucose: time in
+# range etc.); copied into the episode stats and averaged into the eval summary when present
+EPISODE_METRIC_KEYS = ("tir", "tbr", "tbr54", "tar", "mean_bg", "mean_risk")
+
 
 @torch.no_grad()
 def rollout(agent, normalizer, env, seed: int, deterministic: bool, generator: torch.Generator, device="cpu",
@@ -58,6 +62,9 @@ def rollout(agent, normalizer, env, seed: int, deterministic: bool, generator: t
         "final_goal_dist": float(info["goal_dist"]),
         "seed": seed,
     }
+    for k in EPISODE_METRIC_KEYS:
+        if k in info:
+            stats[k] = float(info[k])
     return {k: np.asarray(v, dtype=np.float32) for k, v in steps.items()}, stats
 
 
@@ -90,6 +97,9 @@ def evaluate(agent, normalizer, env, n_episodes: int, seed_base: int, noise_seed
         summary[f"{tag}_success_rate"] = float(np.mean([r["success"] for r in rows]))
         summary[f"{tag}_crash_rate"] = float(np.mean([r["crashed"] for r in rows]))
         summary[f"{tag}_final_goal_dist_mean"] = float(np.mean([r["final_goal_dist"] for r in rows]))
+        for k in EPISODE_METRIC_KEYS:
+            if k in rows[0]:
+                summary[f"{tag}_{k}_mean"] = float(np.mean([r[k] for r in rows]))
     data = {k: np.concatenate([c[k] for c in step_chunks]) for k in step_chunks[0]}
     stoch = ~data["deterministic"]
     summary["stoch_sigma_mean"] = float(data["std"][stoch].mean())
@@ -111,7 +121,7 @@ def load_run(run_dir: str, device="cpu"):
     ckpt = torch.load(os.path.join(run_dir, "checkpoint.pt"), map_location=device, weights_only=False)
     a = ckpt["args"]
     agent = Agent(ckpt["obs_dim"], ckpt["act_dim"], a["std_mode"], a["log_std_init"], a["logstd_min"], a["logstd_max"],
-                  a["logstd_head_init_std"]).to(device)
+                  a["logstd_head_init_std"], a.get("actor_hidden", 64), a.get("critic_hidden", 256)).to(device)
     agent.load_state_dict(ckpt["agent"])
     agent.eval()
     return agent, VecNormalizer.from_state_dict(ckpt["normalizer"]), a

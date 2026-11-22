@@ -1,0 +1,21 @@
+# Simglucose and the exact packages its import path needs. Install AFTER requirements.txt,
+# WITHOUT dependency resolution:
+#
+#     pip install --no-deps -r requirements-simglucose.txt
+#
+# Why --no-deps: simglucose 0.2.11 declares gymnasium~=0.29.1 and gym==0.9.4 for its own
+# gym/gymnasium wrappers, which this project does not use (envs/simglucose_env.py builds the
+# simulation from simglucose's patient/sensor/pump/scenario classes directly). A normal
+# `pip install simglucose` silently downgrades gymnasium 1.4 -> 0.29 and breaks ppo.py
+# (no gym.vector.AutoresetMode). See DECISIONS.md D27.
+simglucose==0.2.11
+gym==0.9.4            # simglucose/__init__.py imports gym.envs.registration
+setuptools==80.10.2   # gym 0.9.4 and simglucose import pkg_resources (removed in setuptools>=81)
+pathos==0.3.5
+dill==0.4.1
+multiprocess==0.70.19
+pox==0.3.7
+ppft==1.7.8
+pyglet==2.1.19
+requests==2.34.2
+six==1.17.0
