@@ -1,0 +1,17 @@
+# Python 3.11 (venv created with `uv venv --python 3.11 .venv`)
+torch==2.15.0
+gymnasium[box2d]==1.4.0
+box2d==2.3.10
+swig==4.5.1
+highway-env==1.12.1
+tyro==1.0.17
+rliable==1.2.0
+arch==7.2.0
+tensorboard==2.21.0
+imageio[ffmpeg]==2.38.2
+imageio-ffmpeg==0.8.1
+numpy==2.4.6
+scipy==1.17.1
+matplotlib==3.11.2
+pygame-ce==2.5.8
+pytest==9.2.0
