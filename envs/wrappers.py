@@ -5,7 +5,8 @@ Everything here is identical for both arms of the study (--std-mode global / sta
 * `ParkingGoalRelInfo` / `PendulumGoalRelInfo` / `LunarLanderGoalRelInfo` put the
   goal-relative state into `info["goal_rel"]` and its Euclidean distance into
   `info["goal_dist"]` at *every* reset and step (CLAUDE.md §2) - this is the x-axis of
-  the sigma-vs-state analysis.
+  the sigma-vs-state analysis. `envs/simglucose_env.SimglucoseEnv` writes the same two
+  keys itself (its goal-relative state needs the true BG, which is not in the obs).
 * `ParkingFlatten` turns the parking Dict observation into a flat Box made of
   `observation` + `desired_goal` (`achieved_goal` duplicates `observation`).
 * `VecNormalizer` is a CleanRL/gym `NormalizeObservation` + `NormalizeReward`
@@ -39,6 +40,16 @@ ENV_SPECS: dict[str, EnvSpec] = {
         learned_metric="stoch_success_rate",
         learned_threshold=0.5,
     ),
+    # Optional variant (DECISIONS.md D37): default parking-v0 config except add_walls=False, so
+    # an episode can only end by parking or by the 500-step time limit (no "crash into a wall"
+    # exit, which under the default per-step penalty can out-score a slow parking manoeuvre).
+    "parking-nowalls-v0": EnvSpec(
+        goal_rel_names=("dx_m", "dy_m", "dvx_mps", "dvy_mps", "dcos_h", "dsin_h"),
+        dist_name="distance to goal (m)",
+        action_names=("acceleration", "steering"),
+        learned_metric="stoch_success_rate",
+        learned_threshold=0.5,
+    ),
     "Pendulum-v1": EnvSpec(
         goal_rel_names=("theta_rad", "theta_dot"),
         dist_name="|theta| from upright (rad)",
@@ -46,6 +57,25 @@ ENV_SPECS: dict[str, EnvSpec] = {
         learned_metric="stoch_return_mean",
         learned_threshold=-300.0,
     ),
+    # Third domain of the study (DECISIONS.md D27-D33). goal_rel = CGM, CGM trend, true BG,
+    # hour of day, mean insulin over the last hour; goal_dist = Magni risk of the true BG.
+    "simglucose-adolescent1-v0": EnvSpec(
+        goal_rel_names=("cgm_mgdl", "cgm_trend_mgdl_per_min", "bg_mgdl", "hour_of_day", "insulin_1h_x_basal"),
+        dist_name="Magni risk of BG (0 at 112.5 mg/dL)",
+        action_names=("basal_insulin",),
+        learned_metric="stoch_success_rate",
+        learned_threshold=0.5,
+    ),
+    # Same task, multiplicative action map (rate = basal * 10**a): ablation for the
+    # "parameterisation absorbs the precision gradient" hypothesis (DECISIONS.md D33).
+    "simglucose-adolescent1-logact-v0": EnvSpec(
+        goal_rel_names=("cgm_mgdl", "cgm_trend_mgdl_per_min", "bg_mgdl", "hour_of_day", "insulin_1h_x_basal"),
+        dist_name="Magni risk of BG (0 at 112.5 mg/dL)",
+        action_names=("basal_insulin",),
+        learned_metric="stoch_success_rate",
+        learned_threshold=0.5,
+    ),
+    # Optional fourth domain (was the third before the switch to Simglucose; kept because it is cheap).
     "LunarLanderContinuous-v3": EnvSpec(
         goal_rel_names=("x", "y", "vx", "vy", "angle", "angular_vel"),
         dist_name="distance to pad (obs units)",
@@ -143,17 +173,25 @@ def make_env(env_id: str, render_mode: str | None = None) -> gym.Env:
     """
     if env_id not in ENV_SPECS:
         raise ValueError(f"unknown env {env_id!r}; add it to envs.wrappers.ENV_SPECS")
-    if env_id == "parking-v0":
+    if env_id in ("parking-v0", "parking-nowalls-v0"):
         import highway_env
 
         gym.register_envs(highway_env)
-        env = gym.make(env_id, render_mode=render_mode)  # default config, untouched
+        if env_id == "parking-v0":
+            env = gym.make(env_id, render_mode=render_mode)  # default config, untouched
+        else:
+            env = gym.make("parking-v0", render_mode=render_mode, config={"add_walls": False})
         env = ParkingGoalRelInfo(env)
         env = ParkingFlatten(env)
     elif env_id == "Pendulum-v1":
         env = gym.make(env_id, render_mode=render_mode)
         env = PendulumGoalRelInfo(env)
         env = Float32Obs(env)
+    elif env_id.startswith("simglucose-"):
+        from envs.simglucose_env import SimglucoseEnv
+
+        action_map = "log" if "-logact-" in env_id else "linear"
+        env = SimglucoseEnv(patient_name="adolescent#001", action_map=action_map, render_mode=render_mode)
     else:
         env = gym.make(env_id, render_mode=render_mode)
         env = LunarLanderGoalRelInfo(env)
