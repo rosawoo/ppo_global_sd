@@ -1,0 +1,2902 @@
+{
+  "Pendulum-v1": {
+    "per_seed": {
+      "global": {
+        "1": {
+          "n_steps": 4000,
+          "dims": [
+            {
+              "action": "torque",
+              "sigma_mean": 0.5288527607917786,
+              "logsigma_std_across_states": 0.0,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.5288528203964233,
+              "sigma_far": 0.5288528203964233,
+              "n_near": 3326,
+              "spearman": {
+                "|\u03b8| from upright (rad)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "|\u03b8\u0307| (rad/s)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "|\u03b8| from upright (rad)": 0.0,
+                "|\u03b8\u0307| (rad/s)": 0.0
+              },
+              "far_over_near": 1.0,
+              "eff_noise_near": 0.5079737238086968,
+              "eff_noise_far": 0.2955206779660168,
+              "eff_far_over_near": 0.5817637096467416,
+              "mean_outside_bounds_frac": 0.09725,
+              "r2_linear_precision_vars": 0.0
+            }
+          ]
+        },
+        "2": {
+          "n_steps": 4000,
+          "dims": [
+            {
+              "action": "torque",
+              "sigma_mean": 0.6541164517402649,
+              "logsigma_std_across_states": 5.960464477539063e-08,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.6541164517402649,
+              "sigma_far": 0.6541165113449097,
+              "n_near": 3315,
+              "spearman": {
+                "|\u03b8| from upright (rad)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "|\u03b8\u0307| (rad/s)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "|\u03b8| from upright (rad)": 0.0,
+                "|\u03b8\u0307| (rad/s)": 0.0
+              },
+              "far_over_near": 1.0000000911223752,
+              "eff_noise_near": 0.6374595172927221,
+              "eff_noise_far": 0.29715936456670666,
+              "eff_far_over_near": 0.4661619389239596,
+              "mean_outside_bounds_frac": 0.10275,
+              "r2_linear_precision_vars": 0.0
+            }
+          ]
+        },
+        "3": {
+          "n_steps": 4000,
+          "dims": [
+            {
+              "action": "torque",
+              "sigma_mean": 0.3458138108253479,
+              "logsigma_std_across_states": 1.1920928955078125e-07,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.3458138108253479,
+              "sigma_far": 0.3458138406276703,
+              "n_near": 3226,
+              "spearman": {
+                "|\u03b8| from upright (rad)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "|\u03b8\u0307| (rad/s)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "|\u03b8| from upright (rad)": 0.0,
+                "|\u03b8\u0307| (rad/s)": 0.0
+              },
+              "far_over_near": 1.000000086180255,
+              "eff_noise_near": 0.3268244310011141,
+              "eff_noise_far": 0.20297521839275592,
+              "eff_far_over_near": 0.6210527706604162,
+              "mean_outside_bounds_frac": 0.08925,
+              "r2_linear_precision_vars": 0.0
+            }
+          ]
+        },
+        "4": {
+          "n_steps": 4000,
+          "dims": [
+            {
+              "action": "torque",
+              "sigma_mean": 0.36188173294067383,
+              "logsigma_std_across_states": 1.1920928955078125e-07,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.3618817925453186,
+              "sigma_far": 0.36188173294067383,
+              "n_near": 3263,
+              "spearman": {
+                "|\u03b8| from upright (rad)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "|\u03b8\u0307| (rad/s)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "|\u03b8| from upright (rad)": 0.0,
+                "|\u03b8\u0307| (rad/s)": 0.0
+              },
+              "far_over_near": 0.9999998352925016,
+              "eff_noise_near": 0.3568109051159654,
+              "eff_noise_far": 0.21867608862112817,
+              "eff_far_over_near": 0.6128626829666467,
+              "mean_outside_bounds_frac": 0.08475,
+              "r2_linear_precision_vars": 0.0
+            }
+          ]
+        },
+        "5": {
+          "n_steps": 4000,
+          "dims": [
+            {
+              "action": "torque",
+              "sigma_mean": 1.0013387203216553,
+              "logsigma_std_across_states": 1.1641532182693481e-10,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 1.0013388395309448,
+              "sigma_far": 1.0013387203216553,
+              "n_near": 3308,
+              "spearman": {
+                "|\u03b8| from upright (rad)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "|\u03b8\u0307| (rad/s)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "|\u03b8| from upright (rad)": 0.0,
+                "|\u03b8\u0307| (rad/s)": 0.0
+              },
+              "far_over_near": 0.9999998809500992,
+              "eff_noise_near": 0.8584667240307844,
+              "eff_noise_far": 0.42227168096926354,
+              "eff_far_over_near": 0.49189056389577773,
+              "mean_outside_bounds_frac": 0.15025,
+              "r2_linear_precision_vars": 0.0
+            }
+          ]
+        },
+        "6": {
+          "n_steps": 4000,
+          "dims": [
+            {
+              "action": "torque",
+              "sigma_mean": 0.7036066055297852,
+              "logsigma_std_across_states": 0.0,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.7036066651344299,
+              "sigma_far": 0.7036066651344299,
+              "n_near": 3245,
+              "spearman": {
+                "|\u03b8| from upright (rad)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "|\u03b8\u0307| (rad/s)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "|\u03b8| from upright (rad)": 0.0,
+                "|\u03b8\u0307| (rad/s)": 0.0
+              },
+              "far_over_near": 1.0,
+              "eff_noise_near": 0.675968748156088,
+              "eff_noise_far": 0.3022141153687194,
+              "eff_far_over_near": 0.4470829697276702,
+              "mean_outside_bounds_frac": 0.117,
+              "r2_linear_precision_vars": 0.0
+            }
+          ]
+        },
+        "7": {
+          "n_steps": 4000,
+          "dims": [
+            {
+              "action": "torque",
+              "sigma_mean": 0.9553355574607849,
+              "logsigma_std_across_states": 3.725290298461914e-09,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.9553355574607849,
+              "sigma_far": 0.9553355574607849,
+              "n_near": 3301,
+              "spearman": {
+                "|\u03b8| from upright (rad)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "|\u03b8\u0307| (rad/s)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "|\u03b8| from upright (rad)": 0.0,
+                "|\u03b8\u0307| (rad/s)": 0.0
+              },
+              "far_over_near": 1.0,
+              "eff_noise_near": 0.7616472299830888,
+              "eff_noise_far": 0.428214271099089,
+              "eff_far_over_near": 0.5622212675920805,
+              "mean_outside_bounds_frac": 0.19725,
+              "r2_linear_precision_vars": 0.0
+            }
+          ]
+        },
+        "8": {
+          "n_steps": 4000,
+          "dims": [
+            {
+              "action": "torque",
+              "sigma_mean": 0.6675644516944885,
+              "logsigma_std_across_states": 8.940696716308594e-08,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.6675644516944885,
+              "sigma_far": 0.6675644516944885,
+              "n_near": 3345,
+              "spearman": {
+                "|\u03b8| from upright (rad)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "|\u03b8\u0307| (rad/s)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "|\u03b8| from upright (rad)": 0.0,
+                "|\u03b8\u0307| (rad/s)": 0.0
+              },
+              "far_over_near": 1.0,
+              "eff_noise_near": 0.6429337986335767,
+              "eff_noise_far": 0.29949829531440936,
+              "eff_far_over_near": 0.4658306904240083,
+              "mean_outside_bounds_frac": 0.096,
+              "r2_linear_precision_vars": 0.0
+            }
+          ]
+        },
+        "9": {
+          "n_steps": 4000,
+          "dims": [
+            {
+              "action": "torque",
+              "sigma_mean": 0.45137688517570496,
+              "logsigma_std_across_states": 5.960464477539063e-08,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.45137691497802734,
+              "sigma_far": 0.45137685537338257,
+              "n_near": 3333,
+              "spearman": {
+                "|\u03b8| from upright (rad)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "|\u03b8\u0307| (rad/s)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "|\u03b8| from upright (rad)": 0.0,
+                "|\u03b8\u0307| (rad/s)": 0.0
+              },
+              "far_over_near": 0.9999998679492841,
+              "eff_noise_near": 0.44572060646563133,
+              "eff_noise_far": 0.22801451040078005,
+              "eff_far_over_near": 0.5115637623506685,
+              "mean_outside_bounds_frac": 0.09425,
+              "r2_linear_precision_vars": 0.0
+            }
+          ]
+        },
+        "10": {
+          "n_steps": 4000,
+          "dims": [
+            {
+              "action": "torque",
+              "sigma_mean": 0.23856180906295776,
+              "logsigma_std_across_states": 2.384185791015625e-07,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.23856180906295776,
+              "sigma_far": 0.23856180906295776,
+              "n_near": 3276,
+              "spearman": {
+                "|\u03b8| from upright (rad)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "|\u03b8\u0307| (rad/s)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "|\u03b8| from upright (rad)": 0.0,
+                "|\u03b8\u0307| (rad/s)": 0.0
+              },
+              "far_over_near": 1.0,
+              "eff_noise_near": 0.23632560885653786,
+              "eff_noise_far": 0.15751063262772164,
+              "eff_far_over_near": 0.6664983680348368,
+              "mean_outside_bounds_frac": 0.07275,
+              "r2_linear_precision_vars": 0.0
+            }
+          ]
+        }
+      },
+      "state": {
+        "1": {
+          "n_steps": 4000,
+          "dims": [
+            {
+              "action": "torque",
+              "sigma_mean": 7.2501606941223145,
+              "logsigma_std_across_states": 0.2748550474643707,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 7.370953559875488,
+              "sigma_far": 6.6885085105896,
+              "n_near": 3292,
+              "spearman": {
+                "|\u03b8| from upright (rad)": {
+                  "rho": -0.22021041818180076,
+                  "p": 3.9989979921582717e-45
+                },
+                "|\u03b8\u0307| (rad/s)": {
+                  "rho": -0.25430702331696003,
+                  "p": 4.4763746695583415e-60
+                }
+              },
+              "eta2": {
+                "|\u03b8| from upright (rad)": 0.17303919378303817,
+                "|\u03b8\u0307| (rad/s)": 0.15133677915640165
+              },
+              "far_over_near": 0.9074142790695569,
+              "eff_noise_near": 0.782691085236157,
+              "eff_noise_far": 0.8094244398714507,
+              "eff_far_over_near": 1.034155690718296,
+              "mean_outside_bounds_frac": 0.91125,
+              "r2_linear_precision_vars": 0.10218767479860502
+            }
+          ]
+        },
+        "2": {
+          "n_steps": 4000,
+          "dims": [
+            {
+              "action": "torque",
+              "sigma_mean": 7.089501857757568,
+              "logsigma_std_across_states": 0.254497230052948,
+              "sigma_p95_over_p5": 1.7659376859664917,
+              "sigma_near": 7.359652996063232,
+              "sigma_far": 5.676466464996338,
+              "n_near": 3358,
+              "spearman": {
+                "|\u03b8| from upright (rad)": {
+                  "rho": -0.40627649551331196,
+                  "p": 7.583817947110041e-159
+                },
+                "|\u03b8\u0307| (rad/s)": {
+                  "rho": -0.4170858722438507,
+                  "p": 3.6707117222339613e-168
+                }
+              },
+              "eta2": {
+                "|\u03b8| from upright (rad)": 0.32204999784240473,
+                "|\u03b8\u0307| (rad/s)": 0.27958774639580214
+              },
+              "far_over_near": 0.7712953950454932,
+              "eff_noise_near": 1.1319498009875006,
+              "eff_noise_far": 0.810453646682211,
+              "eff_far_over_near": 0.7159802015735858,
+              "mean_outside_bounds_frac": 0.8895,
+              "r2_linear_precision_vars": 0.2183018657527528
+            }
+          ]
+        },
+        "3": {
+          "n_steps": 4000,
+          "dims": [
+            {
+              "action": "torque",
+              "sigma_mean": 7.192879676818848,
+              "logsigma_std_across_states": 0.2202296257019043,
+              "sigma_p95_over_p5": 1.1793341636657715,
+              "sigma_near": 7.387048244476318,
+              "sigma_far": 6.285384654998779,
+              "n_near": 3295,
+              "spearman": {
+                "|\u03b8| from upright (rad)": {
+                  "rho": -0.35859500223570395,
+                  "p": 1.122371734733051e-121
+                },
+                "|\u03b8\u0307| (rad/s)": {
+                  "rho": -0.36795570047247406,
+                  "p": 1.7250049534396694e-128
+                }
+              },
+              "eta2": {
+                "|\u03b8| from upright (rad)": 0.23321262371226423,
+                "|\u03b8\u0307| (rad/s)": 0.2913289966119438
+              },
+              "far_over_near": 0.8508655212450642,
+              "eff_noise_near": 1.0934938353698955,
+              "eff_noise_far": 0.8350622711887816,
+              "eff_far_over_near": 0.7636643611313141,
+              "mean_outside_bounds_frac": 0.8845,
+              "r2_linear_precision_vars": 0.26821616308295104
+            }
+          ]
+        },
+        "4": {
+          "n_steps": 4000,
+          "dims": [
+            {
+              "action": "torque",
+              "sigma_mean": 7.010801792144775,
+              "logsigma_std_across_states": 0.3404025435447693,
+              "sigma_p95_over_p5": 1.9874399900436401,
+              "sigma_near": 7.3277082443237305,
+              "sigma_far": 5.328297138214111,
+              "n_near": 3366,
+              "spearman": {
+                "|\u03b8| from upright (rad)": {
+                  "rho": -0.45289543537610244,
+                  "p": 1.4245057514791176e-201
+                },
+                "|\u03b8\u0307| (rad/s)": {
+                  "rho": -0.48495953778672707,
+                  "p": 4.3986170234262576e-235
+                }
+              },
+              "eta2": {
+                "|\u03b8| from upright (rad)": 0.4195432368414691,
+                "|\u03b8\u0307| (rad/s)": 0.33207775294262964
+              },
+              "far_over_near": 0.7271437345150272,
+              "eff_noise_near": 1.1741527221783097,
+              "eff_noise_far": 0.5840125544917696,
+              "eff_far_over_near": 0.49739062343465745,
+              "mean_outside_bounds_frac": 0.887,
+              "r2_linear_precision_vars": 0.3314605593712421
+            }
+          ]
+        },
+        "5": {
+          "n_steps": 4000,
+          "dims": [
+            {
+              "action": "torque",
+              "sigma_mean": 7.207598686218262,
+              "logsigma_std_across_states": 0.24795806407928467,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 7.38271427154541,
+              "sigma_far": 6.38348388671875,
+              "n_near": 3299,
+              "spearman": {
+                "|\u03b8| from upright (rad)": {
+                  "rho": -0.291724508478033,
+                  "p": 2.616463938515352e-79
+                },
+                "|\u03b8\u0307| (rad/s)": {
+                  "rho": -0.3102728071403162,
+                  "p": 5.3746292750156915e-90
+                }
+              },
+              "eta2": {
+                "|\u03b8| from upright (rad)": 0.16857279030606684,
+                "|\u03b8\u0307| (rad/s)": 0.279062480980302
+              },
+              "far_over_near": 0.8646527079237087,
+              "eff_noise_near": 0.8842531424501495,
+              "eff_noise_far": 0.7908312404519803,
+              "eff_far_over_near": 0.8943493695263447,
+              "mean_outside_bounds_frac": 0.91925,
+              "r2_linear_precision_vars": 0.26915436528675385
+            }
+          ]
+        },
+        "6": {
+          "n_steps": 4000,
+          "dims": [
+            {
+              "action": "torque",
+              "sigma_mean": 7.008252143859863,
+              "logsigma_std_across_states": 0.2699833810329437,
+              "sigma_p95_over_p5": 1.7625128030776978,
+              "sigma_near": 7.267642498016357,
+              "sigma_far": 5.748523712158203,
+              "n_near": 3317,
+              "spearman": {
+                "|\u03b8| from upright (rad)": {
+                  "rho": -0.4695471429496754,
+                  "p": 1.5766317111486439e-218
+                },
+                "|\u03b8\u0307| (rad/s)": {
+                  "rho": -0.48326947762552924,
+                  "p": 3.164557883775745e-233
+                }
+              },
+              "eta2": {
+                "|\u03b8| from upright (rad)": 0.3349623208888516,
+                "|\u03b8\u0307| (rad/s)": 0.27646880048320005
+              },
+              "far_over_near": 0.7909750257703533,
+              "eff_noise_near": 1.195204769125269,
+              "eff_noise_far": 0.9666613335176966,
+              "eff_far_over_near": 0.8087830290579949,
+              "mean_outside_bounds_frac": 0.88425,
+              "r2_linear_precision_vars": 0.2156687075775957
+            }
+          ]
+        },
+        "7": {
+          "n_steps": 4000,
+          "dims": [
+            {
+              "action": "torque",
+              "sigma_mean": 6.738335132598877,
+              "logsigma_std_across_states": 0.34924906492233276,
+              "sigma_p95_over_p5": 2.176196336746216,
+              "sigma_near": 6.982136249542236,
+              "sigma_far": 5.5352463722229,
+              "n_near": 3326,
+              "spearman": {
+                "|\u03b8| from upright (rad)": {
+                  "rho": -0.2885313426422163,
+                  "p": 1.5096611272737652e-77
+                },
+                "|\u03b8\u0307| (rad/s)": {
+                  "rho": -0.5837312832381113,
+                  "p": 0.0
+                }
+              },
+              "eta2": {
+                "|\u03b8| from upright (rad)": 0.22581748763861695,
+                "|\u03b8\u0307| (rad/s)": 0.17500802087665127
+              },
+              "far_over_near": 0.7927726091833002,
+              "eff_noise_near": 1.1962771226477458,
+              "eff_noise_far": 0.7487315973189766,
+              "eff_far_over_near": 0.6258847412059448,
+              "mean_outside_bounds_frac": 0.879,
+              "r2_linear_precision_vars": 0.14280530025222027
+            }
+          ]
+        },
+        "8": {
+          "n_steps": 4000,
+          "dims": [
+            {
+              "action": "torque",
+              "sigma_mean": 7.1321611404418945,
+              "logsigma_std_across_states": 0.20132654905319214,
+              "sigma_p95_over_p5": 1.4358704090118408,
+              "sigma_near": 7.323784828186035,
+              "sigma_far": 6.193263053894043,
+              "n_near": 3322,
+              "spearman": {
+                "|\u03b8| from upright (rad)": {
+                  "rho": -0.3409565555704889,
+                  "p": 1.8995318787122492e-109
+                },
+                "|\u03b8\u0307| (rad/s)": {
+                  "rho": -0.4621820025632808,
+                  "p": 6.5113877157265855e-211
+                }
+              },
+              "eta2": {
+                "|\u03b8| from upright (rad)": 0.27768298185389073,
+                "|\u03b8\u0307| (rad/s)": 0.2551548953111538
+              },
+              "far_over_near": 0.8456369485431754,
+              "eff_noise_near": 1.1095082569148087,
+              "eff_noise_far": 0.7670977227253966,
+              "eff_far_over_near": 0.6913853213300571,
+              "mean_outside_bounds_frac": 0.89975,
+              "r2_linear_precision_vars": 0.21383441833854655
+            }
+          ]
+        },
+        "9": {
+          "n_steps": 4000,
+          "dims": [
+            {
+              "action": "torque",
+              "sigma_mean": 6.932459831237793,
+              "logsigma_std_across_states": 0.2943696975708008,
+              "sigma_p95_over_p5": 2.285999059677124,
+              "sigma_near": 7.376537322998047,
+              "sigma_far": 4.798440456390381,
+              "n_near": 3311,
+              "spearman": {
+                "|\u03b8| from upright (rad)": {
+                  "rho": -0.5418688883729423,
+                  "p": 3.910761738062285e-304
+                },
+                "|\u03b8\u0307| (rad/s)": {
+                  "rho": -0.5522943609795015,
+                  "p": 0.0
+                }
+              },
+              "eta2": {
+                "|\u03b8| from upright (rad)": 0.5434779426084383,
+                "|\u03b8\u0307| (rad/s)": 0.6085955970687648
+              },
+              "far_over_near": 0.6505003969044042,
+              "eff_noise_near": 1.1823022645073882,
+              "eff_noise_far": 0.9037198711690106,
+              "eff_far_over_near": 0.7643729512313416,
+              "mean_outside_bounds_frac": 0.87375,
+              "r2_linear_precision_vars": 0.5769379615489972
+            }
+          ]
+        },
+        "10": {
+          "n_steps": 4000,
+          "dims": [
+            {
+              "action": "torque",
+              "sigma_mean": 7.314365863800049,
+              "logsigma_std_across_states": 0.09861330687999725,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 7.3863348960876465,
+              "sigma_far": 6.9673027992248535,
+              "n_near": 3313,
+              "spearman": {
+                "|\u03b8| from upright (rad)": {
+                  "rho": -0.2519077585358832,
+                  "p": 6.047804781734851e-59
+                },
+                "|\u03b8\u0307| (rad/s)": {
+                  "rho": -0.23035414910631777,
+                  "p": 2.526383263619789e-49
+                }
+              },
+              "eta2": {
+                "|\u03b8| from upright (rad)": 0.24000281862038095,
+                "|\u03b8\u0307| (rad/s)": 0.06974213914695081
+              },
+              "far_over_near": 0.9432692799936889,
+              "eff_noise_near": 1.2071723145025286,
+              "eff_noise_far": 0.9303516192634486,
+              "eff_far_over_near": 0.7706866766960632,
+              "mean_outside_bounds_frac": 0.88775,
+              "r2_linear_precision_vars": 0.04105851804374838
+            }
+          ]
+        }
+      }
+    },
+    "pooled_variance": {
+      "global": [
+        {
+          "total_var": 0.1917347013950348,
+          "within_seed_state_fraction": 5.235257553534191e-14
+        }
+      ],
+      "state": [
+        {
+          "total_var": 0.07086260616779327,
+          "within_seed_state_fraction": 0.9849324226379395
+        }
+      ]
+    },
+    "policy": "stoch",
+    "last_k": 1
+  },
+  "parking-v0": {
+    "per_seed": {
+      "global": {
+        "1": {
+          "n_steps": 316,
+          "dims": [
+            {
+              "action": "acceleration",
+              "sigma_mean": 0.9242737293243408,
+              "logsigma_std_across_states": 7.450580596923828e-09,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.924273669719696,
+              "sigma_far": 0.9242737889289856,
+              "n_near": 14,
+              "spearman": {
+                "distance to goal (m)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "|heading error| (rad)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "speed (m/s)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "distance to goal (m)": 0.0,
+                "|heading error| (rad)": 0.0,
+                "speed (m/s)": 0.0
+              },
+              "far_over_near": 1.0000001289761826,
+              "eff_noise_near": 0.5098105989980021,
+              "eff_noise_far": 0.11308943493312061,
+              "eff_far_over_near": 0.22182637072550115,
+              "mean_outside_bounds_frac": 0.879746835443038,
+              "r2_linear_precision_vars": 0.0
+            },
+            {
+              "action": "steering",
+              "sigma_mean": 0.18101496994495392,
+              "logsigma_std_across_states": 2.384185791015625e-07,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.1810149848461151,
+              "sigma_far": 0.18101496994495392,
+              "n_near": 14,
+              "spearman": {
+                "distance to goal (m)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "|heading error| (rad)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "speed (m/s)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "distance to goal (m)": 0.0,
+                "|heading error| (rad)": 0.0,
+                "speed (m/s)": 0.0
+              },
+              "far_over_near": 0.9999999176799578,
+              "eff_noise_near": 0.12191829710839507,
+              "eff_noise_far": 0.10542216236067874,
+              "eff_far_over_near": 0.8646951676740534,
+              "mean_outside_bounds_frac": 0.43037974683544306,
+              "r2_linear_precision_vars": 0.0
+            }
+          ]
+        },
+        "2": {
+          "n_steps": 347,
+          "dims": [
+            {
+              "action": "acceleration",
+              "sigma_mean": 0.655583381652832,
+              "logsigma_std_across_states": 0.0,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.6555834412574768,
+              "sigma_far": 0.655583381652832,
+              "n_near": 20,
+              "spearman": {
+                "distance to goal (m)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "|heading error| (rad)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "speed (m/s)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "distance to goal (m)": 0.0,
+                "|heading error| (rad)": 0.0,
+                "speed (m/s)": 0.0
+              },
+              "far_over_near": 0.9999999090815279,
+              "eff_noise_near": 0.2756074879329688,
+              "eff_noise_far": 0.135098725291675,
+              "eff_far_over_near": 0.49018524970022836,
+              "mean_outside_bounds_frac": 0.8328530259365994,
+              "r2_linear_precision_vars": 0.0
+            },
+            {
+              "action": "steering",
+              "sigma_mean": 0.2006443440914154,
+              "logsigma_std_across_states": 1.1920928955078125e-07,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.2006443440914154,
+              "sigma_far": 0.2006443291902542,
+              "n_near": 20,
+              "spearman": {
+                "distance to goal (m)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "|heading error| (rad)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "speed (m/s)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "distance to goal (m)": 0.0,
+                "|heading error| (rad)": 0.0,
+                "speed (m/s)": 0.0
+              },
+              "far_over_near": 0.9999999257334601,
+              "eff_noise_near": 0.1742626585003983,
+              "eff_noise_far": 0.11205902799164942,
+              "eff_far_over_near": 0.6430467029251324,
+              "mean_outside_bounds_frac": 0.4322766570605187,
+              "r2_linear_precision_vars": 0.0
+            }
+          ]
+        },
+        "3": {
+          "n_steps": 340,
+          "dims": [
+            {
+              "action": "acceleration",
+              "sigma_mean": 0.5510191321372986,
+              "logsigma_std_across_states": 1.1920928955078125e-07,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.5510191321372986,
+              "sigma_far": 0.5510191321372986,
+              "n_near": 17,
+              "spearman": {
+                "distance to goal (m)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "|heading error| (rad)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "speed (m/s)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "distance to goal (m)": 0.0,
+                "|heading error| (rad)": 0.0,
+                "speed (m/s)": 0.0
+              },
+              "far_over_near": 1.0,
+              "eff_noise_near": 0.44930224137364316,
+              "eff_noise_far": 0.11266616027316806,
+              "eff_far_over_near": 0.25075806416793284,
+              "mean_outside_bounds_frac": 0.7911764705882353,
+              "r2_linear_precision_vars": 0.0
+            },
+            {
+              "action": "steering",
+              "sigma_mean": 0.1473788022994995,
+              "logsigma_std_across_states": 0.0,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.1473788321018219,
+              "sigma_far": 0.1473788022994995,
+              "n_near": 17,
+              "spearman": {
+                "distance to goal (m)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "|heading error| (rad)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "speed (m/s)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "distance to goal (m)": 0.0,
+                "|heading error| (rad)": 0.0,
+                "speed (m/s)": 0.0
+              },
+              "far_over_near": 0.9999997977842411,
+              "eff_noise_near": 0.07880181138040879,
+              "eff_noise_far": 0.056989216995207044,
+              "eff_far_over_near": 0.7231967894760265,
+              "mean_outside_bounds_frac": 0.6235294117647059,
+              "r2_linear_precision_vars": 0.0
+            }
+          ]
+        },
+        "4": {
+          "n_steps": 342,
+          "dims": [
+            {
+              "action": "acceleration",
+              "sigma_mean": 0.5760974287986755,
+              "logsigma_std_across_states": 5.960464477539063e-08,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.5760974884033203,
+              "sigma_far": 0.5760974287986755,
+              "n_near": 15,
+              "spearman": {
+                "distance to goal (m)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "|heading error| (rad)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "speed (m/s)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "distance to goal (m)": 0.0,
+                "|heading error| (rad)": 0.0,
+                "speed (m/s)": 0.0
+              },
+              "far_over_near": 0.9999998965372251,
+              "eff_noise_near": 0.430688825403631,
+              "eff_noise_far": 0.083135992312039,
+              "eff_far_over_near": 0.19303029799792457,
+              "mean_outside_bounds_frac": 0.847953216374269,
+              "r2_linear_precision_vars": 0.0
+            },
+            {
+              "action": "steering",
+              "sigma_mean": 0.1738785356283188,
+              "logsigma_std_across_states": 2.384185791015625e-07,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.1738785058259964,
+              "sigma_far": 0.17387855052947998,
+              "n_near": 15,
+              "spearman": {
+                "distance to goal (m)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "|heading error| (rad)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "speed (m/s)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "distance to goal (m)": 0.0,
+                "|heading error| (rad)": 0.0,
+                "speed (m/s)": 0.0
+              },
+              "far_over_near": 1.0000002570960878,
+              "eff_noise_near": 0.09454716735103803,
+              "eff_noise_far": 0.07437866371095758,
+              "eff_far_over_near": 0.7866831529156434,
+              "mean_outside_bounds_frac": 0.5818713450292398,
+              "r2_linear_precision_vars": 0.0
+            }
+          ]
+        },
+        "5": {
+          "n_steps": 312,
+          "dims": [
+            {
+              "action": "acceleration",
+              "sigma_mean": 0.9513800144195557,
+              "logsigma_std_across_states": 0.0,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.9513800144195557,
+              "sigma_far": 0.9513800740242004,
+              "n_near": 13,
+              "spearman": {
+                "distance to goal (m)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "|heading error| (rad)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "speed (m/s)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "distance to goal (m)": 0.0,
+                "|heading error| (rad)": 0.0,
+                "speed (m/s)": 0.0
+              },
+              "far_over_near": 1.000000062650722,
+              "eff_noise_near": 0.05856643424494104,
+              "eff_noise_far": 0.03698218436595929,
+              "eff_far_over_near": 0.6314569914106356,
+              "mean_outside_bounds_frac": 0.9871794871794872,
+              "r2_linear_precision_vars": 0.0
+            },
+            {
+              "action": "steering",
+              "sigma_mean": 0.22098204493522644,
+              "logsigma_std_across_states": 1.1920928955078125e-07,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.22098205983638763,
+              "sigma_far": 0.22098204493522644,
+              "n_near": 13,
+              "spearman": {
+                "distance to goal (m)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "|heading error| (rad)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "speed (m/s)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "distance to goal (m)": 0.0,
+                "|heading error| (rad)": 0.0,
+                "speed (m/s)": 0.0
+              },
+              "far_over_near": 0.9999999325684573,
+              "eff_noise_near": 0.22096167827756202,
+              "eff_noise_far": 0.1590097994024484,
+              "eff_far_over_near": 0.719626138984641,
+              "mean_outside_bounds_frac": 0.27884615384615385,
+              "r2_linear_precision_vars": 0.0
+            }
+          ]
+        },
+        "6": {
+          "n_steps": 332,
+          "dims": [
+            {
+              "action": "acceleration",
+              "sigma_mean": 0.6959720253944397,
+              "logsigma_std_across_states": 2.9802322387695312e-08,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.6959720849990845,
+              "sigma_far": 0.6959720253944397,
+              "n_near": 18,
+              "spearman": {
+                "distance to goal (m)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "|heading error| (rad)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "speed (m/s)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "distance to goal (m)": 0.0,
+                "|heading error| (rad)": 0.0,
+                "speed (m/s)": 0.0
+              },
+              "far_over_near": 0.9999999143577076,
+              "eff_noise_near": 0.4498661012891875,
+              "eff_noise_far": 0.12401503524126864,
+              "eff_far_over_near": 0.2756709938487853,
+              "mean_outside_bounds_frac": 0.8283132530120482,
+              "r2_linear_precision_vars": 0.0
+            },
+            {
+              "action": "steering",
+              "sigma_mean": 0.16475796699523926,
+              "logsigma_std_across_states": 2.384185791015625e-07,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.16475799679756165,
+              "sigma_far": 0.16475798189640045,
+              "n_near": 18,
+              "spearman": {
+                "distance to goal (m)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "|heading error| (rad)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "speed (m/s)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "distance to goal (m)": 0.0,
+                "|heading error| (rad)": 0.0,
+                "speed (m/s)": 0.0
+              },
+              "far_over_near": 0.9999999095572811,
+              "eff_noise_near": 0.10101299226226147,
+              "eff_noise_far": 0.0889410745917449,
+              "eff_far_over_near": 0.8804914358028908,
+              "mean_outside_bounds_frac": 0.4819277108433735,
+              "r2_linear_precision_vars": 0.0
+            }
+          ]
+        },
+        "7": {
+          "n_steps": 331,
+          "dims": [
+            {
+              "action": "acceleration",
+              "sigma_mean": 0.5189239382743835,
+              "logsigma_std_across_states": 5.960464477539063e-08,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.5189239382743835,
+              "sigma_far": 0.5189239382743835,
+              "n_near": 18,
+              "spearman": {
+                "distance to goal (m)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "|heading error| (rad)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "speed (m/s)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "distance to goal (m)": 0.0,
+                "|heading error| (rad)": 0.0,
+                "speed (m/s)": 0.0
+              },
+              "far_over_near": 1.0,
+              "eff_noise_near": 0.36076412342496195,
+              "eff_noise_far": 0.11216235126739706,
+              "eff_far_over_near": 0.31090217675352233,
+              "mean_outside_bounds_frac": 0.7915407854984894,
+              "r2_linear_precision_vars": 0.0
+            },
+            {
+              "action": "steering",
+              "sigma_mean": 0.17226897180080414,
+              "logsigma_std_across_states": 1.1920928955078125e-07,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.17226895689964294,
+              "sigma_far": 0.17226897180080414,
+              "n_near": 18,
+              "spearman": {
+                "distance to goal (m)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "|heading error| (rad)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "speed (m/s)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "distance to goal (m)": 0.0,
+                "|heading error| (rad)": 0.0,
+                "speed (m/s)": 0.0
+              },
+              "far_over_near": 1.0000000864993988,
+              "eff_noise_near": 0.13117615976129854,
+              "eff_noise_far": 0.08018313469406005,
+              "eff_far_over_near": 0.6112630133399958,
+              "mean_outside_bounds_frac": 0.5498489425981873,
+              "r2_linear_precision_vars": 0.0
+            }
+          ]
+        },
+        "8": {
+          "n_steps": 323,
+          "dims": [
+            {
+              "action": "acceleration",
+              "sigma_mean": 0.7767537832260132,
+              "logsigma_std_across_states": 0.0,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.7767536640167236,
+              "sigma_far": 0.776753842830658,
+              "n_near": 15,
+              "spearman": {
+                "distance to goal (m)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "|heading error| (rad)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "speed (m/s)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "distance to goal (m)": 0.0,
+                "|heading error| (rad)": 0.0,
+                "speed (m/s)": 0.0
+              },
+              "far_over_near": 1.0000002302067472,
+              "eff_noise_near": 0.021463760403175117,
+              "eff_noise_far": 0.019641540151164323,
+              "eff_far_over_near": 0.9151024695681361,
+              "mean_outside_bounds_frac": 1.0,
+              "r2_linear_precision_vars": 0.0
+            },
+            {
+              "action": "steering",
+              "sigma_mean": 0.17268548905849457,
+              "logsigma_std_across_states": 2.384185791015625e-07,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.17268545925617218,
+              "sigma_far": 0.17268550395965576,
+              "n_near": 15,
+              "spearman": {
+                "distance to goal (m)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "|heading error| (rad)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "speed (m/s)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "distance to goal (m)": 0.0,
+                "|heading error| (rad)": 0.0,
+                "speed (m/s)": 0.0
+              },
+              "far_over_near": 1.0000002588723091,
+              "eff_noise_near": 0.1725209308558985,
+              "eff_noise_far": 0.11447623402594816,
+              "eff_far_over_near": 0.663549828174569,
+              "mean_outside_bounds_frac": 0.3281733746130031,
+              "r2_linear_precision_vars": 0.0
+            }
+          ]
+        },
+        "9": {
+          "n_steps": 319,
+          "dims": [
+            {
+              "action": "acceleration",
+              "sigma_mean": 0.5424301028251648,
+              "logsigma_std_across_states": 0.0,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.5424301028251648,
+              "sigma_far": 0.5424301028251648,
+              "n_near": 8,
+              "spearman": {
+                "distance to goal (m)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "|heading error| (rad)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "speed (m/s)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "distance to goal (m)": 0.0,
+                "|heading error| (rad)": 0.0,
+                "speed (m/s)": 0.0
+              },
+              "far_over_near": 1.0,
+              "eff_noise_near": 0.07017162945564467,
+              "eff_noise_far": 0.029777596041286204,
+              "eff_far_over_near": 0.42435377762046345,
+              "mean_outside_bounds_frac": 0.9686520376175548,
+              "r2_linear_precision_vars": 0.0
+            },
+            {
+              "action": "steering",
+              "sigma_mean": 0.16851210594177246,
+              "logsigma_std_across_states": 0.0,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.16851209104061127,
+              "sigma_far": 0.16851210594177246,
+              "n_near": 8,
+              "spearman": {
+                "distance to goal (m)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "|heading error| (rad)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "speed (m/s)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "distance to goal (m)": 0.0,
+                "|heading error| (rad)": 0.0,
+                "speed (m/s)": 0.0
+              },
+              "far_over_near": 1.0000000884278457,
+              "eff_noise_near": 0.16738024734800142,
+              "eff_noise_far": 0.11003673800870091,
+              "eff_far_over_near": 0.6574057557695131,
+              "mean_outside_bounds_frac": 0.3510971786833856,
+              "r2_linear_precision_vars": 0.0
+            }
+          ]
+        },
+        "10": {
+          "n_steps": 315,
+          "dims": [
+            {
+              "action": "acceleration",
+              "sigma_mean": 0.48591017723083496,
+              "logsigma_std_across_states": 0.0,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.48591023683547974,
+              "sigma_far": 0.48591017723083496,
+              "n_near": 5,
+              "spearman": {
+                "distance to goal (m)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "|heading error| (rad)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "speed (m/s)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "distance to goal (m)": 0.0,
+                "|heading error| (rad)": 0.0,
+                "speed (m/s)": 0.0
+              },
+              "far_over_near": 0.9999998773340418,
+              "eff_noise_near": 0.00538264090978815,
+              "eff_noise_far": 0.027590415854387363,
+              "eff_far_over_near": 5.125813948356675,
+              "mean_outside_bounds_frac": 0.9682539682539683,
+              "r2_linear_precision_vars": 0.0
+            },
+            {
+              "action": "steering",
+              "sigma_mean": 0.19509553909301758,
+              "logsigma_std_across_states": 1.1920928955078125e-07,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.1950955092906952,
+              "sigma_far": 0.19509552419185638,
+              "n_near": 5,
+              "spearman": {
+                "distance to goal (m)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "|heading error| (rad)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "speed (m/s)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "distance to goal (m)": 0.0,
+                "|heading error| (rad)": 0.0,
+                "speed (m/s)": 0.0
+              },
+              "far_over_near": 1.0000000763788015,
+              "eff_noise_near": 0.19505286874854927,
+              "eff_noise_far": 0.11997849594744776,
+              "eff_far_over_near": 0.6151075691284347,
+              "mean_outside_bounds_frac": 0.3904761904761905,
+              "r2_linear_precision_vars": 0.0
+            }
+          ]
+        }
+      },
+      "state": {
+        "1": {
+          "n_steps": 319,
+          "dims": [
+            {
+              "action": "acceleration",
+              "sigma_mean": 2.870828866958618,
+              "logsigma_std_across_states": 0.8219742178916931,
+              "sigma_p95_over_p5": 14.709864616394043,
+              "sigma_near": 5.980621337890625,
+              "sigma_far": 2.7492735385894775,
+              "n_near": 12,
+              "spearman": {
+                "distance to goal (m)": {
+                  "rho": -0.18042244553063333,
+                  "p": 0.0012104870826657674
+                },
+                "|heading error| (rad)": {
+                  "rho": -0.1913689949408599,
+                  "p": 0.000589598164051564
+                },
+                "speed (m/s)": {
+                  "rho": 0.6325841239297186,
+                  "p": 4.637029604094837e-37
+                }
+              },
+              "eta2": {
+                "distance to goal (m)": 0.24481554228797575,
+                "|heading error| (rad)": 0.2028113417813052,
+                "speed (m/s)": 0.3702252116582725
+              },
+              "far_over_near": 0.4596969751572921,
+              "eff_noise_near": 0.7536495599270118,
+              "eff_noise_far": 0.19797575465296025,
+              "eff_far_over_near": 0.26268940523515133,
+              "mean_outside_bounds_frac": 0.9655172413793104,
+              "r2_linear_precision_vars": 0.38683742130014176
+            },
+            {
+              "action": "steering",
+              "sigma_mean": 0.5348100066184998,
+              "logsigma_std_across_states": 0.7509313821792603,
+              "sigma_p95_over_p5": 11.51844310760498,
+              "sigma_near": 0.33647894859313965,
+              "sigma_far": 0.5425623059272766,
+              "n_near": 12,
+              "spearman": {
+                "distance to goal (m)": {
+                  "rho": 0.39622440283252436,
+                  "p": 1.9510926006856365e-13
+                },
+                "|heading error| (rad)": {
+                  "rho": 0.36741031821139175,
+                  "p": 1.2456948966097931e-11
+                },
+                "speed (m/s)": {
+                  "rho": -0.5184754032303333,
+                  "p": 2.4036467268924693e-23
+                }
+              },
+              "eta2": {
+                "distance to goal (m)": 0.20170455114964872,
+                "|heading error| (rad)": 0.18202386063820447,
+                "speed (m/s)": 0.28794801958358185
+              },
+              "far_over_near": 1.6124702843842003,
+              "eff_noise_near": 0.07292294632566108,
+              "eff_noise_far": 0.2172304492979954,
+              "eff_far_over_near": 2.9789039012203693,
+              "mean_outside_bounds_frac": 0.5862068965517241,
+              "r2_linear_precision_vars": 0.36581149546542724
+            }
+          ]
+        },
+        "2": {
+          "n_steps": 341,
+          "dims": [
+            {
+              "action": "acceleration",
+              "sigma_mean": 2.558791399002075,
+              "logsigma_std_across_states": 0.742745578289032,
+              "sigma_p95_over_p5": 14.389811515808105,
+              "sigma_near": 5.077463150024414,
+              "sigma_far": 2.45896577835083,
+              "n_near": 13,
+              "spearman": {
+                "distance to goal (m)": {
+                  "rho": -0.3974840721819828,
+                  "p": 2.3529793463341897e-14
+                },
+                "|heading error| (rad)": {
+                  "rho": -0.2600021173954493,
+                  "p": 1.1297011093789698e-06
+                },
+                "speed (m/s)": {
+                  "rho": 0.5570040689090646,
+                  "p": 3.5135186311368485e-29
+                }
+              },
+              "eta2": {
+                "distance to goal (m)": 0.2796667779559193,
+                "|heading error| (rad)": 0.15318604738067493,
+                "speed (m/s)": 0.28781160177743254
+              },
+              "far_over_near": 0.4842902263779121,
+              "eff_noise_near": 0.805752237950165,
+              "eff_noise_far": 0.20209191892021833,
+              "eff_far_over_near": 0.25081148944040227,
+              "mean_outside_bounds_frac": 0.9941348973607038,
+              "r2_linear_precision_vars": 0.40387962258243615
+            },
+            {
+              "action": "steering",
+              "sigma_mean": 1.5991966724395752,
+              "logsigma_std_across_states": 1.1952993869781494,
+              "sigma_p95_over_p5": 50.23483657836914,
+              "sigma_near": 1.2456754446029663,
+              "sigma_far": 1.6132079362869263,
+              "n_near": 13,
+              "spearman": {
+                "distance to goal (m)": {
+                  "rho": -0.014840327230810307,
+                  "p": 0.7848124660872418
+                },
+                "|heading error| (rad)": {
+                  "rho": 0.4911820161965008,
+                  "p": 4.1413520471986327e-22
+                },
+                "speed (m/s)": {
+                  "rho": -0.4448480110997709,
+                  "p": 5.635911030591192e-18
+                }
+              },
+              "eta2": {
+                "distance to goal (m)": 0.12008857501426086,
+                "|heading error| (rad)": 0.2569193067618476,
+                "speed (m/s)": 0.19078211691245958
+              },
+              "far_over_near": 1.2950467501597926,
+              "eff_noise_near": 0.42939737310195636,
+              "eff_noise_far": 0.349329215271626,
+              "eff_far_over_near": 0.8135336570600796,
+              "mean_outside_bounds_frac": 0.7243401759530792,
+              "r2_linear_precision_vars": 0.415457943285086
+            }
+          ]
+        },
+        "3": {
+          "n_steps": 335,
+          "dims": [
+            {
+              "action": "acceleration",
+              "sigma_mean": 5.669244766235352,
+              "logsigma_std_across_states": 0.5443517565727234,
+              "sigma_p95_over_p5": 4.906735420227051,
+              "sigma_near": 7.21442174911499,
+              "sigma_far": 5.6265869140625,
+              "n_near": 9,
+              "spearman": {
+                "distance to goal (m)": {
+                  "rho": -0.4587249113994923,
+                  "p": 7.758509025296512e-19
+                },
+                "|heading error| (rad)": {
+                  "rho": -0.36686640251726227,
+                  "p": 4.1236368312081385e-12
+                },
+                "speed (m/s)": {
+                  "rho": 0.3187549339088501,
+                  "p": 2.3904214607715837e-09
+                }
+              },
+              "eta2": {
+                "distance to goal (m)": 0.22830934247780077,
+                "|heading error| (rad)": 0.2379595693074816,
+                "speed (m/s)": 0.08196895473658636
+              },
+              "far_over_near": 0.7799082323892038,
+              "eff_noise_near": 0.7938890246082588,
+              "eff_noise_far": 0.24307661641038208,
+              "eff_far_over_near": 0.3061846289288698,
+              "mean_outside_bounds_frac": 0.9761194029850746,
+              "r2_linear_precision_vars": 0.18992172217784087
+            },
+            {
+              "action": "steering",
+              "sigma_mean": 0.909445583820343,
+              "logsigma_std_across_states": 0.9442358016967773,
+              "sigma_p95_over_p5": 25.71978187561035,
+              "sigma_near": 0.11145801097154617,
+              "sigma_far": 0.9314758777618408,
+              "n_near": 9,
+              "spearman": {
+                "distance to goal (m)": {
+                  "rho": 0.6650740039212882,
+                  "p": 3.8776777133381065e-44
+                },
+                "|heading error| (rad)": {
+                  "rho": 0.32545982066728757,
+                  "p": 1.0505111224792205e-09
+                },
+                "speed (m/s)": {
+                  "rho": -0.6268396315325292,
+                  "p": 5.633233228236716e-38
+                }
+              },
+              "eta2": {
+                "distance to goal (m)": 0.5775876853963682,
+                "|heading error| (rad)": 0.18198872899022195,
+                "speed (m/s)": 0.37868378951084114
+              },
+              "far_over_near": 8.357190924568311,
+              "eff_noise_near": 0.06576727638878127,
+              "eff_noise_far": 0.1996098599845091,
+              "eff_far_over_near": 3.035093909082101,
+              "mean_outside_bounds_frac": 0.7850746268656716,
+              "r2_linear_precision_vars": 0.6151247561736719
+            }
+          ]
+        },
+        "4": {
+          "n_steps": 337,
+          "dims": [
+            {
+              "action": "acceleration",
+              "sigma_mean": 4.245403289794922,
+              "logsigma_std_across_states": 0.6223719716072083,
+              "sigma_p95_over_p5": 6.644662380218506,
+              "sigma_near": 7.389055252075195,
+              "sigma_far": 4.139329433441162,
+              "n_near": 11,
+              "spearman": {
+                "distance to goal (m)": {
+                  "rho": -0.6599567408786992,
+                  "p": 1.6447734802153478e-43
+                },
+                "|heading error| (rad)": {
+                  "rho": -0.43762184086125777,
+                  "p": 3.372558040788297e-17
+                },
+                "speed (m/s)": {
+                  "rho": 0.6731792920182692,
+                  "p": 7.93668751280653e-46
+                }
+              },
+              "eta2": {
+                "distance to goal (m)": 0.3854853628761449,
+                "|heading error| (rad)": 0.15696755670306176,
+                "speed (m/s)": 0.412291739039779
+              },
+              "far_over_near": 0.5601973854883062,
+              "eff_noise_near": 0.8585080485050206,
+              "eff_noise_far": 0.23398668854349183,
+              "eff_far_over_near": 0.2725503726504941,
+              "mean_outside_bounds_frac": 1.0,
+              "r2_linear_precision_vars": 0.5122407551780613
+            },
+            {
+              "action": "steering",
+              "sigma_mean": 0.9029679298400879,
+              "logsigma_std_across_states": 1.0088248252868652,
+              "sigma_p95_over_p5": 25.968303680419922,
+              "sigma_near": 0.12573294341564178,
+              "sigma_far": 0.9291936755180359,
+              "n_near": 11,
+              "spearman": {
+                "distance to goal (m)": {
+                  "rho": 0.6430504084486423,
+                  "p": 1.028530410839222e-40
+                },
+                "|heading error| (rad)": {
+                  "rho": 0.3361449666517002,
+                  "p": 2.4028273179093695e-10
+                },
+                "speed (m/s)": {
+                  "rho": -0.5566819816872718,
+                  "p": 8.109085743675409e-29
+                }
+              },
+              "eta2": {
+                "distance to goal (m)": 0.525244822279452,
+                "|heading error| (rad)": 0.15273728993273455,
+                "speed (m/s)": 0.27862568140948896
+              },
+              "far_over_near": 7.3902165198372325,
+              "eff_noise_near": 0.0575317902607327,
+              "eff_noise_far": 0.16500121475474572,
+              "eff_far_over_near": 2.868000700255705,
+              "mean_outside_bounds_frac": 0.7685459940652819,
+              "r2_linear_precision_vars": 0.5441996847359657
+            }
+          ]
+        },
+        "5": {
+          "n_steps": 326,
+          "dims": [
+            {
+              "action": "acceleration",
+              "sigma_mean": 4.330296039581299,
+              "logsigma_std_across_states": 0.6857089400291443,
+              "sigma_p95_over_p5": 7.806216239929199,
+              "sigma_near": 4.527543544769287,
+              "sigma_far": 4.325967311859131,
+              "n_near": 7,
+              "spearman": {
+                "distance to goal (m)": {
+                  "rho": 0.22827455200331243,
+                  "p": 3.170804959830716e-05
+                },
+                "|heading error| (rad)": {
+                  "rho": -0.43550056956236133,
+                  "p": 1.6064242248546819e-16
+                },
+                "speed (m/s)": {
+                  "rho": 0.3187003133370606,
+                  "p": 3.9475474987335655e-09
+                }
+              },
+              "eta2": {
+                "distance to goal (m)": 0.06632522939366393,
+                "|heading error| (rad)": 0.20235776522651314,
+                "speed (m/s)": 0.07791037355447224
+              },
+              "far_over_near": 0.9554777925563986,
+              "eff_noise_near": 0.23420299702052946,
+              "eff_noise_far": 0.14992977028336169,
+              "eff_far_over_near": 0.6401701608891851,
+              "mean_outside_bounds_frac": 0.9723926380368099,
+              "r2_linear_precision_vars": 0.10302305426873737
+            },
+            {
+              "action": "steering",
+              "sigma_mean": 2.0796103477478027,
+              "logsigma_std_across_states": 1.0289109945297241,
+              "sigma_p95_over_p5": 29.831554412841797,
+              "sigma_near": 1.5540519952774048,
+              "sigma_far": 2.0911428928375244,
+              "n_near": 7,
+              "spearman": {
+                "distance to goal (m)": {
+                  "rho": -0.3436429170299642,
+                  "p": 1.8175323634287456e-10
+                },
+                "|heading error| (rad)": {
+                  "rho": 0.43157302633055145,
+                  "p": 3.196876567787571e-16
+                },
+                "speed (m/s)": {
+                  "rho": -0.5342477455114724,
+                  "p": 1.8684876888159546e-25
+                }
+              },
+              "eta2": {
+                "distance to goal (m)": 0.3159477768261829,
+                "|heading error| (rad)": 0.3967804858004551,
+                "speed (m/s)": 0.3247357026658031
+              },
+              "far_over_near": 1.3456067745431173,
+              "eff_noise_near": 0.38847488194022717,
+              "eff_noise_far": 0.4135623081236483,
+              "eff_far_over_near": 1.0645792748764673,
+              "mean_outside_bounds_frac": 0.696319018404908,
+              "r2_linear_precision_vars": 0.4780093581546755
+            }
+          ]
+        },
+        "6": {
+          "n_steps": 350,
+          "dims": [
+            {
+              "action": "acceleration",
+              "sigma_mean": 2.201305389404297,
+              "logsigma_std_across_states": 0.7384008169174194,
+              "sigma_p95_over_p5": 11.29455280303955,
+              "sigma_near": 3.0743703842163086,
+              "sigma_far": 2.153970718383789,
+              "n_near": 18,
+              "spearman": {
+                "distance to goal (m)": {
+                  "rho": -0.09163668148620216,
+                  "p": 0.08692691300711086
+                },
+                "|heading error| (rad)": {
+                  "rho": 0.27085379414462574,
+                  "p": 2.666933721331878e-07
+                },
+                "speed (m/s)": {
+                  "rho": 0.14843651261967425,
+                  "p": 0.0053943695429247785
+                }
+              },
+              "eta2": {
+                "distance to goal (m)": 0.05947541201503774,
+                "|heading error| (rad)": 0.1320212407844245,
+                "speed (m/s)": 0.012671248678567157
+              },
+              "far_over_near": 0.700621736874056,
+              "eff_noise_near": 0.6710994054979091,
+              "eff_noise_far": 0.20900653363276114,
+              "eff_far_over_near": 0.3114390087675503,
+              "mean_outside_bounds_frac": 0.88,
+              "r2_linear_precision_vars": 0.14103364017572262
+            },
+            {
+              "action": "steering",
+              "sigma_mean": 1.5220675468444824,
+              "logsigma_std_across_states": 1.1768487691879272,
+              "sigma_p95_over_p5": 58.555511474609375,
+              "sigma_near": 1.0559567213058472,
+              "sigma_far": 1.5473384857177734,
+              "n_near": 18,
+              "spearman": {
+                "distance to goal (m)": {
+                  "rho": 0.555527698337317,
+                  "p": 9.887856216753013e-30
+                },
+                "|heading error| (rad)": {
+                  "rho": 0.6551626789533819,
+                  "p": 2.729075311872819e-44
+                },
+                "speed (m/s)": {
+                  "rho": -0.40897849392154695,
+                  "p": 1.5187825024969329e-15
+                }
+              },
+              "eta2": {
+                "distance to goal (m)": 0.2876421429603579,
+                "|heading error| (rad)": 0.4498309276125221,
+                "speed (m/s)": 0.1493395554343943
+              },
+              "far_over_near": 1.4653427119666986,
+              "eff_noise_near": 0.1795445647082897,
+              "eff_noise_far": 0.22514786618155516,
+              "eff_far_over_near": 1.2539943303065633,
+              "mean_outside_bounds_frac": 0.8514285714285714,
+              "r2_linear_precision_vars": 0.5989365245929446
+            }
+          ]
+        },
+        "7": {
+          "n_steps": 336,
+          "dims": [
+            {
+              "action": "acceleration",
+              "sigma_mean": 4.814711570739746,
+              "logsigma_std_across_states": 0.4558902084827423,
+              "sigma_p95_over_p5": 5.018205165863037,
+              "sigma_near": 5.976773738861084,
+              "sigma_far": 4.786368370056152,
+              "n_near": 8,
+              "spearman": {
+                "distance to goal (m)": {
+                  "rho": -0.2399096266424934,
+                  "p": 8.73491309076579e-06
+                },
+                "|heading error| (rad)": {
+                  "rho": 0.13373137255831127,
+                  "p": 0.014157966175824484
+                },
+                "speed (m/s)": {
+                  "rho": 0.48270691800074633,
+                  "p": 5.154229463197059e-21
+                }
+              },
+              "eta2": {
+                "distance to goal (m)": 0.11990351405196209,
+                "|heading error| (rad)": 0.20411047943217303,
+                "speed (m/s)": 0.17181837841058542
+              },
+              "far_over_near": 0.8008281021138719,
+              "eff_noise_near": 0.5853150888383704,
+              "eff_noise_far": 0.1969859766284053,
+              "eff_far_over_near": 0.3365468965089353,
+              "mean_outside_bounds_frac": 0.9821428571428571,
+              "r2_linear_precision_vars": 0.1861642364886471
+            },
+            {
+              "action": "steering",
+              "sigma_mean": 1.5229443311691284,
+              "logsigma_std_across_states": 0.8530229926109314,
+              "sigma_p95_over_p5": 17.9969425201416,
+              "sigma_near": 1.1021040678024292,
+              "sigma_far": 1.5332087278366089,
+              "n_near": 8,
+              "spearman": {
+                "distance to goal (m)": {
+                  "rho": -0.04559025272815449,
+                  "p": 0.4048435602011023
+                },
+                "|heading error| (rad)": {
+                  "rho": 0.2595512880690304,
+                  "p": 1.4153896580421113e-06
+                },
+                "speed (m/s)": {
+                  "rho": -0.24696874611005823,
+                  "p": 4.620906738174415e-06
+                }
+              },
+              "eta2": {
+                "distance to goal (m)": 0.06638657247650974,
+                "|heading error| (rad)": 0.14747371293300113,
+                "speed (m/s)": 0.08148383438688854
+              },
+              "far_over_near": 1.3911651110169594,
+              "eff_noise_near": 0.2696382843608868,
+              "eff_noise_far": 0.38311825342845635,
+              "eff_far_over_near": 1.4208600026385225,
+              "mean_outside_bounds_frac": 0.7529761904761905,
+              "r2_linear_precision_vars": 0.16388819510591002
+            }
+          ]
+        },
+        "8": {
+          "n_steps": 337,
+          "dims": [
+            {
+              "action": "acceleration",
+              "sigma_mean": 5.094746112823486,
+              "logsigma_std_across_states": 0.3420984745025635,
+              "sigma_p95_over_p5": 2.844210147857666,
+              "sigma_near": 6.092160224914551,
+              "sigma_far": 5.067378520965576,
+              "n_near": 9,
+              "spearman": {
+                "distance to goal (m)": {
+                  "rho": -0.03935859081418045,
+                  "p": 0.4714497737570143
+                },
+                "|heading error| (rad)": {
+                  "rho": -0.2938774925170227,
+                  "p": 3.8702178004840114e-08
+                },
+                "speed (m/s)": {
+                  "rho": 0.22440419810944354,
+                  "p": 3.219622835909511e-05
+                }
+              },
+              "eta2": {
+                "distance to goal (m)": 0.07447867855952434,
+                "|heading error| (rad)": 0.11958862498188838,
+                "speed (m/s)": 0.07480473205085948
+              },
+              "far_over_near": 0.8317868102421176,
+              "eff_noise_near": 0.5893180959381041,
+              "eff_noise_far": 0.13264244111800844,
+              "eff_far_over_near": 0.2250778349286254,
+              "mean_outside_bounds_frac": 0.9970326409495549,
+              "r2_linear_precision_vars": 0.11090039668184948
+            },
+            {
+              "action": "steering",
+              "sigma_mean": 1.6690322160720825,
+              "logsigma_std_across_states": 0.9832517504692078,
+              "sigma_p95_over_p5": 26.406627655029297,
+              "sigma_near": 1.1567505598068237,
+              "sigma_far": 1.6830888986587524,
+              "n_near": 9,
+              "spearman": {
+                "distance to goal (m)": {
+                  "rho": -0.18356997607609601,
+                  "p": 0.0007086888531867859
+                },
+                "|heading error| (rad)": {
+                  "rho": 0.4054877349143502,
+                  "p": 9.073298453379856e-15
+                },
+                "speed (m/s)": {
+                  "rho": -0.5616878437949347,
+                  "p": 2.0540839617925842e-29
+                }
+              },
+              "eta2": {
+                "distance to goal (m)": 0.17324171584841616,
+                "|heading error| (rad)": 0.37713701409124717,
+                "speed (m/s)": 0.31419765364143976
+              },
+              "far_over_near": 1.4550145529558478,
+              "eff_noise_near": 0.45824343379906796,
+              "eff_noise_far": 0.37787603339289727,
+              "eff_far_over_near": 0.8246185444712549,
+              "mean_outside_bounds_frac": 0.6706231454005934,
+              "r2_linear_precision_vars": 0.49798654069786796
+            }
+          ]
+        },
+        "9": {
+          "n_steps": 319,
+          "dims": [
+            {
+              "action": "acceleration",
+              "sigma_mean": 3.811434268951416,
+              "logsigma_std_across_states": 0.5938579440116882,
+              "sigma_p95_over_p5": 6.593959808349609,
+              "sigma_near": NaN,
+              "sigma_far": 3.7695846557617188,
+              "n_near": 4,
+              "spearman": {
+                "distance to goal (m)": {
+                  "rho": 0.12351566427951341,
+                  "p": 0.02739426635369199
+                },
+                "|heading error| (rad)": {
+                  "rho": -0.2222767401046661,
+                  "p": 6.211871605125059e-05
+                },
+                "speed (m/s)": {
+                  "rho": 0.6949767546343507,
+                  "p": 2.4938866739081774e-47
+                }
+              },
+              "eta2": {
+                "distance to goal (m)": 0.12858901299751338,
+                "|heading error| (rad)": 0.3191297911101642,
+                "speed (m/s)": 0.45356754292184986
+              },
+              "far_over_near": NaN,
+              "eff_noise_near": NaN,
+              "eff_noise_far": 0.17271132492793187,
+              "eff_far_over_near": NaN,
+              "mean_outside_bounds_frac": 0.9843260188087775,
+              "r2_linear_precision_vars": 0.4686156404259384
+            },
+            {
+              "action": "steering",
+              "sigma_mean": 1.7359787225723267,
+              "logsigma_std_across_states": 1.394697666168213,
+              "sigma_p95_over_p5": 62.53813552856445,
+              "sigma_near": NaN,
+              "sigma_far": 1.7561746835708618,
+              "n_near": 4,
+              "spearman": {
+                "distance to goal (m)": {
+                  "rho": -0.19918550687942574,
+                  "p": 0.000344206090906407
+                },
+                "|heading error| (rad)": {
+                  "rho": -0.10902841898153992,
+                  "p": 0.051718587449493786
+                },
+                "speed (m/s)": {
+                  "rho": -0.6736926148763364,
+                  "p": 1.5256170394713355e-43
+                }
+              },
+              "eta2": {
+                "distance to goal (m)": 0.2839171830393271,
+                "|heading error| (rad)": 0.173359853127352,
+                "speed (m/s)": 0.46445494415356764
+              },
+              "far_over_near": NaN,
+              "eff_noise_near": NaN,
+              "eff_noise_far": 0.3158336104191097,
+              "eff_far_over_near": NaN,
+              "mean_outside_bounds_frac": 0.6332288401253918,
+              "r2_linear_precision_vars": 0.5305131713160063
+            }
+          ]
+        },
+        "10": {
+          "n_steps": 333,
+          "dims": [
+            {
+              "action": "acceleration",
+              "sigma_mean": 5.584936618804932,
+              "logsigma_std_across_states": 0.6362821459770203,
+              "sigma_p95_over_p5": 7.559083461761475,
+              "sigma_near": 6.954998970031738,
+              "sigma_far": 5.551212310791016,
+              "n_near": 8,
+              "spearman": {
+                "distance to goal (m)": {
+                  "rho": -8.776272343757126e-05,
+                  "p": 0.998726977879449
+                },
+                "|heading error| (rad)": {
+                  "rho": -0.4158387492467327,
+                  "p": 2.3479872996330107e-15
+                },
+                "speed (m/s)": {
+                  "rho": 0.44919009527939496,
+                  "p": 6.113461200037954e-18
+                }
+              },
+              "eta2": {
+                "distance to goal (m)": 0.15178372157813846,
+                "|heading error| (rad)": 0.1310270672889798,
+                "speed (m/s)": 0.09892324168838147
+              },
+              "far_over_near": 0.7981614856753434,
+              "eff_noise_near": 0.5161302576036695,
+              "eff_noise_far": 0.15871190632700113,
+              "eff_far_over_near": 0.30750358846210907,
+              "mean_outside_bounds_frac": 0.993993993993994,
+              "r2_linear_precision_vars": 0.31292380075290216
+            },
+            {
+              "action": "steering",
+              "sigma_mean": 3.036017894744873,
+              "logsigma_std_across_states": 1.1196503639221191,
+              "sigma_p95_over_p5": 29.007144927978516,
+              "sigma_near": 2.216567039489746,
+              "sigma_far": 3.0561890602111816,
+              "n_near": 8,
+              "spearman": {
+                "distance to goal (m)": {
+                  "rho": -0.36850214132384423,
+                  "p": 3.780010539159699e-12
+                },
+                "|heading error| (rad)": {
+                  "rho": 0.48009600347115045,
+                  "p": 1.3316119985531081e-20
+                },
+                "speed (m/s)": {
+                  "rho": -0.41858789625004805,
+                  "p": 1.4733192568449573e-15
+                }
+              },
+              "eta2": {
+                "distance to goal (m)": 0.23683926071134725,
+                "|heading error| (rad)": 0.25034527785180927,
+                "speed (m/s)": 0.23313696795138042
+              },
+              "far_over_near": 1.3787938761891527,
+              "eff_noise_near": 0.39593354419966875,
+              "eff_noise_far": 0.4794447335973099,
+              "eff_far_over_near": 1.2109222383934375,
+              "mean_outside_bounds_frac": 0.7507507507507507,
+              "r2_linear_precision_vars": 0.43455409455321115
+            }
+          ]
+        }
+      }
+    },
+    "pooled_variance": {
+      "global": [
+        {
+          "total_var": 0.0501682348549366,
+          "within_seed_state_fraction": 4.583347793635749e-14
+        },
+        {
+          "total_var": 0.011654481291770935,
+          "within_seed_state_fraction": 2.4398100727240912e-12
+        }
+      ],
+      "state": [
+        {
+          "total_var": 0.5461767315864563,
+          "within_seed_state_fraction": 0.7328903675079346
+        },
+        {
+          "total_var": 1.3102591037750244,
+          "within_seed_state_fraction": 0.8579766750335693
+        }
+      ]
+    },
+    "policy": "stoch",
+    "last_k": 1
+  },
+  "simglucose-adolescent1-v0": {
+    "per_seed": {
+      "global": {
+        "1": {
+          "n_steps": 9600,
+          "dims": [
+            {
+              "action": "basal_insulin",
+              "sigma_mean": 0.5713493824005127,
+              "logsigma_std_across_states": 5.960464477539063e-08,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.5713492631912231,
+              "sigma_far": 0.5713493227958679,
+              "n_near": 3286,
+              "spearman": {
+                "CGM (mg/dL)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "CGM trend (mg/dL/min)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "CGM (mg/dL)": 0.0,
+                "CGM trend (mg/dL/min)": 0.0
+              },
+              "far_over_near": 1.0000001043226072,
+              "eff_noise_near": 0.23994714978748646,
+              "eff_noise_far": 0.2749861211581654,
+              "eff_far_over_near": 1.1460278707278324,
+              "mean_outside_bounds_frac": 0.5848958333333333,
+              "r2_linear_precision_vars": 0.0
+            }
+          ]
+        },
+        "2": {
+          "n_steps": 9600,
+          "dims": [
+            {
+              "action": "basal_insulin",
+              "sigma_mean": 0.4744201600551605,
+              "logsigma_std_across_states": 1.1920928955078125e-07,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.47442007064819336,
+              "sigma_far": 0.4744201600551605,
+              "n_near": 2722,
+              "spearman": {
+                "CGM (mg/dL)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "CGM trend (mg/dL/min)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "CGM (mg/dL)": 0.0,
+                "CGM trend (mg/dL/min)": 0.0
+              },
+              "far_over_near": 1.0000001884552798,
+              "eff_noise_near": 0.1447661618921968,
+              "eff_noise_far": 0.20697214512335957,
+              "eff_far_over_near": 1.429699747634988,
+              "mean_outside_bounds_frac": 0.6478125,
+              "r2_linear_precision_vars": 0.0
+            }
+          ]
+        },
+        "3": {
+          "n_steps": 9600,
+          "dims": [
+            {
+              "action": "basal_insulin",
+              "sigma_mean": 0.5277999639511108,
+              "logsigma_std_across_states": 0.0,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.5277999639511108,
+              "sigma_far": 0.5278000235557556,
+              "n_near": 2415,
+              "spearman": {
+                "CGM (mg/dL)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "CGM trend (mg/dL/min)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "CGM (mg/dL)": 0.0,
+                "CGM trend (mg/dL/min)": 0.0
+              },
+              "far_over_near": 1.000000112930369,
+              "eff_noise_near": 0.2269989454873649,
+              "eff_noise_far": 0.2281924489597715,
+              "eff_far_over_near": 1.005257748972552,
+              "mean_outside_bounds_frac": 0.6046875,
+              "r2_linear_precision_vars": 0.0
+            }
+          ]
+        },
+        "4": {
+          "n_steps": 9600,
+          "dims": [
+            {
+              "action": "basal_insulin",
+              "sigma_mean": 0.5269714593887329,
+              "logsigma_std_across_states": 5.960464477539063e-08,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.5269713997840881,
+              "sigma_far": 0.5269713997840881,
+              "n_near": 2657,
+              "spearman": {
+                "CGM (mg/dL)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "CGM trend (mg/dL/min)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "CGM (mg/dL)": 0.0,
+                "CGM trend (mg/dL/min)": 0.0
+              },
+              "far_over_near": 1.0,
+              "eff_noise_near": 0.22490322822569153,
+              "eff_noise_far": 0.28961865866581327,
+              "eff_far_over_near": 1.2877478947308816,
+              "mean_outside_bounds_frac": 0.5376041666666667,
+              "r2_linear_precision_vars": 0.0
+            }
+          ]
+        },
+        "5": {
+          "n_steps": 9600,
+          "dims": [
+            {
+              "action": "basal_insulin",
+              "sigma_mean": 0.5440099835395813,
+              "logsigma_std_across_states": 5.960464477539063e-08,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.5440100431442261,
+              "sigma_far": 0.5440100431442261,
+              "n_near": 2826,
+              "spearman": {
+                "CGM (mg/dL)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "CGM trend (mg/dL/min)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "CGM (mg/dL)": 0.0,
+                "CGM trend (mg/dL/min)": 0.0
+              },
+              "far_over_near": 1.0,
+              "eff_noise_near": 0.24152954952671066,
+              "eff_noise_far": 0.20760042949997792,
+              "eff_far_over_near": 0.8595239377822773,
+              "mean_outside_bounds_frac": 0.6348958333333333,
+              "r2_linear_precision_vars": 0.0
+            }
+          ]
+        },
+        "6": {
+          "n_steps": 9600,
+          "dims": [
+            {
+              "action": "basal_insulin",
+              "sigma_mean": 0.6294409036636353,
+              "logsigma_std_across_states": 2.9802322387695312e-08,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.6294409036636353,
+              "sigma_far": 0.62944096326828,
+              "n_near": 2435,
+              "spearman": {
+                "CGM (mg/dL)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "CGM trend (mg/dL/min)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "CGM (mg/dL)": 0.0,
+                "CGM trend (mg/dL/min)": 0.0
+              },
+              "far_over_near": 1.0000000946945844,
+              "eff_noise_near": 0.1754126277410337,
+              "eff_noise_far": 0.2018668983238587,
+              "eff_far_over_near": 1.1508116657478056,
+              "mean_outside_bounds_frac": 0.7295833333333334,
+              "r2_linear_precision_vars": 0.0
+            }
+          ]
+        },
+        "7": {
+          "n_steps": 9600,
+          "dims": [
+            {
+              "action": "basal_insulin",
+              "sigma_mean": 0.5177923440933228,
+              "logsigma_std_across_states": 5.960464477539063e-08,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.5177924036979675,
+              "sigma_far": 0.5177923440933228,
+              "n_near": 2125,
+              "spearman": {
+                "CGM (mg/dL)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "CGM trend (mg/dL/min)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "CGM (mg/dL)": 0.0,
+                "CGM trend (mg/dL/min)": 0.0
+              },
+              "far_over_near": 0.9999998848869849,
+              "eff_noise_near": 0.2265610425117182,
+              "eff_noise_far": 0.22607710046103724,
+              "eff_far_over_near": 0.9978639661730196,
+              "mean_outside_bounds_frac": 0.6053125,
+              "r2_linear_precision_vars": 0.0
+            }
+          ]
+        },
+        "8": {
+          "n_steps": 9600,
+          "dims": [
+            {
+              "action": "basal_insulin",
+              "sigma_mean": 0.5134337544441223,
+              "logsigma_std_across_states": 5.960464477539063e-08,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.5134338140487671,
+              "sigma_far": 0.5134338140487671,
+              "n_near": 1842,
+              "spearman": {
+                "CGM (mg/dL)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "CGM trend (mg/dL/min)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "CGM (mg/dL)": 0.0,
+                "CGM trend (mg/dL/min)": 0.0
+              },
+              "far_over_near": 1.0,
+              "eff_noise_near": 0.17658628118209835,
+              "eff_noise_far": 0.1800201233379862,
+              "eff_far_over_near": 1.0194456904177445,
+              "mean_outside_bounds_frac": 0.6963541666666667,
+              "r2_linear_precision_vars": 0.0
+            }
+          ]
+        },
+        "9": {
+          "n_steps": 9600,
+          "dims": [
+            {
+              "action": "basal_insulin",
+              "sigma_mean": 0.6064285039901733,
+              "logsigma_std_across_states": 0.0,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.6064285635948181,
+              "sigma_far": 0.6064285635948181,
+              "n_near": 2780,
+              "spearman": {
+                "CGM (mg/dL)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "CGM trend (mg/dL/min)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "CGM (mg/dL)": 0.0,
+                "CGM trend (mg/dL/min)": 0.0
+              },
+              "far_over_near": 1.0,
+              "eff_noise_near": 0.1682792255491501,
+              "eff_noise_far": 0.20779748847318277,
+              "eff_far_over_near": 1.2348374423228516,
+              "mean_outside_bounds_frac": 0.7163541666666666,
+              "r2_linear_precision_vars": 0.0
+            }
+          ]
+        },
+        "10": {
+          "n_steps": 9600,
+          "dims": [
+            {
+              "action": "basal_insulin",
+              "sigma_mean": 0.7071709036827087,
+              "logsigma_std_across_states": 2.9802322387695312e-08,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.7071707844734192,
+              "sigma_far": 0.7071707844734192,
+              "n_near": 1986,
+              "spearman": {
+                "CGM (mg/dL)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "CGM trend (mg/dL/min)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "CGM (mg/dL)": 0.0,
+                "CGM trend (mg/dL/min)": 0.0
+              },
+              "far_over_near": 1.0,
+              "eff_noise_near": 0.2211005087295327,
+              "eff_noise_far": 0.2687820426387412,
+              "eff_far_over_near": 1.21565546901358,
+              "mean_outside_bounds_frac": 0.6902083333333333,
+              "r2_linear_precision_vars": 0.0
+            }
+          ]
+        }
+      },
+      "state": {
+        "1": {
+          "n_steps": 9600,
+          "dims": [
+            {
+              "action": "basal_insulin",
+              "sigma_mean": 2.1249122619628906,
+              "logsigma_std_across_states": 1.8811115026474,
+              "sigma_p95_over_p5": 231.36102294921875,
+              "sigma_near": 3.5920774936676025,
+              "sigma_far": 0.8740565776824951,
+              "n_near": 4418,
+              "spearman": {
+                "CGM (mg/dL)": {
+                  "rho": -0.48166270490801927,
+                  "p": 0.0
+                },
+                "CGM trend (mg/dL/min)": {
+                  "rho": 0.0013121845968652839,
+                  "p": 0.8977132397611468
+                }
+              },
+              "eta2": {
+                "CGM (mg/dL)": 0.25452526729914027,
+                "CGM trend (mg/dL/min)": 0.003058050834448474
+              },
+              "far_over_near": 0.24332898697852454,
+              "eff_noise_near": 0.5463752372538018,
+              "eff_noise_far": 0.1891431994413762,
+              "eff_far_over_near": 0.3461782060110377,
+              "mean_outside_bounds_frac": 0.7407291666666667,
+              "r2_linear_precision_vars": 0.2371725190062347
+            }
+          ]
+        },
+        "2": {
+          "n_steps": 9319,
+          "dims": [
+            {
+              "action": "basal_insulin",
+              "sigma_mean": 1.4649543762207031,
+              "logsigma_std_across_states": 2.0229928493499756,
+              "sigma_p95_over_p5": 689.5548095703125,
+              "sigma_near": 1.1232327222824097,
+              "sigma_far": 1.7400258779525757,
+              "n_near": 4156,
+              "spearman": {
+                "CGM (mg/dL)": {
+                  "rho": 0.12517584656463332,
+                  "p": 7.328447361296816e-34
+                },
+                "CGM trend (mg/dL/min)": {
+                  "rho": 0.018647842608360145,
+                  "p": 0.07184738923185656
+                }
+              },
+              "eta2": {
+                "CGM (mg/dL)": 0.049225125788076876,
+                "CGM trend (mg/dL/min)": 0.0023337877550740236
+              },
+              "far_over_near": 1.5491232078930552,
+              "eff_noise_near": 0.3646828574137297,
+              "eff_noise_far": 0.3447575396218898,
+              "eff_far_over_near": 0.9453626147026847,
+              "mean_outside_bounds_frac": 0.43159137246485674,
+              "r2_linear_precision_vars": 0.013737562520316438
+            }
+          ]
+        },
+        "3": {
+          "n_steps": 9306,
+          "dims": [
+            {
+              "action": "basal_insulin",
+              "sigma_mean": 1.6317706108093262,
+              "logsigma_std_across_states": 1.7000293731689453,
+              "sigma_p95_over_p5": 274.9419250488281,
+              "sigma_near": 2.7400782108306885,
+              "sigma_far": 1.183261513710022,
+              "n_near": 2681,
+              "spearman": {
+                "CGM (mg/dL)": {
+                  "rho": -0.06065712825673961,
+                  "p": 4.7399243782987765e-09
+                },
+                "CGM trend (mg/dL/min)": {
+                  "rho": -0.018818338735299728,
+                  "p": 0.0694813433164502
+                }
+              },
+              "eta2": {
+                "CGM (mg/dL)": 0.12000667335911668,
+                "CGM trend (mg/dL/min)": 0.0022894710391902547
+              },
+              "far_over_near": 0.43183494143815027,
+              "eff_noise_near": 0.5483857412851643,
+              "eff_noise_far": 0.3051756770758367,
+              "eff_far_over_near": 0.5564981984408367,
+              "mean_outside_bounds_frac": 0.5845690952073931,
+              "r2_linear_precision_vars": 0.002380602103307927
+            }
+          ]
+        },
+        "4": {
+          "n_steps": 9600,
+          "dims": [
+            {
+              "action": "basal_insulin",
+              "sigma_mean": 1.961419701576233,
+              "logsigma_std_across_states": 1.951358437538147,
+              "sigma_p95_over_p5": 433.51318359375,
+              "sigma_near": 1.8093376159667969,
+              "sigma_far": 2.1229088306427,
+              "n_near": 4944,
+              "spearman": {
+                "CGM (mg/dL)": {
+                  "rho": 0.11343094180497201,
+                  "p": 7.285111488734292e-29
+                },
+                "CGM trend (mg/dL/min)": {
+                  "rho": -0.09404556508198468,
+                  "p": 2.6115731030507395e-20
+                }
+              },
+              "eta2": {
+                "CGM (mg/dL)": 0.017594965421000933,
+                "CGM trend (mg/dL/min)": 0.008352550253471052
+              },
+              "far_over_near": 1.1733071881713741,
+              "eff_noise_near": 0.36957344677257503,
+              "eff_noise_far": 0.43122785912537337,
+              "eff_far_over_near": 1.1668258715316706,
+              "mean_outside_bounds_frac": 0.609375,
+              "r2_linear_precision_vars": 0.023470271530098175
+            }
+          ]
+        },
+        "5": {
+          "n_steps": 9600,
+          "dims": [
+            {
+              "action": "basal_insulin",
+              "sigma_mean": 1.0284045934677124,
+              "logsigma_std_across_states": 1.573186993598938,
+              "sigma_p95_over_p5": 180.7360382080078,
+              "sigma_near": 1.7493137121200562,
+              "sigma_far": 0.6886658668518066,
+              "n_near": 3075,
+              "spearman": {
+                "CGM (mg/dL)": {
+                  "rho": -0.5172318030739151,
+                  "p": 0.0
+                },
+                "CGM trend (mg/dL/min)": {
+                  "rho": 0.16789152301386423,
+                  "p": 1.237238277902476e-61
+                }
+              },
+              "eta2": {
+                "CGM (mg/dL)": 0.2456791220947024,
+                "CGM trend (mg/dL/min)": 0.0269617678319173
+              },
+              "far_over_near": 0.3936777389215041,
+              "eff_noise_near": 0.33413420643625286,
+              "eff_noise_far": 0.2097276095758926,
+              "eff_far_over_near": 0.6276747652171466,
+              "mean_outside_bounds_frac": 0.6420833333333333,
+              "r2_linear_precision_vars": 0.29689897930064646
+            }
+          ]
+        },
+        "6": {
+          "n_steps": 9600,
+          "dims": [
+            {
+              "action": "basal_insulin",
+              "sigma_mean": 1.5060008764266968,
+              "logsigma_std_across_states": 1.7682822942733765,
+              "sigma_p95_over_p5": 345.8674011230469,
+              "sigma_near": 1.6624031066894531,
+              "sigma_far": 1.4467997550964355,
+              "n_near": 2636,
+              "spearman": {
+                "CGM (mg/dL)": {
+                  "rho": 0.017511401906569204,
+                  "p": 0.08622280754288017
+                },
+                "CGM trend (mg/dL/min)": {
+                  "rho": 0.002452735612164632,
+                  "p": 0.8101076970969121
+                }
+              },
+              "eta2": {
+                "CGM (mg/dL)": 0.05611932885021037,
+                "CGM trend (mg/dL/min)": 0.0010516336746813405
+              },
+              "far_over_near": 0.8703062147048227,
+              "eff_noise_near": 0.38913419209159844,
+              "eff_noise_far": 0.34058514192245914,
+              "eff_far_over_near": 0.8752382824336564,
+              "mean_outside_bounds_frac": 0.646875,
+              "r2_linear_precision_vars": 8.203693074770868e-05
+            }
+          ]
+        },
+        "7": {
+          "n_steps": 9600,
+          "dims": [
+            {
+              "action": "basal_insulin",
+              "sigma_mean": 0.8009163737297058,
+              "logsigma_std_across_states": 1.6288213729858398,
+              "sigma_p95_over_p5": 259.4614562988281,
+              "sigma_near": 1.9179388284683228,
+              "sigma_far": 0.514534056186676,
+              "n_near": 1959,
+              "spearman": {
+                "CGM (mg/dL)": {
+                  "rho": -0.48608241960904736,
+                  "p": 0.0
+                },
+                "CGM trend (mg/dL/min)": {
+                  "rho": 0.024463594440955215,
+                  "p": 0.016530847588458443
+                }
+              },
+              "eta2": {
+                "CGM (mg/dL)": 0.2733121595432637,
+                "CGM trend (mg/dL/min)": 0.004789835804055496
+              },
+              "far_over_near": 0.2682744874598456,
+              "eff_noise_near": 0.41433212264180636,
+              "eff_noise_far": 0.11004807181306152,
+              "eff_far_over_near": 0.2656035238382881,
+              "mean_outside_bounds_frac": 0.6466666666666666,
+              "r2_linear_precision_vars": 0.22577187145134914
+            }
+          ]
+        },
+        "8": {
+          "n_steps": 9600,
+          "dims": [
+            {
+              "action": "basal_insulin",
+              "sigma_mean": 1.549088716506958,
+              "logsigma_std_across_states": 1.7604455947875977,
+              "sigma_p95_over_p5": 316.2500915527344,
+              "sigma_near": 1.567762017250061,
+              "sigma_far": 1.5403013229370117,
+              "n_near": 3072,
+              "spearman": {
+                "CGM (mg/dL)": {
+                  "rho": -0.048696351543910804,
+                  "p": 1.8108833628044722e-06
+                },
+                "CGM trend (mg/dL/min)": {
+                  "rho": 0.00834714446518726,
+                  "p": 0.4134956489014946
+                }
+              },
+              "eta2": {
+                "CGM (mg/dL)": 0.024767988442157593,
+                "CGM trend (mg/dL/min)": 0.00012244478322463406
+              },
+              "far_over_near": 0.9824841436321969,
+              "eff_noise_near": 0.316204449864152,
+              "eff_noise_far": 0.34456132796125216,
+              "eff_far_over_near": 1.0896789343391051,
+              "mean_outside_bounds_frac": 0.719375,
+              "r2_linear_precision_vars": 0.0007301807046797837
+            }
+          ]
+        },
+        "9": {
+          "n_steps": 9600,
+          "dims": [
+            {
+              "action": "basal_insulin",
+              "sigma_mean": 1.1934480667114258,
+              "logsigma_std_across_states": 1.4858622550964355,
+              "sigma_p95_over_p5": 154.2989501953125,
+              "sigma_near": 2.4075214862823486,
+              "sigma_far": 0.6273009777069092,
+              "n_near": 3053,
+              "spearman": {
+                "CGM (mg/dL)": {
+                  "rho": -0.5206236674072388,
+                  "p": 0.0
+                },
+                "CGM trend (mg/dL/min)": {
+                  "rho": 0.06333848667738655,
+                  "p": 5.254544436285243e-10
+                }
+              },
+              "eta2": {
+                "CGM (mg/dL)": 0.29382029382778896,
+                "CGM trend (mg/dL/min)": 0.0056497561775632615
+              },
+              "far_over_near": 0.2605588283557029,
+              "eff_noise_near": 0.38695139336418455,
+              "eff_noise_far": 0.16538664321110888,
+              "eff_far_over_near": 0.4274093492033326,
+              "mean_outside_bounds_frac": 0.7107291666666666,
+              "r2_linear_precision_vars": 0.27759617142133863
+            }
+          ]
+        },
+        "10": {
+          "n_steps": 9600,
+          "dims": [
+            {
+              "action": "basal_insulin",
+              "sigma_mean": 1.1564438343048096,
+              "logsigma_std_across_states": 1.8187464475631714,
+              "sigma_p95_over_p5": 512.0730590820312,
+              "sigma_near": 0.9367121458053589,
+              "sigma_far": 1.281614899635315,
+              "n_near": 3484,
+              "spearman": {
+                "CGM (mg/dL)": {
+                  "rho": 0.0874938256441229,
+                  "p": 8.852290205260234e-18
+                },
+                "CGM trend (mg/dL/min)": {
+                  "rho": 0.19097624194434745,
+                  "p": 1.562429978337189e-79
+                }
+              },
+              "eta2": {
+                "CGM (mg/dL)": 0.07101196501148986,
+                "CGM trend (mg/dL/min)": 0.034279355573113617
+              },
+              "far_over_near": 1.368205702653101,
+              "eff_noise_near": 0.2975798504463072,
+              "eff_noise_far": 0.3009453873172689,
+              "eff_far_over_near": 1.011309693401331,
+              "mean_outside_bounds_frac": 0.5825,
+              "r2_linear_precision_vars": 0.04392944775099594
+            }
+          ]
+        }
+      }
+    },
+    "pooled_variance": {
+      "global": [
+        {
+          "total_var": 0.012398970313370228,
+          "within_seed_state_fraction": 2.7220630263724566e-13
+        }
+      ],
+      "state": [
+        {
+          "total_var": 3.215961217880249,
+          "within_seed_state_fraction": 0.9694461226463318
+        }
+      ]
+    },
+    "policy": "stoch",
+    "last_k": 1
+  }
+}

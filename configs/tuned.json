@@ -1,0 +1,170 @@
+{
+  "Pendulum-v1": {
+    "shared": {
+      "learning_rate": 0.0013962436195430806,
+      "gamma": 0.98,
+      "gae_lambda": 0.99,
+      "clip_coef": 0.3,
+      "ent_coef": 0.01,
+      "update_epochs": 10,
+      "num_steps": 1024,
+      "num_minibatches": 64,
+      "log_std_init": 0.0
+    },
+    "per_mode": {
+      "global": {
+        "learning_rate": 0.0013962436195430806,
+        "gamma": 0.98,
+        "gae_lambda": 0.99,
+        "clip_coef": 0.3,
+        "ent_coef": 0.01,
+        "update_epochs": 10,
+        "num_steps": 1024,
+        "num_minibatches": 64,
+        "log_std_init": 0.0
+      },
+      "state": {
+        "learning_rate": 0.0016044197528729477,
+        "gamma": 0.95,
+        "gae_lambda": 0.9,
+        "clip_coef": 0.3,
+        "ent_coef": 0.001,
+        "update_epochs": 10,
+        "num_steps": 1024,
+        "num_minibatches": 32,
+        "log_std_init": 0.0
+      }
+    },
+    "info": {
+      "n_complete_trials": 25,
+      "n_trials": 64,
+      "shared_trial": 53,
+      "shared_objective": -210.83690300103387,
+      "shared_scores": {
+        "global": -205.0359468865276,
+        "state": -216.63785911554015
+      },
+      "per_mode_trial": {
+        "global": 53,
+        "state": 51
+      },
+      "per_mode_score": {
+        "global": -205.0359468865276,
+        "state": -213.8983854134923
+      },
+      "note": "tuning scores use 2 seeds each and are optimistically biased (winner's curse); the final runs re-estimate them with 10 fresh seeds"
+    }
+  },
+  "parking-v0": {
+    "shared": {
+      "learning_rate": 0.002431304209865695,
+      "gamma": 0.98,
+      "gae_lambda": 0.99,
+      "clip_coef": 0.3,
+      "ent_coef": 0.01,
+      "update_epochs": 5,
+      "num_steps": 512,
+      "num_minibatches": 16,
+      "log_std_init": 0.0
+    },
+    "per_mode": {
+      "global": {
+        "learning_rate": 0.002431304209865695,
+        "gamma": 0.98,
+        "gae_lambda": 0.99,
+        "clip_coef": 0.3,
+        "ent_coef": 0.01,
+        "update_epochs": 5,
+        "num_steps": 512,
+        "num_minibatches": 16,
+        "log_std_init": 0.0
+      },
+      "state": {
+        "learning_rate": 0.002431304209865695,
+        "gamma": 0.98,
+        "gae_lambda": 0.99,
+        "clip_coef": 0.3,
+        "ent_coef": 0.01,
+        "update_epochs": 5,
+        "num_steps": 512,
+        "num_minibatches": 16,
+        "log_std_init": 0.0
+      }
+    },
+    "info": {
+      "n_complete_trials": 21,
+      "n_trials": 32,
+      "shared_trial": 30,
+      "shared_objective": 0.9217983906325512,
+      "shared_scores": {
+        "global": 0.910465170871988,
+        "state": 0.9331316103931144
+      },
+      "per_mode_trial": {
+        "global": 30,
+        "state": 30
+      },
+      "per_mode_score": {
+        "global": 0.910465170871988,
+        "state": 0.9331316103931144
+      },
+      "note": "tuning scores use 2 seeds each and are optimistically biased (winner's curse); the final runs re-estimate them with 10 fresh seeds"
+    }
+  },
+  "simglucose-adolescent1-v0": {
+    "shared": {
+      "learning_rate": 0.00031805998022649013,
+      "gamma": 0.99,
+      "gae_lambda": 0.99,
+      "clip_coef": 0.2,
+      "ent_coef": 0.001,
+      "update_epochs": 5,
+      "num_steps": 256,
+      "num_minibatches": 32,
+      "log_std_init": 0.0
+    },
+    "per_mode": {
+      "global": {
+        "learning_rate": 0.0005292527860613512,
+        "gamma": 0.99,
+        "gae_lambda": 0.99,
+        "clip_coef": 0.2,
+        "ent_coef": 0.001,
+        "update_epochs": 3,
+        "num_steps": 256,
+        "num_minibatches": 32,
+        "log_std_init": 0.0
+      },
+      "state": {
+        "learning_rate": 0.0027433712376911967,
+        "gamma": 0.99,
+        "gae_lambda": 0.99,
+        "clip_coef": 0.2,
+        "ent_coef": 0.001,
+        "update_epochs": 3,
+        "num_steps": 512,
+        "num_minibatches": 64,
+        "log_std_init": 0.0
+      }
+    },
+    "info": {
+      "n_complete_trials": 26,
+      "n_trials": 40,
+      "shared_trial": 33,
+      "shared_objective": 473.8343033266185,
+      "shared_scores": {
+        "global": 473.8100392838655,
+        "state": 473.8585673693715
+      },
+      "per_mode_trial": {
+        "global": 19,
+        "state": 31
+      },
+      "per_mode_score": {
+        "global": 474.5247544406767,
+        "state": 474.2884172301991
+      },
+      "note": "tuning scores use 2 seeds each and are optimistically biased (winner's curse); the final runs re-estimate them with 10 fresh seeds"
+    }
+  }
+}
