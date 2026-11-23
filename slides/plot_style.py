@@ -50,13 +50,30 @@ def clean_axes(ax, grid_axis="y"):
         ax.grid(True, axis=grid_axis, color="#e1e0d9", lw=0.8)
 
 
+def _drawn_texts(fig):
+    """The text artists matplotlib actually draws (tick labels outside the view limits are skipped)."""
+    out = list(fig.texts) + [t for leg in fig.legends for t in leg.get_texts()]
+    if getattr(fig, "_suptitle", None) is not None:
+        out.append(fig._suptitle)
+    for ax in fig.axes:
+        out += [ax.title, ax._left_title, ax._right_title, ax.xaxis.label, ax.yaxis.label] + list(ax.texts)
+        if ax.get_legend() is not None:
+            out += list(ax.get_legend().get_texts())
+        for axis, lim in ((ax.xaxis, ax.get_xlim()), (ax.yaxis, ax.get_ylim())):
+            lo, hi = min(lim), max(lim)
+            for tick in axis.get_major_ticks() + axis.get_minor_ticks():
+                if lo - 1e-9 * abs(hi - lo) <= tick.get_loc() <= hi + 1e-9 * abs(hi - lo):
+                    out += [tick.label1, tick.label2]
+    return out
+
+
 def save_checked(fig, path, dpi=200, pad=0.0):
-    """Save `fig`, but raise instead if any two visible texts overlap or a text is cut off."""
+    """Save `fig`, but raise instead if any two drawn texts overlap or a text is cut off."""
     fig.canvas.draw()
     r = fig.canvas.get_renderer()
     W, H = fig.bbox.width, fig.bbox.height
     texts = []
-    for t in fig.findobj(match=plt.Text):
+    for t in _drawn_texts(fig):
         if not t.get_visible() or not t.get_text().strip():
             continue
         bb = t.get_window_extent(renderer=r)

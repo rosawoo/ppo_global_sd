@@ -33,7 +33,6 @@ LAB = {"global": r"global $\sigma$", "state": r"state-dependent $\sigma(s)$"}
 CROPS = {
     "sigma_vs_cgm": ("sigma_binned.png", (0, 75, 792, 489)),
     "executed_noise_vs_cgm": ("effective_noise.png", (0, 70, 792, 489)),
-    "sigma_episodes": ("sigma_episodes_seed1.png", (0, 108, 975, 618)),
     "min_logsigma": ("diagnostics.png", (770, 105, 1460, 545)),
 }
 

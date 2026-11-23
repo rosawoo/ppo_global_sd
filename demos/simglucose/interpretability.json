@@ -1,0 +1,422 @@
+{
+  "days": {
+    "100000": {
+      "global": {
+        "tir": 1.0,
+        "tbr": 0.0,
+        "severe_low": false,
+        "success": true,
+        "min_bg": 80.47228587813431,
+        "seed": 100000
+      },
+      "state": {
+        "tir": 0.8586278586278586,
+        "tbr": 0.14137214137214138,
+        "severe_low": false,
+        "success": false,
+        "min_bg": 54.73369965224993,
+        "seed": 100000
+      }
+    },
+    "100001": {
+      "global": {
+        "tir": 1.0,
+        "tbr": 0.0,
+        "severe_low": false,
+        "success": true,
+        "min_bg": 76.46721601382728,
+        "seed": 100001
+      },
+      "state": {
+        "tir": 0.8627858627858628,
+        "tbr": 0.13721413721413722,
+        "severe_low": false,
+        "success": false,
+        "min_bg": 59.014488108253204,
+        "seed": 100001
+      }
+    },
+    "100002": {
+      "global": {
+        "tir": 1.0,
+        "tbr": 0.0,
+        "severe_low": false,
+        "success": true,
+        "min_bg": 75.6501402185213,
+        "seed": 100002
+      },
+      "state": {
+        "tir": 0.83991683991684,
+        "tbr": 0.1600831600831601,
+        "severe_low": false,
+        "success": false,
+        "min_bg": 64.46990154807935,
+        "seed": 100002
+      }
+    },
+    "100003": {
+      "global": {
+        "tir": 1.0,
+        "tbr": 0.0,
+        "severe_low": false,
+        "success": true,
+        "min_bg": 74.70996330743831,
+        "seed": 100003
+      },
+      "state": {
+        "tir": 0.7006237006237006,
+        "tbr": 0.2993762993762994,
+        "severe_low": true,
+        "success": false,
+        "min_bg": 48.39185483736968,
+        "seed": 100003
+      }
+    },
+    "100004": {
+      "global": {
+        "tir": 1.0,
+        "tbr": 0.0,
+        "severe_low": false,
+        "success": true,
+        "min_bg": 79.79067026233496,
+        "seed": 100004
+      },
+      "state": {
+        "tir": 0.9688149688149689,
+        "tbr": 0.0,
+        "severe_low": false,
+        "success": true,
+        "min_bg": 72.1350740004056,
+        "seed": 100004
+      }
+    },
+    "100005": {
+      "global": {
+        "tir": 1.0,
+        "tbr": 0.0,
+        "severe_low": false,
+        "success": true,
+        "min_bg": 75.18093581310137,
+        "seed": 100005
+      },
+      "state": {
+        "tir": 1.0,
+        "tbr": 0.0,
+        "severe_low": false,
+        "success": true,
+        "min_bg": 76.79314891820185,
+        "seed": 100005
+      }
+    },
+    "100006": {
+      "global": {
+        "tir": 1.0,
+        "tbr": 0.0,
+        "severe_low": false,
+        "success": true,
+        "min_bg": 82.74656240683255,
+        "seed": 100006
+      },
+      "state": {
+        "tir": 0.7796257796257796,
+        "tbr": 0.2203742203742204,
+        "severe_low": true,
+        "success": false,
+        "min_bg": 49.36319070137611,
+        "seed": 100006
+      }
+    },
+    "100007": {
+      "global": {
+        "tir": 1.0,
+        "tbr": 0.0,
+        "severe_low": false,
+        "success": true,
+        "min_bg": 88.78941243071469,
+        "seed": 100007
+      },
+      "state": {
+        "tir": 0.58004158004158,
+        "tbr": 0.41995841995842,
+        "severe_low": true,
+        "success": false,
+        "min_bg": 25.61132269629337,
+        "seed": 100007
+      }
+    },
+    "100008": {
+      "global": {
+        "tir": 1.0,
+        "tbr": 0.0,
+        "severe_low": false,
+        "success": true,
+        "min_bg": 78.64514490267206,
+        "seed": 100008
+      },
+      "state": {
+        "tir": 0.6133056133056133,
+        "tbr": 0.3866943866943867,
+        "severe_low": true,
+        "success": false,
+        "min_bg": 45.85574535265088,
+        "seed": 100008
+      }
+    },
+    "100009": {
+      "global": {
+        "tir": 1.0,
+        "tbr": 0.0,
+        "severe_low": false,
+        "success": true,
+        "min_bg": 70.82818428410746,
+        "seed": 100009
+      },
+      "state": {
+        "tir": 0.58004158004158,
+        "tbr": 0.41995841995842,
+        "severe_low": true,
+        "success": false,
+        "min_bg": 40.15876340926541,
+        "seed": 100009
+      }
+    },
+    "100010": {
+      "global": {
+        "tir": 1.0,
+        "tbr": 0.0,
+        "severe_low": false,
+        "success": true,
+        "min_bg": 81.51640639693113,
+        "seed": 100010
+      },
+      "state": {
+        "tir": 0.9604989604989606,
+        "tbr": 0.0395010395010395,
+        "severe_low": false,
+        "success": true,
+        "min_bg": 66.40305143037497,
+        "seed": 100010
+      }
+    },
+    "100011": {
+      "global": {
+        "tir": 1.0,
+        "tbr": 0.0,
+        "severe_low": false,
+        "success": true,
+        "min_bg": 82.20363622665084,
+        "seed": 100011
+      },
+      "state": {
+        "tir": 0.7214137214137214,
+        "tbr": 0.2785862785862786,
+        "severe_low": true,
+        "success": false,
+        "min_bg": 50.25705622364411,
+        "seed": 100011
+      }
+    },
+    "100012": {
+      "global": {
+        "tir": 1.0,
+        "tbr": 0.0,
+        "severe_low": false,
+        "success": true,
+        "min_bg": 75.4873670277814,
+        "seed": 100012
+      },
+      "state": {
+        "tir": 0.5322245322245323,
+        "tbr": 0.4677754677754678,
+        "severe_low": true,
+        "success": false,
+        "min_bg": 43.29053454642591,
+        "seed": 100012
+      }
+    },
+    "100013": {
+      "global": {
+        "tir": 1.0,
+        "tbr": 0.0,
+        "severe_low": false,
+        "success": true,
+        "min_bg": 74.76906513209664,
+        "seed": 100013
+      },
+      "state": {
+        "tir": 0.9812889812889813,
+        "tbr": 0.018711018711018712,
+        "severe_low": false,
+        "success": true,
+        "min_bg": 65.46543410713862,
+        "seed": 100013
+      }
+    },
+    "100014": {
+      "global": {
+        "tir": 1.0,
+        "tbr": 0.0,
+        "severe_low": false,
+        "success": true,
+        "min_bg": 71.1150110169774,
+        "seed": 100014
+      },
+      "state": {
+        "tir": 0.7858627858627859,
+        "tbr": 0.21413721413721415,
+        "severe_low": false,
+        "success": false,
+        "min_bg": 56.72733018609243,
+        "seed": 100014
+      }
+    },
+    "100015": {
+      "global": {
+        "tir": 1.0,
+        "tbr": 0.0,
+        "severe_low": false,
+        "success": true,
+        "min_bg": 84.36445461350891,
+        "seed": 100015
+      },
+      "state": {
+        "tir": 0.7463617463617463,
+        "tbr": 0.25363825363825365,
+        "severe_low": true,
+        "success": false,
+        "min_bg": 45.13908067984834,
+        "seed": 100015
+      }
+    },
+    "100016": {
+      "global": {
+        "tir": 0.9584199584199584,
+        "tbr": 0.04158004158004158,
+        "severe_low": false,
+        "success": false,
+        "min_bg": 68.97914303192793,
+        "seed": 100016
+      },
+      "state": {
+        "tir": 0.5925155925155925,
+        "tbr": 0.3866943866943867,
+        "severe_low": true,
+        "success": false,
+        "min_bg": 26.024864289275683,
+        "seed": 100016
+      }
+    },
+    "100017": {
+      "global": {
+        "tir": 1.0,
+        "tbr": 0.0,
+        "severe_low": false,
+        "success": true,
+        "min_bg": 78.17211958062165,
+        "seed": 100017
+      },
+      "state": {
+        "tir": 0.498960498960499,
+        "tbr": 0.501039501039501,
+        "severe_low": true,
+        "success": false,
+        "min_bg": 40.80172591211769,
+        "seed": 100017
+      }
+    },
+    "100018": {
+      "global": {
+        "tir": 1.0,
+        "tbr": 0.0,
+        "severe_low": false,
+        "success": true,
+        "min_bg": 71.20091316932034,
+        "seed": 100018
+      },
+      "state": {
+        "tir": 0.9168399168399168,
+        "tbr": 0.08316008316008316,
+        "severe_low": true,
+        "success": false,
+        "min_bg": 51.88756392402428,
+        "seed": 100018
+      }
+    },
+    "100019": {
+      "global": {
+        "tir": 1.0,
+        "tbr": 0.0,
+        "severe_low": false,
+        "success": true,
+        "min_bg": 83.02832892788662,
+        "seed": 100019
+      },
+      "state": {
+        "tir": 1.0,
+        "tbr": 0.0,
+        "severe_low": false,
+        "success": true,
+        "min_bg": 74.02935629479825,
+        "seed": 100019
+      }
+    }
+  },
+  "statements": {
+    "global": {
+      "n_steps": 9600,
+      "spearman_dose_vs_glucose": 0.2747796634218351,
+      "spearman_dose_vs_trend": 0.11133860821420506,
+      "intended_dose_median_below80": 0.0,
+      "intended_dose_median_120_180": 1.386137455701828,
+      "frac_intended_zero_below80": 0.6812278630460449,
+      "frac_any_insulin_delivered_below80": 0.33766233766233766,
+      "mean_delivered_below80": 0.8794749935375858,
+      "mean_delivered_120_180": 2.96375653760806,
+      "sigma_median_below80": 0.5713493824005127,
+      "sigma_median_120_180": 0.5713493824005127,
+      "spearman_sigma_vs_glucose": null,
+      "spearman_sigma_vs_trend": null,
+      "sigma_median_mean_pinned_at_zero": 0.5713493824005127,
+      "sigma_median_mean_inside_range": 0.5713493824005127,
+      "frac_steps_mean_outside_range": 0.5835416666666666,
+      "frac_steps_below80": 0.08822916666666666
+    },
+    "state": {
+      "n_steps": 9600,
+      "spearman_dose_vs_glucose": -0.04319188263059772,
+      "spearman_dose_vs_trend": 0.014640665914172507,
+      "intended_dose_median_below80": 0.0,
+      "intended_dose_median_120_180": 0.0,
+      "frac_intended_zero_below80": 0.6070116861435726,
+      "frac_any_insulin_delivered_below80": 0.4063439065108514,
+      "mean_delivered_below80": 3.1819200319485708,
+      "mean_delivered_120_180": 2.0452512895464436,
+      "sigma_median_below80": 4.450925827026367,
+      "sigma_median_120_180": 0.18322408944368362,
+      "spearman_sigma_vs_glucose": -0.49764422872248865,
+      "spearman_sigma_vs_trend": 0.016290303385552256,
+      "sigma_median_mean_pinned_at_zero": 0.2658049762248993,
+      "sigma_median_mean_inside_range": 1.2044388055801392,
+      "frac_steps_mean_outside_range": 0.74125,
+      "frac_steps_below80": 0.31197916666666664
+    }
+  },
+  "per_policy": {
+    "global": {
+      "days_meeting_targets": 0.95,
+      "days_with_severe_low": 0.0,
+      "mean_time_in_range": 0.997920997920998
+    },
+    "state": {
+      "days_meeting_targets": 0.25,
+      "days_with_severe_low": 0.55,
+      "mean_time_in_range": 0.7759875259875261
+    }
+  },
+  "global_run": "global sigma, seed 1, shared tuned config (retrained with scripts/sweep.py's command; evals identical to results/eval_curves.csv)",
+  "state_run": "state-dependent sigma(s), seed 1, shared tuned config (retrained the same way)",
+  "rendered_days": [
+    100014,
+    100007
+  ]
+}

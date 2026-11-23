@@ -29,7 +29,7 @@ const THEME = {
 const PX = {
   "noise_global.png": [920, 520], "noise_state.png": [920, 520], "curves_shared.png": [2400, 980],
   "curves_perarm.png": [2400, 980], "min_logsigma.png": [690, 440], "sigma_vs_cgm.png": [792, 414],
-  "sigma_episodes.png": [975, 510], "executed_noise_vs_cgm.png": [792, 419],
+  "demo_day.gif": [1280, 720], "executed_noise_vs_cgm.png": [792, 419],
 };
 
 const pres = new pptxgen();
@@ -342,22 +342,48 @@ const run = (t, o = {}) => ({ text: t, options: o });
     "everywhere. The rank correlation between sigma and the cost of noise is only -0.04.");
 }
 
-// ---- 12. sigma over a day ----------------------------------------------------------------
+// ---- 12. demo: one simulated day -----------------------------------------------------------
 {
-  const s = content("Low glucose sends σ(s) to its ceiling",
-                    "Two evaluation days of one σ(s) policy (training seed 1)");
-  image(s, "sigma_episodes.png", L, 1.95, 9.0, "Sigma and glucose over two evaluation days: sigma(s) jumps to its ceiling once glucose falls below 100 mg/dL");
-  const x = 10.05, w = 13.333 - L - x;
-  text(s, [
-    run("Top: σ of the insulin action", { breakLine: true }), run(" ", { fontSize: 10, breakLine: true }),
-    run("Bottom: glucose (mg/dL)", { breakLine: true }), run(" ", { fontSize: 10, breakLine: true }),
-    run("Dashed line: glucose falls below\u00A0100", { breakLine: true }), run(" ", { fontSize: 10, breakLine: true }),
-    run("Ceiling: σ = e² ≈ 7.4"),
-  ], { x, y: 2.2, w, h: 4.2, fontSize: 20 });
+  const s = content("Demo: one simulated day", "Seed-1 policies, same meals for both agents");
+  const w = 9.6;
+  image(s, "demo_day.gif", (13.333 - w) / 2, 1.85, w, "Animation of one simulated day: global sigma keeps glucose in range " +
+        "with constant noise; sigma(s) turns its noise to the maximum as glucose falls and keeps giving insulin");
   s.addNotes(
-    "Here is what that looks like within a day, for one sigma(s) policy. Top: sigma; bottom: glucose. While " +
-    "glucose is above 100, sigma stays small. Once glucose falls below 100 (dashed line), sigma starts hitting " +
-    "its ceiling of e^2, about 7.4, and flips between the ceiling and small values from one step to the next.");
+    "Here is a demo of one simulated day with the two seed-1 policies; both agents see the same meals. Top: blood " +
+    "glucose with the target range. Middle: insulin given, averaged over 30 minutes. Bottom: the noise level sigma. " +
+    "Global sigma keeps glucose in range all day; it gives insulin after meals and less when glucose is low, and its " +
+    "noise never changes. Sigma(s) starts with almost no noise, but as glucose drifts down, its sigma jumps to the " +
+    "maximum and stays there, and it keeps giving insulin. This is a typical day for this policy: 79% time in range, " +
+    "lowest glucose 57. The repository also has a bad day (demos/simglucose/day_100007.gif) with a severe low.");
+}
+
+// ---- 12b. can a human read it? ---------------------------------------------------------------
+{
+  const s = content("Can a human read the policy?", "Seed-1 policies over 20 simulated days");
+  const hdr = (t, al) => ({ text: t, options: { bold: true, align: al, fill: { color: LIGHT } } });
+  const c = (t) => ({ text: t, options: { align: "center" } });
+  s.addTable([
+    [hdr("", "left"), hdr("Global σ", "center"), hdr("σ(s)", "center")],
+    [{ text: "Insulin when glucose is below 80 mg/dL" }, c("0.9× basal"), c("3.2× basal")],
+    [{ text: "Insulin when glucose is 120–180 mg/dL" }, c("3.0× basal"), c("2.0× basal")],
+    [{ text: "Noise σ: below 80 / at 120–180" }, c("0.57 / 0.57"), c("4.5 / 0.18")],
+    [{ text: "Days with a severe low" }, c("0 of 20"), c("11 of 20")],
+  ], { x: L, y: 1.95, w: W, colW: [5.93, 3.0, 3.0], rowH: 0.62, fontSize: 22, color: INK, fontFace: FONT,
+       valign: "middle", margin: [0, 0.15, 0, 0.15], border: { type: "solid", pt: 1, color: "D9D9D9" } });
+  text(s, "Yes. Global σ reads like a sensible controller: less insulin when glucose is low. σ(s) is just as " +
+          "readable, and it shows the flaw: its noise is largest exactly when extra insulin is dangerous.",
+       { x: L, y: 5.3, w: W, h: 1.1, fontSize: 22 });
+  text(s, "This σ(s) run is one of the weaker ones: 4 of the 10 σ(s) runs had frequent severe lows",
+       { x: L, y: 6.55, w: W, h: 0.4, fontSize: 18, color: GRAY });
+  s.addNotes(
+    "So, can a human read these policies? Yes. Over 20 simulated days, the global-sigma policy gives 0.9x the basal " +
+    "rate on average when glucose is below 80 mg/dL and 3.0x when it is 120-180: less insulin when glucose is low, " +
+    "like a sensible controller. Its noise is constant. The sigma(s) policy is just as easy to read, and what you read " +
+    "is the problem: its sigma is about 0.18 in range but about 4.5 below 80, so its noise delivers 3.2x basal when " +
+    "glucose is low, more than the 2.0x it gives in range. It had a severe low on 11 of the 20 days. Its intended " +
+    "(mean) dose is mostly zero at every glucose level; the insulin comes from the noise. Caveat: this is one of the " +
+    "weaker sigma(s) runs; 4 of 10 sigma(s) runs had frequent severe lows, while seeds 5-10 had almost none. Across " +
+    "the 10 runs, sigma is larger below 100 mg/dL than above it in 7.");
 }
 
 // ---- 13. why ----------------------------------------------------------------------------

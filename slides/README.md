@@ -1,6 +1,6 @@
 # Talk: Should exploration noise depend on the state?
 
-A 10-minute talk (16 slides) on the study's clearest result: **Simglucose**, insulin dosing
+A 10-minute talk (17 slides) on the study's clearest result: **Simglucose**, insulin dosing
 for a simulated adolescent with type 1 diabetes. The look follows the Keynote "Basic White"
 template we were given (white slides, bold Helvetica Neue titles at the top left, a bold
 subtitle, few words, large figures).
@@ -44,17 +44,20 @@ the confidence intervals.
 9. With its own tuning, σ(s) catches up
 10. Tuning mattered more than the σ choice (all three settings)
 11. σ(s) is noisiest when glucose is low
-12. σ over two evaluation days
-13. Why: most of the noise is clipped away
-14. Three tasks, no consistent winner
-15. Takeaways
-16. Thank you / questions
+12. Demo: one simulated day (animated GIF; plays in Keynote and PowerPoint)
+13. Can a human read the policy? (numbers behind the demo)
+14. Why: most of the noise is clipped away
+15. Three tasks, no consistent winner
+16. Takeaways
+17. Thank you / questions
 
 ## Figures
 
 * **Panels cut from the study's figures** (`figures/simglucose-adolescent1-v0_*.png`):
-  `sigma_vs_cgm.png` (from `_sigma_binned`), `executed_noise_vs_cgm.png` (`_effective_noise`),
-  `sigma_episodes.png` (`_sigma_episodes_seed1`) and `min_logsigma.png` (`_diagnostics`).
+  `sigma_vs_cgm.png` (from `_sigma_binned`), `executed_noise_vs_cgm.png` (`_effective_noise`)
+  and `min_logsigma.png` (`_diagnostics`).
+* **Demo**: `demo_day.gif`, the slide version of `demos/simglucose/day_100014.gif`, made by
+  `analysis/simglucose_demo.py` (see `demos/simglucose/README.md` for the interpretability check).
 * **Redrawn with slide-sized text**: `curves_shared.png` and `curves_perarm.png`, from
   `results/eval_curves.csv`, with the same statistics as `analysis/curves.py` (IQM over 10 seeds,
   95% bootstrap band, thin lines for single seeds). The original curves figure is an 8-panel
