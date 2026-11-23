@@ -11,8 +11,10 @@ PY=${PY:-$ENV_PREFIX/bin/python}
 # Adding serial_requeue gives much more throughput, but a task can be pre-empted; it is then
 # requeued and restarts from step 0 (safe: see scripts/run_task.py), so it only costs time.
 PARTITION=${PARTITION:-shared,sapphire}
-# Partition for the quick smoke test (test: 12 h limit, at most 5 jobs per user, no fairshare cost)
-SMOKE_PARTITION=${SMOKE_PARTITION:-test}
+# Partition for the quick smoke test. Not `test`: its QOS allows at most 5 submitted jobs per user
+# and the smoke array has 6 tasks (sbatch: QOSMaxSubmitJobPerUserLimit). serial_requeue usually starts
+# within minutes; a pre-empted smoke task is requeued and restarts from step 0.
+SMOKE_PARTITION=${SMOKE_PARTITION:-shared,sapphire,serial_requeue}
 
 # Optional: a Slurm account (e.g. your lab's) for fairshare; empty = your default account
 ACCOUNT=${ACCOUNT:-}
