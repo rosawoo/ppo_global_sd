@@ -1,0 +1,92 @@
+{
+  "parking-v0": {
+    "global": {
+      "1": {
+        "n_states": 40,
+        "n_fine": 0,
+        "frac_c_negative": 0.35,
+        "c_fine_mean": NaN,
+        "c_coarse_mean": 0.21717847036553123,
+        "heterogeneity_AM_over_GM": 177.54830067264172,
+        "L_own_fine_mean": NaN,
+        "L_own_coarse_mean": 0.002202014238221706,
+        "L_own_onpolicy_mean": 0.002202014238221706,
+        "c_fine_over_coarse": NaN,
+        "c_acceleration_fine_mean": NaN,
+        "c_acceleration_coarse_mean": -0.07593852194372809,
+        "c_acceleration_fine_over_coarse": NaN,
+        "spearman_logsigma_vs_logc_acceleration": NaN,
+        "sigma_fine_over_coarse_acceleration": NaN,
+        "c_steering_fine_mean": NaN,
+        "c_steering_coarse_mean": 0.017378405096949434,
+        "c_steering_fine_over_coarse": NaN,
+        "spearman_logsigma_vs_logc_steering": NaN,
+        "sigma_fine_over_coarse_steering": NaN
+      }
+    },
+    "state": {
+      "1": {
+        "n_states": 40,
+        "n_fine": 0,
+        "frac_c_negative": 0.39999999999999997,
+        "c_fine_mean": NaN,
+        "c_coarse_mean": 0.12456709213841144,
+        "heterogeneity_AM_over_GM": 98.18420615921738,
+        "L_own_fine_mean": NaN,
+        "L_own_coarse_mean": -0.012218162659558107,
+        "L_own_onpolicy_mean": -0.012218162659558107,
+        "c_fine_over_coarse": NaN,
+        "c_acceleration_fine_mean": NaN,
+        "c_acceleration_coarse_mean": -0.4466263363481702,
+        "c_acceleration_fine_over_coarse": NaN,
+        "spearman_logsigma_vs_logc_acceleration": 0.3473142956461035,
+        "sigma_fine_over_coarse_acceleration": NaN,
+        "c_steering_fine_mean": NaN,
+        "c_steering_coarse_mean": -0.0029695163764365006,
+        "c_steering_fine_over_coarse": NaN,
+        "spearman_logsigma_vs_logc_steering": 0.08695652173913042,
+        "sigma_fine_over_coarse_steering": NaN
+      }
+    }
+  },
+  "simglucose-adolescent1-v0": {
+    "global": {
+      "1": {
+        "n_states": 60,
+        "n_fine": 30,
+        "frac_c_negative": 0.28272222222222226,
+        "c_fine_mean": -0.06744108794026771,
+        "c_coarse_mean": -0.6794042793497734,
+        "heterogeneity_AM_over_GM": 33.19604373248374,
+        "L_own_fine_mean": 0.08205839236074781,
+        "L_own_coarse_mean": -0.1788636703766305,
+        "L_own_onpolicy_mean": -0.03149706369308206,
+        "c_fine_over_coarse": NaN,
+        "c_basal_insulin_fine_mean": -0.06744108794026771,
+        "c_basal_insulin_coarse_mean": -0.6794042793497734,
+        "c_basal_insulin_fine_over_coarse": NaN,
+        "spearman_logsigma_vs_logc_basal_insulin": NaN,
+        "sigma_fine_over_coarse_basal_insulin": 1.0000000000000002
+      }
+    },
+    "state": {
+      "1": {
+        "n_states": 60,
+        "n_fine": 30,
+        "frac_c_negative": 0.3956090651558071,
+        "c_fine_mean": 0.013842472698509347,
+        "c_coarse_mean": 2.933693127281715,
+        "heterogeneity_AM_over_GM": 184.98712706724618,
+        "L_own_fine_mean": 0.23861531388922066,
+        "L_own_coarse_mean": 0.15236713731193846,
+        "L_own_onpolicy_mean": 0.2161064944354468,
+        "c_fine_over_coarse": 0.004718446033016217,
+        "c_basal_insulin_fine_mean": 0.013842472698509347,
+        "c_basal_insulin_coarse_mean": 2.933693127281715,
+        "c_basal_insulin_fine_over_coarse": 0.004718446033016217,
+        "spearman_logsigma_vs_logc_basal_insulin": -0.16619398752127057,
+        "sigma_fine_over_coarse_basal_insulin": 6.418399289088239
+      }
+    }
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "global": {
+    "stoch_success_final": [
+      0.0
+    ],
+    "stoch_crash_final": [
+      1.0
+    ],
+    "stoch_timeout_final": [
+      0.0
+    ],
+    "stoch_first_step_success_ge_0.5": [
+      NaN
+    ],
+    "det_success_final": [
+      0.0
+    ],
+    "det_crash_final": [
+      1.0
+    ],
+    "det_timeout_final": [
+      0.0
+    ],
+    "det_first_step_success_ge_0.5": [
+      NaN
+    ],
+    "frac_steps_within_3m": [
+      0.00980392156862745
+    ],
+    "steps_to_park_successful_eps": [
+      NaN
+    ],
+    "speed_within_3m": [
+      11.792262077331543
+    ],
+    "sigma_acceleration_within_3m": [
+      0.21495883166790009
+    ],
+    "sigma_acceleration_beyond_3m": [
+      0.21495839953422546
+    ],
+    "exec_noise_acceleration_within_3m": [
+      0.00665686309997397
+    ],
+    "exec_noise_acceleration_beyond_3m": [
+      0.0420398368674486
+    ],
+    "sigma_steering_within_3m": [
+      0.20086222887039185
+    ],
+    "sigma_steering_beyond_3m": [
+      0.20086267590522766
+    ],
+    "exec_noise_steering_within_3m": [
+      0.20085977033504276
+    ],
+    "exec_noise_steering_beyond_3m": [
+      0.1514760381105402
+    ]
+  },
+  "state": {
+    "stoch_success_final": [
+      0.0
+    ],
+    "stoch_crash_final": [
+      1.0
+    ],
+    "stoch_timeout_final": [
+      0.0
+    ],
+    "stoch_first_step_success_ge_0.5": [
+      NaN
+    ],
+    "det_success_final": [
+      0.016666666666666666
+    ],
+    "det_crash_final": [
+      0.9833333333333334
+    ],
+    "det_timeout_final": [
+      0.0
+    ],
+    "det_first_step_success_ge_0.5": [
+      NaN
+    ],
+    "frac_steps_within_3m": [
+      0.012903225806451613
+    ],
+    "steps_to_park_successful_eps": [
+      NaN
+    ],
+    "speed_within_3m": [
+      12.696084976196289
+    ],
+    "sigma_acceleration_within_3m": [
+      0.10176510363817215
+    ],
+    "sigma_acceleration_beyond_3m": [
+      0.10200446844100952
+    ],
+    "exec_noise_acceleration_within_3m": [
+      0.03588526356381843
+    ],
+    "exec_noise_acceleration_beyond_3m": [
+      0.02001721378787876
+    ],
+    "sigma_steering_within_3m": [
+      0.10610381513834
+    ],
+    "sigma_steering_beyond_3m": [
+      0.12807905673980713
+    ],
+    "exec_noise_steering_within_3m": [
+      0.10610381513834
+    ],
+    "exec_noise_steering_beyond_3m": [
+      0.10459658427410093
+    ]
+  }
+}

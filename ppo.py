@@ -22,7 +22,7 @@ from torch.utils.tensorboard import SummaryWriter
 from envs.wrappers import VecNormalizer, make_env, make_env_thunk
 from scripts.eval import evaluate
 
-STD_MODES = ("global", "state", "state_separate")
+STD_MODES = ("global", "state", "state_separate", "state_detach")
 
 
 @dataclass
@@ -45,7 +45,9 @@ class Args:
     # Policy parameterisation (the object of the study)
     std_mode: str = "global"
     """how sigma is computed: 'global' (state-independent parameter), 'state' (head on the
-    shared actor trunk) or 'state_separate' (own 64-64 trunk; optional ablation)"""
+    shared actor trunk), 'state_separate' (own 64-64 trunk; optional ablation) or
+    'state_detach' (head on the shared trunk, but no sigma gradient flows into the trunk;
+    optional ablation that isolates gradient interference)"""
     log_std_init: float = -0.6931471805599453
     """initial log sigma for every mode (log 0.5)"""
     logstd_min: float = -5.0
@@ -118,6 +120,15 @@ class Args:
     """eval episode i always resets with seed eval_seed_base + i (same for all runs)"""
     eval_noise_seed: int = 0
     """seed of the action-noise generator used by the stochastic eval episodes"""
+    save_eval_dumps: bool = True
+    """write the per-step eval dumps (evals/step_*.npz); tuning turns this off to save disk"""
+
+    # Diagnostics (read-only: they never change the training trajectory)
+    grad_diagnostics: bool = True
+    """per update, measure gradient signal-to-noise and mean/sigma interference in the shared
+    trunk on minibatches drawn with a private RNG, at the pre-update parameters"""
+    grad_diag_minibatches: int = 16
+    """number of minibatches used for the gradient diagnostics"""
 
     # to be filled in runtime
     batch_size: int = 0
@@ -182,15 +193,23 @@ class Agent(nn.Module):
     def get_value(self, x):
         return self.critic(x)
 
-    def dist(self, x):
+    def mean_and_logstd(self, x):
+        """Unclamped (mean, log sigma). 'state_detach' = 'state' with the trunk features
+        detached on the sigma path, so sigma gradients cannot reshape the shared trunk."""
         h = self.actor_trunk(x)
         mean = self.actor_mean(h)
         if self.std_mode == "global":
             logstd = self.actor_logstd.expand_as(mean)
         elif self.std_mode == "state":
             logstd = self.actor_logstd_head(h)
+        elif self.std_mode == "state_detach":
+            logstd = self.actor_logstd_head(h.detach())
         else:
             logstd = self.actor_logstd_head(self.actor_logstd_trunk(x))
+        return mean, logstd
+
+    def dist(self, x):
+        mean, logstd = self.mean_and_logstd(x)
         if not (torch.isfinite(mean).all() and torch.isfinite(logstd).all()):
             raise NonFiniteError("non-finite policy output")
         logstd = torch.clamp(logstd, self.logstd_min, self.logstd_max)
@@ -206,6 +225,72 @@ class Agent(nn.Module):
 def grad_norm(params):
     sq = sum(float(p.grad.pow(2).sum()) for p in params if p.grad is not None)
     return sq**0.5
+
+
+def gradient_snr(vectors):
+    """||mean g||^2 / Var[mean g] from K per-minibatch gradient vectors (unbiased variance of
+    the mean). ~1 when the minibatch gradients are pure noise, whatever the dimension;
+    >>1 when they agree on a direction."""
+    g = torch.stack(vectors)
+    k = g.shape[0]
+    gbar = g.mean(0)
+    var_of_mean = float(((g - gbar) ** 2).sum()) / (k * (k - 1))
+    return float(gbar.pow(2).sum()) / var_of_mean if var_of_mean > 0 else float("nan")
+
+
+def gradient_diagnostics(agent, b_obs, b_actions, b_logprobs, b_advantages, args, rng):
+    """Read-only H2 diagnostics at the pre-update parameters (ratio = 1, so the clip is
+    inactive and this is the plain policy gradient of the PPO actor loss).
+
+    Uses its own numpy Generator, calls only torch.autograd.grad (no .grad is written, the
+    optimizer is never stepped, no torch RNG is consumed), so the training run is
+    bit-identical with or without it. Returns
+      gsnr_<group>: gradient signal-to-noise ratio of each parameter group;
+      trunk_cos_sigma_vs_mean / trunk_gnorm_sigma_over_mean ('state' mode only): cosine and
+        norm ratio between the shared-trunk gradient arriving through the sigma head and the
+        one arriving through the mean head (interference).
+    """
+    k, mb = args.grad_diag_minibatches, args.minibatch_size
+    k = min(k, b_obs.shape[0] // mb)
+    groups = {"mean_head": agent.mean_parameters(), "sigma": agent.sigma_parameters(),
+              "actor_trunk": list(agent.actor_trunk.parameters())}
+    if agent.std_mode == "global":
+        groups["sigma_bias"] = [agent.actor_logstd]  # plays the role of the head bias
+    else:
+        groups["sigma_bias"] = [agent.actor_logstd_head.bias]
+        groups["sigma_weight"] = [agent.actor_logstd_head.weight]
+    params = list({id(p): p for ps in groups.values() for p in ps}.values())
+    vecs = {name: [] for name in groups}
+    cos, ratio = [], []
+    trunk = groups["actor_trunk"]
+    for idx in rng.permutation(b_obs.shape[0])[: k * mb].reshape(k, mb):
+        idx = torch.as_tensor(idx)
+        adv = b_advantages[idx]
+        if args.norm_adv:
+            adv = (adv - adv.mean()) / (adv.std() + 1e-8)
+        mean, logstd_raw = agent.mean_and_logstd(b_obs[idx])
+        logstd = torch.clamp(logstd_raw, args.logstd_min, args.logstd_max)
+        dist = Normal(mean, logstd.exp())
+        ratio_ = (dist.log_prob(b_actions[idx]).sum(1) - b_logprobs[idx]).exp()
+        loss = -(adv * ratio_).mean() - args.ent_coef * dist.entropy().sum(1).mean()
+        grads = torch.autograd.grad(loss, params, retain_graph=True, allow_unused=True)
+        gmap = {id(p): (g if g is not None else torch.zeros_like(p)) for p, g in zip(params, grads)}
+        for name, ps in groups.items():
+            vecs[name].append(torch.cat([gmap[id(p)].reshape(-1) for p in ps]))
+        if agent.std_mode == "state":
+            g_mean_out, g_logstd_out = torch.autograd.grad(loss, [mean, logstd_raw], retain_graph=True)
+            gm = torch.autograd.grad(mean, trunk, grad_outputs=g_mean_out, retain_graph=True)
+            gs = torch.autograd.grad(logstd_raw, trunk, grad_outputs=g_logstd_out)
+            gm = torch.cat([g.reshape(-1) for g in gm])
+            gs = torch.cat([g.reshape(-1) for g in gs])
+            cos.append(float(torch.dot(gm, gs) / (gm.norm() * gs.norm() + 1e-12)))
+            ratio.append(float(gs.norm() / (gm.norm() + 1e-12)))
+    out = {f"gsnr_{name}": gradient_snr(v) for name, v in vecs.items()}
+    if "sigma_weight" not in vecs:
+        out["gsnr_sigma_weight"] = float("nan")
+    out["trunk_cos_sigma_vs_mean"] = float(np.mean(cos)) if cos else float("nan")
+    out["trunk_gnorm_sigma_over_mean"] = float(np.mean(ratio)) if ratio else float("nan")
+    return out
 
 
 class CsvLog:
@@ -270,6 +355,10 @@ if __name__ == "__main__":
         args.obs_clip, args.reward_clip,
     )
     eval_env = make_env(args.env_id)
+    # the env's own action box (the ClipAction wrapper advertises an unbounded space)
+    act_low = torch.as_tensor(eval_env.unwrapped.action_space.low, dtype=torch.float32)
+    act_high = torch.as_tensor(eval_env.unwrapped.action_space.high, dtype=torch.float32)
+    diag_rng = np.random.default_rng(args.seed + 7919)  # private: diagnostics never touch the training RNG
 
     agent = Agent(obs_dim, act_dim, args.std_mode, args.log_std_init, args.logstd_min, args.logstd_max,
                   args.logstd_head_init_std, args.actor_hidden, args.critic_hidden).to(device)
@@ -287,7 +376,7 @@ if __name__ == "__main__":
     values = torch.zeros((args.num_steps, args.num_envs)).to(device)
 
     def run_eval(global_step, wall):
-        out = os.path.join(run_dir, "evals", f"step_{global_step:09d}.npz")
+        out = os.path.join(run_dir, "evals", f"step_{global_step:09d}.npz") if args.save_eval_dumps else None
         summary = evaluate(agent, normalizer, eval_env, args.eval_episodes, args.eval_seed_base, args.eval_noise_seed,
                            out, device)
         eval_log.write({"global_step": global_step, "wall_time_s": round(wall, 2), **summary})
@@ -389,6 +478,10 @@ if __name__ == "__main__":
             b_returns = returns.reshape(-1)
             b_values = values.reshape(-1)
 
+            diag = {}
+            if args.grad_diagnostics:
+                diag = gradient_diagnostics(agent, b_obs, b_actions, b_logprobs, b_advantages, args, diag_rng)
+
             # Optimizing the policy and value network
             b_inds = np.arange(args.batch_size)
             clipfracs, kls, gn_mean, gn_sigma, gn_trunk, gn_critic, gn_total = [], [], [], [], [], [], []
@@ -461,6 +554,11 @@ if __name__ == "__main__":
                 at_min = (logstd_b <= args.logstd_min).float().mean().item()
                 at_max = (logstd_b >= args.logstd_max).float().mean().item()
                 entropy_b = dist_b.entropy().sum(1).mean().item()
+                # saturation: where the mean sits outside the action box, the env's clip makes the
+                # executed action (nearly) deterministic whatever sigma is
+                mu_b = dist_b.mean
+                mean_outside = ((mu_b < act_low) | (mu_b > act_high)).float().mean().item()
+                action_clipped = ((b_actions < act_low) | (b_actions > act_high)).float().mean().item()
             if not all(torch.isfinite(p).all() for p in agent.parameters()):
                 raise NonFiniteError("non-finite parameters")
 
@@ -484,6 +582,8 @@ if __name__ == "__main__":
                 "logstd_state_std": logstd_b.std(dim=0).mean().item(),
                 "logstd_frac_at_min": at_min,
                 "logstd_frac_at_max": at_max,
+                "mean_outside_bounds_frac": mean_outside,
+                "action_clipped_frac": action_clipped,
                 "grad_norm_mean_head": float(np.mean(gn_mean)),
                 "grad_norm_sigma": float(np.mean(gn_sigma)),
                 "grad_norm_actor_trunk": float(np.mean(gn_trunk)),
@@ -496,6 +596,7 @@ if __name__ == "__main__":
                 "train_episodes": len(ep_returns),
                 "rollout_goal_dist_mean": float(np.mean(rollout_goal_dist)),
                 "SPS": sps,
+                **diag,
             }
             for d in range(act_dim):
                 row[f"logstd_mean_dim{d}"] = logstd_b[:, d].mean().item()

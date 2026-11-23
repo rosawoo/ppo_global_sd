@@ -17,8 +17,10 @@ import pandas as pd
 from matplotlib.colors import LinearSegmentedColormap
 
 # Fixed colour per std_mode (colour follows the entity, never its rank).
-MODE_COLORS = {"global": "#2a78d6", "state": "#eb6834", "state_separate": "#1baf7a"}
-MODE_LABELS = {"global": "global σ", "state": "state-dependent σ(s)", "state_separate": "σ(s), separate trunk"}
+MODE_COLORS = {"global": "#2a78d6", "state": "#eb6834", "state_separate": "#1baf7a", "state_detach": "#8a5cd6"}
+MODE_LABELS = {"global": "global σ", "state": "state-dependent σ(s)", "state_separate": "σ(s), separate trunk",
+               "state_detach": "σ(s), trunk detached"}
+MODE_ORDER = ("global", "state", "state_separate", "state_detach")
 INK, INK2, MUTED, GRID, AXIS, SURFACE = "#0b0b0b", "#52514e", "#898781", "#e1e0d9", "#c3c2b7", "#fcfcfb"
 # single-hue sequential ramp (light -> dark) for magnitude
 SEQ = LinearSegmentedColormap.from_list("seq_blue", ["#cde2fb", "#86b6ef", "#3987e5", "#1c5cab", "#0d366b"])

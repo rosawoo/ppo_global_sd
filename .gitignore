@@ -9,3 +9,11 @@ demos/*.mp4
 demos/*.gif
 .DS_Store
 runs_pilot/
+cluster/logs/
+cluster/tasks/
+runs_smoke/
+results_smoke/
+figures_smoke/
+tuning/
+runs_final/
+runs_final_perarm/

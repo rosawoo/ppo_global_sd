@@ -1,0 +1,434 @@
+{
+  "Pendulum-v1": {
+    "per_seed": {
+      "global": {
+        "1": {
+          "n_steps": 4000,
+          "dims": [
+            {
+              "action": "torque",
+              "sigma_mean": 0.2292930632829666,
+              "logsigma_std_across_states": 1.1920928955078125e-07,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.22929304838180542,
+              "sigma_far": 0.2292930632829666,
+              "n_near": 3301,
+              "spearman": {
+                "|\u03b8| from upright (rad)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "|\u03b8\u0307| (rad/s)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "|\u03b8| from upright (rad)": 0.0,
+                "|\u03b8\u0307| (rad/s)": 0.0
+              },
+              "far_over_near": 1.0000000649874092,
+              "eff_noise_near": 0.2292497452890524,
+              "eff_noise_far": 0.16485732169325207,
+              "eff_far_over_near": 0.7191167060420924,
+              "mean_outside_bounds_frac": 0.052,
+              "r2_linear_precision_vars": 0.0
+            }
+          ]
+        },
+        "2": {
+          "n_steps": 4000,
+          "dims": [
+            {
+              "action": "torque",
+              "sigma_mean": 0.20083166658878326,
+              "logsigma_std_across_states": 1.1920928955078125e-07,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.20083166658878326,
+              "sigma_far": 0.20083166658878326,
+              "n_near": 3296,
+              "spearman": {
+                "|\u03b8| from upright (rad)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "|\u03b8\u0307| (rad/s)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "|\u03b8| from upright (rad)": 0.0,
+                "|\u03b8\u0307| (rad/s)": 0.0
+              },
+              "far_over_near": 1.0,
+              "eff_noise_near": 0.20082613304569494,
+              "eff_noise_far": 0.1277758504705685,
+              "eff_far_over_near": 0.6362511120078931,
+              "mean_outside_bounds_frac": 0.06925,
+              "r2_linear_precision_vars": 0.0
+            }
+          ]
+        },
+        "3": {
+          "n_steps": 4000,
+          "dims": [
+            {
+              "action": "torque",
+              "sigma_mean": 0.2404242306947708,
+              "logsigma_std_across_states": 1.1920928955078125e-07,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.2404242306947708,
+              "sigma_far": 0.240424245595932,
+              "n_near": 3247,
+              "spearman": {
+                "|\u03b8| from upright (rad)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "|\u03b8\u0307| (rad/s)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "|\u03b8| from upright (rad)": 0.0,
+                "|\u03b8\u0307| (rad/s)": 0.0
+              },
+              "far_over_near": 1.0000000619786165,
+              "eff_noise_near": 0.24042011663607998,
+              "eff_noise_far": 0.16775119396025576,
+              "eff_far_over_near": 0.6977419207153036,
+              "mean_outside_bounds_frac": 0.0585,
+              "r2_linear_precision_vars": 0.0
+            }
+          ]
+        },
+        "4": {
+          "n_steps": 4000,
+          "dims": [
+            {
+              "action": "torque",
+              "sigma_mean": 0.1875312477350235,
+              "logsigma_std_across_states": 1.1920928955078125e-07,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.1875312626361847,
+              "sigma_far": 0.1875312626361847,
+              "n_near": 3300,
+              "spearman": {
+                "|\u03b8| from upright (rad)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "|\u03b8\u0307| (rad/s)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "|\u03b8| from upright (rad)": 0.0,
+                "|\u03b8\u0307| (rad/s)": 0.0
+              },
+              "far_over_near": 1.0,
+              "eff_noise_near": 0.18752790525069024,
+              "eff_noise_far": 0.13033439437336503,
+              "eff_far_over_near": 0.6950133325444656,
+              "mean_outside_bounds_frac": 0.0565,
+              "r2_linear_precision_vars": 0.0
+            }
+          ]
+        },
+        "5": {
+          "n_steps": 4000,
+          "dims": [
+            {
+              "action": "torque",
+              "sigma_mean": 0.20413519442081451,
+              "logsigma_std_across_states": 0.0,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.20413519442081451,
+              "sigma_far": 0.20413519442081451,
+              "n_near": 3296,
+              "spearman": {
+                "|\u03b8| from upright (rad)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "|\u03b8\u0307| (rad/s)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "|\u03b8| from upright (rad)": 0.0,
+                "|\u03b8\u0307| (rad/s)": 0.0
+              },
+              "far_over_near": 1.0,
+              "eff_noise_near": 0.20408231031671192,
+              "eff_noise_far": 0.14077312571102638,
+              "eff_far_over_near": 0.6897860255137396,
+              "mean_outside_bounds_frac": 0.05775,
+              "r2_linear_precision_vars": 0.0
+            }
+          ]
+        },
+        "6": {
+          "n_steps": 4000,
+          "dims": [
+            {
+              "action": "torque",
+              "sigma_mean": 0.222614586353302,
+              "logsigma_std_across_states": 3.5762786865234375e-07,
+              "sigma_p95_over_p5": 1.0,
+              "sigma_near": 0.2226145714521408,
+              "sigma_far": 0.2226146161556244,
+              "n_near": 3275,
+              "spearman": {
+                "|\u03b8| from upright (rad)": {
+                  "rho": NaN,
+                  "p": NaN
+                },
+                "|\u03b8\u0307| (rad/s)": {
+                  "rho": NaN,
+                  "p": NaN
+                }
+              },
+              "eta2": {
+                "|\u03b8| from upright (rad)": 0.0,
+                "|\u03b8\u0307| (rad/s)": 0.0
+              },
+              "far_over_near": 1.0000002008111297,
+              "eff_noise_near": 0.22249803717294034,
+              "eff_noise_far": 0.1622627638649033,
+              "eff_far_over_near": 0.7292772822925258,
+              "mean_outside_bounds_frac": 0.053,
+              "r2_linear_precision_vars": 0.0
+            }
+          ]
+        }
+      },
+      "state": {
+        "1": {
+          "n_steps": 4000,
+          "dims": [
+            {
+              "action": "torque",
+              "sigma_mean": 0.1570676565170288,
+              "logsigma_std_across_states": 0.9377399682998657,
+              "sigma_p95_over_p5": 19.27051544189453,
+              "sigma_near": 0.04824848100543022,
+              "sigma_far": 0.6172376275062561,
+              "n_near": 3235,
+              "spearman": {
+                "|\u03b8| from upright (rad)": {
+                  "rho": 0.5804500548230982,
+                  "p": 0.0
+                },
+                "|\u03b8\u0307| (rad/s)": {
+                  "rho": 0.5938968796728082,
+                  "p": 0.0
+                }
+              },
+              "eta2": {
+                "|\u03b8| from upright (rad)": 0.8507879201560344,
+                "|\u03b8\u0307| (rad/s)": 0.6307452394912274
+              },
+              "far_over_near": 12.792892431925221,
+              "eff_noise_near": 0.048248481983102866,
+              "eff_noise_far": 0.4177898314891807,
+              "eff_far_over_near": 8.659129040277271,
+              "mean_outside_bounds_frac": 0.0565,
+              "r2_linear_precision_vars": 0.7987384907118944
+            }
+          ]
+        },
+        "2": {
+          "n_steps": 4000,
+          "dims": [
+            {
+              "action": "torque",
+              "sigma_mean": 0.0376836322247982,
+              "logsigma_std_across_states": 0.6373376846313477,
+              "sigma_p95_over_p5": 6.233776092529297,
+              "sigma_near": 0.01837715320289135,
+              "sigma_far": 0.056817129254341125,
+              "n_near": 1991,
+              "spearman": {
+                "|\u03b8| from upright (rad)": {
+                  "rho": 0.7381548979884841,
+                  "p": 0.0
+                },
+                "|\u03b8\u0307| (rad/s)": {
+                  "rho": 0.7443062406322425,
+                  "p": 0.0
+                }
+              },
+              "eta2": {
+                "|\u03b8| from upright (rad)": 0.7668808256121191,
+                "|\u03b8\u0307| (rad/s)": 0.5757909195165719
+              },
+              "far_over_near": 3.0917263749753072,
+              "eff_noise_near": 0.018377153649608048,
+              "eff_noise_far": 0.04967968281032071,
+              "eff_far_over_near": 2.703339361336857,
+              "mean_outside_bounds_frac": 0.04225,
+              "r2_linear_precision_vars": 0.6910520929518186
+            }
+          ]
+        },
+        "3": {
+          "n_steps": 4000,
+          "dims": [
+            {
+              "action": "torque",
+              "sigma_mean": 0.036252472549676895,
+              "logsigma_std_across_states": 0.5456294417381287,
+              "sigma_p95_over_p5": 5.742974281311035,
+              "sigma_near": 0.01942647062242031,
+              "sigma_far": 0.04667505621910095,
+              "n_near": 1530,
+              "spearman": {
+                "|\u03b8| from upright (rad)": {
+                  "rho": 0.7967167283001222,
+                  "p": 0.0
+                },
+                "|\u03b8\u0307| (rad/s)": {
+                  "rho": 0.8626686494320275,
+                  "p": 0.0
+                }
+              },
+              "eta2": {
+                "|\u03b8| from upright (rad)": 0.5274250977897882,
+                "|\u03b8\u0307| (rad/s)": 0.5620500492452606
+              },
+              "far_over_near": 2.402652397663667,
+              "eff_noise_near": 0.019426470389893976,
+              "eff_noise_far": 0.04260044558655184,
+              "eff_far_over_near": 2.192907138123939,
+              "mean_outside_bounds_frac": 0.0255,
+              "r2_linear_precision_vars": 0.5076304668652338
+            }
+          ]
+        },
+        "4": {
+          "n_steps": 4000,
+          "dims": [
+            {
+              "action": "torque",
+              "sigma_mean": 0.06164968013763428,
+              "logsigma_std_across_states": 0.7364900708198547,
+              "sigma_p95_over_p5": 7.935975074768066,
+              "sigma_near": 0.02967935986816883,
+              "sigma_far": 0.16689103841781616,
+              "n_near": 3068,
+              "spearman": {
+                "|\u03b8| from upright (rad)": {
+                  "rho": 0.09845651034064092,
+                  "p": 4.371344746228789e-10
+                },
+                "|\u03b8\u0307| (rad/s)": {
+                  "rho": 0.5875736797952993,
+                  "p": 0.0
+                }
+              },
+              "eta2": {
+                "|\u03b8| from upright (rad)": 0.889775307997483,
+                "|\u03b8\u0307| (rad/s)": 0.6557620370776341
+              },
+              "far_over_near": 5.6231347023359195,
+              "eff_noise_near": 0.029679360570607053,
+              "eff_noise_far": 0.1409533324052402,
+              "eff_far_over_near": 4.749203813536107,
+              "mean_outside_bounds_frac": 0.0275,
+              "r2_linear_precision_vars": 0.8574358364624097
+            }
+          ]
+        },
+        "5": {
+          "n_steps": 4000,
+          "dims": [
+            {
+              "action": "torque",
+              "sigma_mean": 0.0538521446287632,
+              "logsigma_std_across_states": 0.87736976146698,
+              "sigma_p95_over_p5": 11.06627368927002,
+              "sigma_near": 0.019526876509189606,
+              "sigma_far": 0.16078312695026398,
+              "n_near": 3028,
+              "spearman": {
+                "|\u03b8| from upright (rad)": {
+                  "rho": 0.3609103751551417,
+                  "p": 2.432558061842517e-123
+                },
+                "|\u03b8\u0307| (rad/s)": {
+                  "rho": 0.550552462003685,
+                  "p": 0.0
+                }
+              },
+              "eta2": {
+                "|\u03b8| from upright (rad)": 0.9323054205331186,
+                "|\u03b8\u0307| (rad/s)": 0.6593280590699331
+              },
+              "far_over_near": 8.233939866142817,
+              "eff_noise_near": 0.019526875305974967,
+              "eff_noise_far": 0.1301825290430397,
+              "eff_far_over_near": 6.666838754442477,
+              "mean_outside_bounds_frac": 0.03625,
+              "r2_linear_precision_vars": 0.8963681381886428
+            }
+          ]
+        },
+        "6": {
+          "n_steps": 4000,
+          "dims": [
+            {
+              "action": "torque",
+              "sigma_mean": 0.036115750670433044,
+              "logsigma_std_across_states": 0.658074140548706,
+              "sigma_p95_over_p5": 6.242802619934082,
+              "sigma_near": 0.015167626552283764,
+              "sigma_far": 0.047595057636499405,
+              "n_near": 1416,
+              "spearman": {
+                "|\u03b8| from upright (rad)": {
+                  "rho": 0.8211984931206431,
+                  "p": 0.0
+                },
+                "|\u03b8\u0307| (rad/s)": {
+                  "rho": 0.7808306481969529,
+                  "p": 0.0
+                }
+              },
+              "eta2": {
+                "|\u03b8| from upright (rad)": 0.7487413973592839,
+                "|\u03b8\u0307| (rad/s)": 0.6593873451652156
+              },
+              "far_over_near": 3.1379370709343513,
+              "eff_noise_near": 0.015167628012408129,
+              "eff_noise_far": 0.04405093362247124,
+              "eff_far_over_near": 2.904273073313418,
+              "mean_outside_bounds_frac": 0.029,
+              "r2_linear_precision_vars": 0.6450338495291035
+            }
+          ]
+        }
+      }
+    },
+    "pooled_variance": {
+      "global": [
+        {
+          "total_var": 0.007252912037074566,
+          "within_seed_state_fraction": 4.245217025133918e-12
+        }
+      ],
+      "state": [
+        {
+          "total_var": 0.662034809589386,
+          "within_seed_state_fraction": 0.8379528522491455
+        }
+      ]
+    },
+    "policy": "stoch",
+    "last_k": 1
+  }
+}

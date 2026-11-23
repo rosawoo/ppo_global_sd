@@ -8,8 +8,12 @@ episodes by default). For each env it produces
   figures/{env}_sigma_heatmap_mean.png  seed-averaged sigma over the state plane
   figures/{env}_sigma_heatmap_seeds.png one row per seed
   figures/{env}_sigma_episodes.png      sigma(t) along a few fixed-seed episodes
+  figures/{env}_effective_noise.png     std of the EXECUTED action (after the env's clip) vs.
+                                        the precision variable, both modes
+  figures/{env}_sigma_over_training.png when sigma(s) becomes state-dependent: far/near sigma
+                                        ratio and std_s(log sigma) at every eval
 and results/sigma_summary.{json,md}: Spearman rho per seed, variance decomposition,
-near/far sigma ratios.
+near/far sigma ratios, near/far effective-noise ratios.
 """
 from __future__ import annotations
 
@@ -24,6 +28,36 @@ import tyro
 
 from common import (INK2, MODE_COLORS, MODE_LABELS, MUTED, SEQ, boot_ci, eval_npz_paths, load_runs, savefig, set_style)
 from envs.wrappers import ENV_SPECS
+
+# action box of each env (the policy's raw sample is clipped to it by the env wrapper)
+ACTION_BOUNDS = {"Pendulum-v1": (-2.0, 2.0)}  # every other env in the study uses [-1, 1]
+
+
+def action_bounds(env):
+    return ACTION_BOUNDS.get(env, (-1.0, 1.0))
+
+
+def clipped_normal_std(mu, sigma, lo, hi):
+    """Std of clip(mu + sigma*Z, lo, hi), Z ~ N(0, 1), in closed form (elementwise).
+
+    This is the noise the environment actually receives. Where the mean sits beyond a bound,
+    most of the Gaussian is clipped onto the bound and the executed action is (nearly)
+    deterministic whatever sigma is: a global-sigma policy can be precise in such states for free."""
+    from scipy.stats import norm
+
+    mu, sigma = np.asarray(mu, float), np.maximum(np.asarray(sigma, float), 1e-12)
+    a, b = (lo - mu) / sigma, (hi - mu) / sigma
+    Pa, Pb, pa, pb = norm.cdf(a), norm.cdf(b), norm.pdf(a), norm.pdf(b)
+    mid = Pb - Pa
+    m1 = lo * Pa + hi * (1 - Pb) + mu * mid + sigma * (pa - pb)
+    inner2 = mu**2 * mid + 2 * mu * sigma * (pa - pb) + sigma**2 * (mid + a * pa - b * pb)
+    m2 = lo**2 * Pa + hi**2 * (1 - Pb) + inner2
+    return np.sqrt(np.maximum(m2 - m1**2, 0.0))
+
+
+def effective_noise(env, d):
+    lo, hi = action_bounds(env)
+    return clipped_normal_std(d["mean"], d["std"], lo, hi)
 
 
 def _parking_heading_err(d):
@@ -47,6 +81,7 @@ class SigmaSpec:
     heat_range: tuple  # ((xmin, xmax), (ymin, ymax))
     fine_var: str  # precision variable defining the "fine control" region
     fine_threshold: float  # region = fine_var < threshold
+    goal_xy: tuple = (0.0, 0.0)  # where the "+" goes on the heatmap
 
 
 SIGMA_SPECS = {
@@ -54,6 +89,7 @@ SIGMA_SPECS = {
         variables={
             "distance to goal (m)": (lambda d: d["goal_dist"], np.array([0, 1, 2, 3, 5, 7.5, 10, 15, 20, 30.0])),
             "|heading error| (rad)": (_parking_heading_err, np.linspace(0, np.pi, 9)),
+            "speed (m/s)": (lambda d: np.hypot(d["goal_rel"][:, 2], d["goal_rel"][:, 3]), np.array([0, 0.5, 1, 2, 3, 4, 5, 7, 10.0])),
         },
         heat_xy=_parking_goal_frame,
         heat_labels=("along goal heading (m)", "across goal heading (m)"),
@@ -70,6 +106,17 @@ SIGMA_SPECS = {
         heat_range=((-np.pi, np.pi), (-8, 8)),
         fine_var="|θ| from upright (rad)", fine_threshold=0.3,
     ),
+    "simglucose-adolescent1-v0": SigmaSpec(
+        variables={
+            "CGM (mg/dL)": (lambda d: d["goal_rel"][:, 0], np.array([40, 70, 90, 110, 130, 150, 180, 220, 270, 350.0])),
+            "CGM trend (mg/dL/min)": (lambda d: d["goal_rel"][:, 1], np.linspace(-3, 3, 9)),
+        },
+        heat_xy=lambda d: (d["goal_rel"][:, 0], d["goal_rel"][:, 1]),
+        heat_labels=("CGM (mg/dL)", "CGM trend (mg/dL/min)"),
+        heat_range=((40, 350), (-3, 3)),
+        fine_var="CGM (mg/dL)", fine_threshold=100.0,  # low BG: an overdose risks hypoglycaemia
+        goal_xy=(112.5, 0.0),
+    ),
     "LunarLanderContinuous-v3": SigmaSpec(
         variables={
             "height above pad (obs units)": (lambda d: d["goal_rel"][:, 1], np.linspace(0, 1.5, 9)),
@@ -81,6 +128,10 @@ SIGMA_SPECS = {
         fine_var="height above pad (obs units)", fine_threshold=0.3,
     ),
 }
+
+
+SIGMA_SPECS["simglucose-adolescent1-logact-v0"] = SIGMA_SPECS["simglucose-adolescent1-v0"]
+SIGMA_SPECS["parking-nowalls-v0"] = SIGMA_SPECS["parking-v0"]
 
 
 @dataclass
@@ -144,8 +195,10 @@ def per_seed_stats(env, d):
     out = {"n_steps": int(len(logs)), "dims": []}
     xs = {name: fn(d) for name, (fn, _) in spec.variables.items()}
     near = xs[spec.fine_var] < spec.fine_threshold
+    eff_all = effective_noise(env, d)
     for a in range(n_act):
         s = d["std"][:, a]
+        eff = eff_all[:, a]
         row = {
             "action": ENV_SPECS[env].action_names[a],
             "sigma_mean": float(s.mean()),
@@ -157,6 +210,15 @@ def per_seed_stats(env, d):
             "spearman": {}, "eta2": {},
         }
         row["far_over_near"] = row["sigma_far"] / row["sigma_near"]
+        # executed-action noise after the env's clip (saturation makes it smaller than sigma)
+        row["eff_noise_near"] = float(eff[near].mean()) if near.sum() >= 5 else np.nan
+        row["eff_noise_far"] = float(eff[~near].mean()) if (~near).sum() >= 5 else np.nan
+        # undefined (NaN) when no executed noise reaches the near region, e.g. a policy whose mean
+        # saturates the action box there (seen in untuned parking runs)
+        row["eff_far_over_near"] = (row["eff_noise_far"] / row["eff_noise_near"]
+                                    if row["eff_noise_near"] > 0 else np.nan)
+        row["mean_outside_bounds_frac"] = float(np.mean((d["mean"][:, a] < action_bounds(env)[0])
+                                                        | (d["mean"][:, a] > action_bounds(env)[1])))
         for name, (_, edges) in spec.variables.items():
             if logs[:, a].std() < 1e-9:
                 rho, p = np.nan, np.nan  # constant sigma (global mode): rho undefined
@@ -227,7 +289,7 @@ def plot_heatmaps(env, seeds: dict, mode, a: SigmaArgs):
 
     def draw(ax, g, i, title):
         im = ax.pcolormesh(xe, ye, g.T, cmap=SEQ, vmin=vlim[i][0], vmax=vlim[i][1])
-        ax.plot([0], [0], marker="+", color="#0b0b0b", ms=10, mew=1.5)
+        ax.plot([spec.goal_xy[0]], [spec.goal_xy[1]], marker="+", color="#0b0b0b", ms=10, mew=1.5)
         ax.set_title(title, fontsize=9)
         ax.grid(False)
         return im
@@ -295,6 +357,91 @@ def plot_episodes(env, runs_by_mode, a: SigmaArgs):
         savefig(fig, os.path.join(a.fig_dir, f"{env}_sigma_episodes_seed{run_seed}.png"))
 
 
+def plot_effective_noise(env, data, a: SigmaArgs):
+    """Binned std of the executed action (sigma after the env's clip) for every mode."""
+    spec, names = SIGMA_SPECS[env], ENV_SPECS[env].action_names
+    fig, axes = plt.subplots(len(names), len(spec.variables), figsize=(4.8 * len(spec.variables), 3.0 * len(names)),
+                             squeeze=False, sharey="row")
+    for j, (vname, (fn, edges)) in enumerate(spec.variables.items()):
+        centers = 0.5 * (edges[:-1] + edges[1:])
+        for i, act in enumerate(names):
+            ax = axes[i][j]
+            for mode, seeds in data.items():
+                c = MODE_COLORS[mode]
+                per_seed = np.stack([binned_mean(fn(d), effective_noise(env, d)[:, i], edges, a.min_count)
+                                     for d in seeds.values()])
+                ok = np.sum(~np.isnan(per_seed), axis=0) >= max(2, len(per_seed) // 2)
+                mean = np.where(ok, np.nanmean(per_seed, axis=0), np.nan)
+                lo, hi = boot_ci(per_seed, stat=np.nanmean)
+                ax.fill_between(centers, np.where(ok, lo, np.nan), np.where(ok, hi, np.nan), color=c, alpha=0.18, lw=0)
+                ax.plot(centers, mean, "-o", color=c, ms=4, label=f"{MODE_LABELS[mode]} (n={len(per_seed)})")
+                sig = np.stack([binned_mean(fn(d), d["std"][:, i], edges, a.min_count) for d in seeds.values()])
+                ax.plot(centers, np.where(ok, np.nanmean(sig, axis=0), np.nan), ":", color=c, lw=1.2)
+            ax.set_ylim(bottom=0)
+            ax.set_xlabel(vname)
+            if j == 0:
+                ax.set_ylabel(f"executed-action std ({act})")
+            if spec.fine_var == vname:
+                ax.axvline(spec.fine_threshold, color=MUTED, lw=1, ls=":")
+    axes[0][0].legend(loc="best")
+    fig.suptitle(f"{env}: noise the env actually receives (solid: std after clipping to the action box; "
+                 f"dotted: policy σ)", y=1.0)
+    fig.tight_layout()
+    savefig(fig, os.path.join(a.fig_dir, f"{env}_effective_noise.png"))
+
+
+def sigma_over_training(env, runs, policy="stoch"):
+    """Per run: at every eval dump, far/near sigma ratio per action dim and std_s(log sigma)."""
+    spec = SIGMA_SPECS[env]
+    fn = spec.variables[spec.fine_var][0]
+    out = []
+    for r in runs:
+        rows = []
+        for path in eval_npz_paths(r["dir"]):
+            with np.load(path) as z:
+                keep = z["deterministic"] == (policy == "det")
+                d = {k: z[k][keep] for k in ("std", "goal_rel", "goal_dist", "obs", "mean")}
+            near = fn(d) < spec.fine_threshold
+            ok = near.sum() >= 5 and (~near).sum() >= 5
+            ratio = (d["std"][~near].mean(0) / d["std"][near].mean(0)) if ok else np.full(d["std"].shape[1], np.nan)
+            rows.append((int(path[-13:-4]), ratio, np.log(d["std"]).std(axis=0)))
+        out.append(rows)
+    return out
+
+
+def plot_sigma_over_training(env, by_mode, a: SigmaArgs):
+    names = ENV_SPECS[env].action_names
+    fig, axes = plt.subplots(2, len(names), figsize=(4.8 * len(names), 5.6), squeeze=False, sharex=True)
+    for mode in [m for m in ("global", "state", "state_separate", "state_detach") if m in by_mode]:
+        series = sigma_over_training(env, by_mode[mode])
+        if not series or not series[0]:
+            continue
+        n = min(len(s_) for s_ in series)
+        steps = np.array([row[0] for row in series[0][:n]])
+        ratio = np.stack([[row[1] for row in s_[:n]] for s_ in series])  # [seed, eval, dim]
+        spread = np.stack([[row[2] for row in s_[:n]] for s_ in series])
+        for i, act in enumerate(names):
+            for k, (arr, lab) in enumerate(((ratio, "σ far / σ near"), (spread, "std of log σ across states"))):
+                ax = axes[k][i]
+                for row in arr[:, :, i]:
+                    ax.plot(steps, row, color=MODE_COLORS[mode], lw=0.6, alpha=0.3)
+                with np.errstate(all="ignore"):
+                    ax.plot(steps, np.nanmedian(arr[:, :, i], axis=0), color=MODE_COLORS[mode], lw=2,
+                            label=MODE_LABELS[mode])
+                ax.set_ylabel(lab)
+                ax.set_title(f"{act}", fontsize=9)
+                if k == 0:
+                    ax.axhline(1.0, color=MUTED, lw=1, ls=":")
+                if k == 1:
+                    ax.set_xlabel("environment steps")
+    axes[0][0].legend(loc="best")
+    spec = SIGMA_SPECS[env]
+    fig.suptitle(f"{env}: when does σ become state-dependent? (near = {spec.fine_var} < {spec.fine_threshold}; "
+                 f"thin: seeds, bold: median)", y=1.0)
+    fig.tight_layout()
+    savefig(fig, os.path.join(a.fig_dir, f"{env}_sigma_over_training.png"))
+
+
 def main(a: SigmaArgs):
     set_style()
     runs = load_runs(a.runs_root)
@@ -303,7 +450,7 @@ def main(a: SigmaArgs):
         if env not in SIGMA_SPECS:
             continue
         data = {}
-        for mode in ("global", "state", "state_separate"):
+        for mode in ("global", "state", "state_separate", "state_detach"):
             seeds = {r["seed"]: load_eval_steps(r, a.last_k, a.policy) for r in by_mode.get(mode, [])}
             seeds = {s: d for s, d in seeds.items() if d is not None and len(d["t"]) > 0}
             if seeds:
@@ -323,6 +470,8 @@ def main(a: SigmaArgs):
                                      "within_seed_state_fraction": float(within / allv.var()) if allv.var() > 1e-12 else 0.0})
         summary[env] = {"per_seed": stats, "pooled_variance": pooled, "policy": a.policy, "last_k": a.last_k}
         plot_binned(env, data, a)
+        plot_effective_noise(env, data, a)
+        plot_sigma_over_training(env, by_mode, a)
         for mode in data:
             if mode != "global":
                 plot_heatmaps(env, data[mode], mode, a)
@@ -349,6 +498,9 @@ def main(a: SigmaArgs):
                 med = lambda f: float(np.nanmedian([f(r) for r in rows]))
                 line = (f"- {act}: median std_s(log σ) = {med(lambda r: r['logsigma_std_across_states']):.3f}; "
                         f"median σ far/near = {med(lambda r: r['far_over_near']):.2f}; "
+                        f"median executed-noise far/near = {med(lambda r: r['eff_far_over_near']):.2f}; "
+                        f"median frac. of states with mean outside the action box = "
+                        f"{med(lambda r: r['mean_outside_bounds_frac']):.2f}; "
                         f"within-seed (state) share of pooled Var[log σ] = "
                         f"{pooled[mode][i]['within_seed_state_fraction']:.2f}")
                 for v in spec.variables:

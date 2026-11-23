@@ -20,3 +20,5 @@ pandas==2.3.3
 seaborn==0.13.2
 statsmodels==0.15.0
 pillow==13.0.0
+# hyper-parameter tuning (scripts/tune.py)
+optuna==5.1.0
