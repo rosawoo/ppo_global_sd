@@ -213,7 +213,10 @@ def per_seed_stats(env, d):
         # executed-action noise after the env's clip (saturation makes it smaller than sigma)
         row["eff_noise_near"] = float(eff[near].mean()) if near.sum() >= 5 else np.nan
         row["eff_noise_far"] = float(eff[~near].mean()) if (~near).sum() >= 5 else np.nan
-        row["eff_far_over_near"] = row["eff_noise_far"] / row["eff_noise_near"]
+        # undefined (NaN) when no executed noise reaches the near region, e.g. a policy whose mean
+        # saturates the action box there (seen in untuned parking runs)
+        row["eff_far_over_near"] = (row["eff_noise_far"] / row["eff_noise_near"]
+                                    if row["eff_noise_near"] > 0 else np.nan)
         row["mean_outside_bounds_frac"] = float(np.mean((d["mean"][:, a] < action_bounds(env)[0])
                                                         | (d["mean"][:, a] > action_bounds(env)[1])))
         for name, (_, edges) in spec.variables.items():
